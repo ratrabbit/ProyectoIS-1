@@ -1,0 +1,363 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- Name: auto_incremento_id; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auto_incremento_id
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auto_incremento_id OWNER TO postgres;
+
+--
+-- Name: SEQUENCE auto_incremento_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON SEQUENCE auto_incremento_id IS 'Secuencia que auto incrementa la variable id';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: datos_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE datos_usuario (
+    id_datos_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    nombre_usuario integer NOT NULL,
+    email varchar NOT NULL,
+    direccion integer NOT NULL,
+    imagen_usuario bytea NOT NULL,
+    telefono varchar NOT NULL,
+    edad integer NOT NULL
+);
+
+
+ALTER TABLE datos_usuario OWNER TO postgres;
+
+--
+-- Name: direccion_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE direccion_usuario (
+    id_direccion_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    calle varchar NOT NULL,
+    numero varchar NOT NULL,
+    interior varchar,
+    colonia varchar NOT NULL,
+    ciudad varchar NOT NULL,
+    estado_fk integer NOT NULL
+);
+
+
+ALTER TABLE direccion_usuario OWNER TO postgres;
+
+--
+-- Name: estado; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE estado (
+    id_estado integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    estado_estado varchar NOT NULL
+);
+
+
+ALTER TABLE estado OWNER TO postgres;
+
+--
+-- Name: galeria_publicacion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE galeria_publicacion (
+    id_galeria integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    url_imagen bytea NOT NULL,
+    texto_imagen varchar
+);
+
+
+ALTER TABLE galeria_publicacion OWNER TO postgres;
+
+--
+-- Name: nombre_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE nombre_usuario (
+    id_nombre_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    nombre varchar NOT NULL,
+    apellido_paterno varchar NOT NULL,
+    apellido_materno varchar NOT NULL
+);
+
+
+ALTER TABLE nombre_usuario OWNER TO postgres;
+
+--
+-- Name: pais; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE pais (
+    id_pais integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    pais_pais varchar NOT NULL
+);
+
+
+ALTER TABLE pais OWNER TO postgres;
+
+--
+-- Name: publicacion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE publicacion (
+    id_publicacion integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    descripcion varchar NOT NULL,
+    imagenes integer NOT NULL,
+    precio_inical integer DEFAULT 0 NOT NULL,
+    precio_final integer DEFAULT 0 NOT NULL,
+    precio_actual integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE publicacion OWNER TO postgres;
+
+--
+-- Name: usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE usuario (
+    id_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    nombre_usuario varchar NOT NULL,
+    contrasenia_usuario varchar NOT NULL
+);
+
+
+ALTER TABLE usuario OWNER TO postgres;
+
+--
+-- Name: auto_incremento_id; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auto_incremento_id', 1, false);
+
+
+--
+-- Data for Name: datos_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY datos_usuario (id_datos_usuario, nombre_usuario, email, direccion, imagen_usuario, telefono, edad) FROM stdin;
+\.
+
+
+--
+-- Data for Name: direccion_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY direccion_usuario (id_direccion_usuario, calle, numero, interior, colonia, ciudad, estado_fk) FROM stdin;
+\.
+
+
+--
+-- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY estado (id_estado, estado_estado) FROM stdin;
+\.
+
+
+--
+-- Data for Name: galeria_publicacion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY galeria_publicacion (id_galeria, url_imagen, texto_imagen) FROM stdin;
+\.
+
+
+--
+-- Data for Name: nombre_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY nombre_usuario (id_nombre_usuario, nombre, apellido_paterno, apellido_materno) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pais; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY pais (id_pais, pais_pais) FROM stdin;
+\.
+
+
+--
+-- Data for Name: publicacion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY publicacion (id_publicacion, descripcion, imagenes, precio_inical, precio_final, precio_actual) FROM stdin;
+\.
+
+
+--
+-- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY usuario (id_usuario, nombre_usuario, contrasenia_usuario) FROM stdin;
+\.
+
+
+--
+-- Name: estado_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY estado
+    ADD CONSTRAINT estado_pk PRIMARY KEY (id_estado);
+
+
+--
+-- Name: id_datos_usuario_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY datos_usuario
+    ADD CONSTRAINT id_datos_usuario_pk PRIMARY KEY (id_datos_usuario);
+
+
+--
+-- Name: id_direccion_usuario_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY direccion_usuario
+    ADD CONSTRAINT id_direccion_usuario_pk PRIMARY KEY (id_direccion_usuario);
+
+
+--
+-- Name: id_galeria_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY galeria_publicacion
+    ADD CONSTRAINT id_galeria_pk PRIMARY KEY (id_galeria);
+
+
+--
+-- Name: id_nombre_usuario_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY nombre_usuario
+    ADD CONSTRAINT id_nombre_usuario_pk PRIMARY KEY (id_nombre_usuario);
+
+
+--
+-- Name: id_pais_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY pais
+    ADD CONSTRAINT id_pais_pk PRIMARY KEY (id_pais);
+
+
+--
+-- Name: id_publicacion; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY publicacion
+    ADD CONSTRAINT id_publicacion PRIMARY KEY (id_publicacion);
+
+
+--
+-- Name: unique_contrasenia_usuario; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY usuario
+    ADD CONSTRAINT unique_contrasenia_usuario UNIQUE (contrasenia_usuario);
+
+
+--
+-- Name: unique_email; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY datos_usuario
+    ADD CONSTRAINT unique_email UNIQUE (email);
+
+
+--
+-- Name: unique_estado; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY estado
+    ADD CONSTRAINT unique_estado UNIQUE (estado_estado);
+
+
+--
+-- Name: unique_nombre_usuario; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY usuario
+    ADD CONSTRAINT unique_nombre_usuario UNIQUE (nombre_usuario);
+
+
+--
+-- Name: unique_pais; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY pais
+    ADD CONSTRAINT unique_pais UNIQUE (pais_pais);
+
+
+--
+-- Name: usuario_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY usuario
+    ADD CONSTRAINT usuario_pk PRIMARY KEY (id_usuario);
+
+
+--
+-- Name: estado_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY direccion_usuario
+    ADD CONSTRAINT estado_fk FOREIGN KEY (estado_fk) REFERENCES estado(id_estado);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
