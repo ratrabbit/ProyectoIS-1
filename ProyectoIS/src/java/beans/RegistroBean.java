@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package beans;
-
+import DAO.DatosUsuarioDAO;
+import DAO.RegistroDAO;
+import mapeo.DatosUsuario;
+import mapeo.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -27,7 +30,12 @@ public class RegistroBean implements Serializable {
     private byte[] imagenUsuario;
     private String telefono;
     private int edad;
-
+    
+    public void addRegistro(){
+        Usuario registro = new Usuario(getNombreUsuario(),getContraseniaUsuario());
+        RegistroDAO registroDAO = new RegistroDAO();
+        registroDAO.addRegistro(registro);
+    }
     /**
      * Creates a new instance of RegistroBean
      */

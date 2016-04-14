@@ -32,6 +32,12 @@ public class RegistroDAO {
           sesion.close();
       }
     }
+     public void deleteRegistro(int idRegistro){
+        
+    }
+    public void updateRegistro(Usuario registro){
+        
+    }
     public Usuario getUsuarioById(){
         return null;
     }

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/04/2016 01:37:53 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mapeo.DatosUsuario" table="datos_usuario" schema="public" optimistic-lock="version">
+        <id name="idDatosUsuario" type="int">
+            <column name="id_datos_usuario" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreUsuario" type="int">
+            <column name="nombre_usuario" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" not-null="true" unique="true" />
+        </property>
+        <property name="direccion" type="int">
+            <column name="direccion" not-null="true" />
+        </property>
+        <property name="imagenUsuario" type="binary">
+            <column name="imagen_usuario" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" not-null="true" />
+        </property>
+        <property name="edad" type="int">
+            <column name="edad" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
