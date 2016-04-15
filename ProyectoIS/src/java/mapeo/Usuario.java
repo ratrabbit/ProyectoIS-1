@@ -20,7 +20,7 @@ public class Usuario  implements java.io.Serializable {
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nombreUsuario, String contraseniaUsuario, Set<DatosUsuario> datosUsuarios, Set<Publicacion> publicacions) {
+    public Usuario(String nombreUsuario, String contraseniaUsuarioatosUsuarios, Set<Publicacion> publicacions) {
        this.idUsuario = idUsuario;
        this.nombreUsuario = nombreUsuario;
        this.contraseniaUsuario = contraseniaUsuario;
@@ -28,7 +28,8 @@ public class Usuario  implements java.io.Serializable {
        this.publicacions = publicacions;
     }
     public Usuario(String nombreUsuario, String contraseniaUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.nombreUsuario = nombreUsuario;
+       this.contraseniaUsuario = contraseniaUsuario;
     }
 
    

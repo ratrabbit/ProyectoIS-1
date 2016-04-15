@@ -24,7 +24,7 @@ public class DatosUsuario  implements java.io.Serializable {
     public DatosUsuario() {
     }
 
-    public DatosUsuario(int idDatosUsuario, NombreUsuario nombreUsuario, Usuario usuario, String email, byte[] imagenUsuario, String telefono, int edad, String sexo, Set<DireccionUsuario> direccionUsuarios) {
+    public DatosUsuario(int idDatosUsuario, Usuario usuario, String email, byte[] imagenUsuario, String telefono, int edad, String sexo, Set<DireccionUsuario> direccionUsuarios) {
        this.idDatosUsuario = idDatosUsuario;
        this.nombreUsuario = nombreUsuario;
        this.usuario = usuario;

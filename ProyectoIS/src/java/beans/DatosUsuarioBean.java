@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 import mapeo.DatosUsuario;
 import mapeo.DireccionUsuario;
+import mapeo.NombreUsuario;
+import mapeo.Usuario;
 
 /**
  *
@@ -25,7 +27,7 @@ public class DatosUsuarioBean implements Serializable {
      * Creates a new instance of DatosUsuarioBean
      */
     private int idDatosUsuario;
-     private int nombreUsuario;
+     private Usuario nombreUsuario;
      private String email;
      private int direccion;
      private byte[] imagenUsuario;
@@ -38,7 +40,7 @@ public class DatosUsuarioBean implements Serializable {
     }
     public void datosUsuario(){
         DatosUsuario usuario;
-        usuario = new DatosUsuario(getIdDatosUsuario(),getNombreUsuario(), getEmail(), getDireccion(),getImagenUsuario(), getTelefono(), getEdad(), getSexo(), getDireccionUsuarios());
+        usuario = new DatosUsuario(getIdDatosUsuario(),getNombreUsuario(), getEmail(),getImagenUsuario(), getTelefono(), getEdad(), getSexo(), getDireccionUsuarios());
         DatosUsuarioDAO usuarioDAO = new DatosUsuarioDAO();
         usuarioDAO.datosUsuario(usuario);
     }
@@ -59,14 +61,14 @@ public class DatosUsuarioBean implements Serializable {
     /**
      * @return the nombreUsuario
      */
-    public int getNombreUsuario() {
+    public Usuario getNombreUsuario() {
         return nombreUsuario;
     }
 
     /**
      * @param nombreUsuario the nombreUsuario to set
      */
-    public void setNombreUsuario(int nombreUsuario) {
+    public void setNombreUsuario(Usuario nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
 
