@@ -5,12 +5,13 @@
  */
 package beans;
 import DAO.DatosUsuarioDAO;
-import DAO.RegistroDAO;
-import mapeo.DatosUsuario;
-import mapeo.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import mapeo.DatosUsuario;
+import mapeo.DireccionUsuario;
 
 /**
  *
@@ -30,11 +31,14 @@ public class DatosUsuarioBean implements Serializable {
      private byte[] imagenUsuario;
      private String telefono;
      private int edad;
+     private String sexo;
+     private Set<DireccionUsuario> direccionUsuarios = new HashSet<>(0);
 
     public DatosUsuarioBean() {
     }
     public void datosUsuario(){
-        DatosUsuario usuario = new DatosUsuario(getIdDatosUsuario(),getNombreUsuario(),getEmail(), getDireccion(),getImagenUsuario(), getTelefono(), getEdad());
+        DatosUsuario usuario;
+        usuario = new DatosUsuario(getIdDatosUsuario(),getNombreUsuario(), getEmail(), getDireccion(),getImagenUsuario(), getTelefono(), getEdad(), getSexo(), getDireccionUsuarios());
         DatosUsuarioDAO usuarioDAO = new DatosUsuarioDAO();
         usuarioDAO.datosUsuario(usuario);
     }
@@ -134,6 +138,28 @@ public class DatosUsuarioBean implements Serializable {
      */
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+    
+    /**
+     * @return the edad
+     */
+    public String getSexo() {
+        return sexo;
+    }
+
+    /**
+     * @param sexo the edad to set
+     */
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+    
+    public Set<DireccionUsuario> getDireccionUsuarios() {
+        return this.direccionUsuarios;
+    }
+    
+    public void setDireccionUsuarios(Set<DireccionUsuario> direccionUsuarios) {
+        this.direccionUsuarios = direccionUsuarios;
     }
     
     

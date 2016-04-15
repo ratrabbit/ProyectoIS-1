@@ -21,16 +21,6 @@ public class DireccionUsuario  implements java.io.Serializable {
     public DireccionUsuario() {
     }
 
-	
-    public DireccionUsuario(int idDireccionUsuario, DatosUsuario datosUsuario, Estado estado, String calle, String numero, String colonia, String ciudad) {
-        this.idDireccionUsuario = idDireccionUsuario;
-        this.datosUsuario = datosUsuario;
-        this.estado = estado;
-        this.calle = calle;
-        this.numero = numero;
-        this.colonia = colonia;
-        this.ciudad = ciudad;
-    }
     public DireccionUsuario(int idDireccionUsuario, DatosUsuario datosUsuario, Estado estado, String calle, String numero, String interior, String colonia, String ciudad) {
        this.idDireccionUsuario = idDireccionUsuario;
        this.datosUsuario = datosUsuario;
