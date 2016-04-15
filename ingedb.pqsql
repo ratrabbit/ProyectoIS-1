@@ -57,11 +57,14 @@ SET default_with_oids = false;
 CREATE TABLE datos_usuario (
     id_datos_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
     nombre_usuario integer NOT NULL,
-    email varchar NOT NULL,
-    direccion integer NOT NULL,
+    email text,
     imagen_usuario bytea NOT NULL,
-    telefono varchar NOT NULL,
-    edad integer NOT NULL
+    telefono text NOT NULL,
+    edad integer NOT NULL,
+    sexo text,
+    id_usuario_fk integer NOT NULL,
+    CONSTRAINT email_correcto CHECK (((email)::text ~ '^[\w!#$%&''*+/=?`{|}~^-]+(\.[\w!#$%&''*+/=?`{|}~^-]+)*@[\w-]+(\.[\w-]+)*$'::text)),
+    CONSTRAINT sexo_correcto CHECK (((sexo)::bpchar = ANY (ARRAY['f'::character(1), 'm'::character(1)])))
 );
 
 
@@ -73,12 +76,13 @@ ALTER TABLE datos_usuario OWNER TO postgres;
 
 CREATE TABLE direccion_usuario (
     id_direccion_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
-    calle varchar NOT NULL,
-    numero varchar NOT NULL,
-    interior varchar,
-    colonia varchar NOT NULL,
-    ciudad varchar NOT NULL,
-    estado_fk integer NOT NULL
+    calle text NOT NULL,
+    numero text NOT NULL,
+    interior text,
+    colonia text NOT NULL,
+    ciudad text NOT NULL,
+    estado_fk integer NOT NULL,
+    id_datos_usuario integer NOT NULL
 );
 
 
@@ -90,7 +94,7 @@ ALTER TABLE direccion_usuario OWNER TO postgres;
 
 CREATE TABLE estado (
     id_estado integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
-    estado_estado varchar NOT NULL
+    estado_estado text NOT NULL
 );
 
 
@@ -103,7 +107,7 @@ ALTER TABLE estado OWNER TO postgres;
 CREATE TABLE galeria_publicacion (
     id_galeria integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
     url_imagen bytea NOT NULL,
-    texto_imagen varchar
+    varcharo_imagen text
 );
 
 
@@ -115,25 +119,13 @@ ALTER TABLE galeria_publicacion OWNER TO postgres;
 
 CREATE TABLE nombre_usuario (
     id_nombre_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
-    nombre varchar NOT NULL,
-    apellido_paterno varchar NOT NULL,
-    apellido_materno varchar NOT NULL
+    nombre text NOT NULL,
+    apellido_paterno text NOT NULL,
+    apellido_materno text NOT NULL
 );
 
 
 ALTER TABLE nombre_usuario OWNER TO postgres;
-
---
--- Name: pais; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE pais (
-    id_pais integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
-    pais_pais varchar NOT NULL
-);
-
-
-ALTER TABLE pais OWNER TO postgres;
 
 --
 -- Name: publicacion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -141,11 +133,12 @@ ALTER TABLE pais OWNER TO postgres;
 
 CREATE TABLE publicacion (
     id_publicacion integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
-    descripcion varchar NOT NULL,
+    descripcion text NOT NULL,
     imagenes integer NOT NULL,
     precio_inical integer DEFAULT 0 NOT NULL,
     precio_final integer DEFAULT 0 NOT NULL,
-    precio_actual integer DEFAULT 0 NOT NULL
+    precio_actual integer DEFAULT 0 NOT NULL,
+    id_usuario_publicacion integer NOT NULL
 );
 
 
@@ -157,8 +150,8 @@ ALTER TABLE publicacion OWNER TO postgres;
 
 CREATE TABLE usuario (
     id_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
-    nombre_usuario varchar NOT NULL,
-    contrasenia_usuario varchar NOT NULL
+    nombre_usuario text NOT NULL,
+    contrasenia_usuario text NOT NULL
 );
 
 
@@ -168,14 +161,14 @@ ALTER TABLE usuario OWNER TO postgres;
 -- Name: auto_incremento_id; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('auto_incremento_id', 1, false);
+SELECT pg_catalog.setval('auto_incremento_id', 7, true);
 
 
 --
 -- Data for Name: datos_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY datos_usuario (id_datos_usuario, nombre_usuario, email, direccion, imagen_usuario, telefono, edad) FROM stdin;
+COPY datos_usuario (id_datos_usuario, nombre_usuario, email, imagen_usuario, telefono, edad, sexo, id_usuario_fk) FROM stdin;
 \.
 
 
@@ -183,7 +176,7 @@ COPY datos_usuario (id_datos_usuario, nombre_usuario, email, direccion, imagen_u
 -- Data for Name: direccion_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY direccion_usuario (id_direccion_usuario, calle, numero, interior, colonia, ciudad, estado_fk) FROM stdin;
+COPY direccion_usuario (id_direccion_usuario, calle, numero, interior, colonia, ciudad, estado_fk, id_datos_usuario) FROM stdin;
 \.
 
 
@@ -199,7 +192,7 @@ COPY estado (id_estado, estado_estado) FROM stdin;
 -- Data for Name: galeria_publicacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY galeria_publicacion (id_galeria, url_imagen, texto_imagen) FROM stdin;
+COPY galeria_publicacion (id_galeria, url_imagen, varcharo_imagen) FROM stdin;
 \.
 
 
@@ -212,18 +205,10 @@ COPY nombre_usuario (id_nombre_usuario, nombre, apellido_paterno, apellido_mater
 
 
 --
--- Data for Name: pais; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY pais (id_pais, pais_pais) FROM stdin;
-\.
-
-
---
 -- Data for Name: publicacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY publicacion (id_publicacion, descripcion, imagenes, precio_inical, precio_final, precio_actual) FROM stdin;
+COPY publicacion (id_publicacion, descripcion, imagenes, precio_inical, precio_final, precio_actual, id_usuario_publicacion) FROM stdin;
 \.
 
 
@@ -276,14 +261,6 @@ ALTER TABLE ONLY nombre_usuario
 
 
 --
--- Name: id_pais_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY pais
-    ADD CONSTRAINT id_pais_pk PRIMARY KEY (id_pais);
-
-
---
 -- Name: id_publicacion; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -324,14 +301,6 @@ ALTER TABLE ONLY usuario
 
 
 --
--- Name: unique_pais; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY pais
-    ADD CONSTRAINT unique_pais UNIQUE (pais_pais);
-
-
---
 -- Name: usuario_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -345,6 +314,38 @@ ALTER TABLE ONLY usuario
 
 ALTER TABLE ONLY direccion_usuario
     ADD CONSTRAINT estado_fk FOREIGN KEY (estado_fk) REFERENCES estado(id_estado);
+
+
+--
+-- Name: id_datos_usuario_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY direccion_usuario
+    ADD CONSTRAINT id_datos_usuario_fk FOREIGN KEY (id_datos_usuario) REFERENCES datos_usuario(id_datos_usuario);
+
+
+--
+-- Name: id_usuario_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY datos_usuario
+    ADD CONSTRAINT id_usuario_fk FOREIGN KEY (id_usuario_fk) REFERENCES usuario(id_usuario);
+
+
+--
+-- Name: id_usuario_publicacion_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY publicacion
+    ADD CONSTRAINT id_usuario_publicacion_fk FOREIGN KEY (id_usuario_publicacion) REFERENCES usuario(id_usuario);
+
+
+--
+-- Name: nombre_usuario_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY datos_usuario
+    ADD CONSTRAINT nombre_usuario_fk FOREIGN KEY (nombre_usuario) REFERENCES nombre_usuario(id_nombre_usuario);
 
 
 --
