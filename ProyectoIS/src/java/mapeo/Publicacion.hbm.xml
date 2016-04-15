@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 13/04/2016 01:37:53 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/04/2016 09:44:17 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="mapeo.Publicacion" table="publicacion" schema="public" optimistic-lock="version">
         <id name="idPublicacion" type="int">
             <column name="id_publicacion" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="usuario" class="mapeo.Usuario" fetch="select">
+            <column name="id_usuario_publicacion" not-null="true" />
+        </many-to-one>
         <property name="descripcion" type="string">
             <column name="descripcion" not-null="true" />
         </property>

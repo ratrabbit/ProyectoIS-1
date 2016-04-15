@@ -1,5 +1,5 @@
 package mapeo;
-// Generated 13/04/2016 01:37:52 PM by Hibernate Tools 4.3.1
+// Generated 14/04/2016 09:44:17 PM by Hibernate Tools 4.3.1
 
 
 
@@ -10,6 +10,7 @@ public class Publicacion  implements java.io.Serializable {
 
 
      private int idPublicacion;
+     private Usuario usuario;
      private String descripcion;
      private int imagenes;
      private int precioInical;
@@ -19,8 +20,9 @@ public class Publicacion  implements java.io.Serializable {
     public Publicacion() {
     }
 
-    public Publicacion(int idPublicacion, String descripcion, int imagenes, int precioInical, int precioFinal, int precioActual) {
+    public Publicacion(int idPublicacion, Usuario usuario, String descripcion, int imagenes, int precioInical, int precioFinal, int precioActual) {
        this.idPublicacion = idPublicacion;
+       this.usuario = usuario;
        this.descripcion = descripcion;
        this.imagenes = imagenes;
        this.precioInical = precioInical;
@@ -34,6 +36,13 @@ public class Publicacion  implements java.io.Serializable {
     
     public void setIdPublicacion(int idPublicacion) {
         this.idPublicacion = idPublicacion;
+    }
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
+    
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     public String getDescripcion() {
         return this.descripcion;

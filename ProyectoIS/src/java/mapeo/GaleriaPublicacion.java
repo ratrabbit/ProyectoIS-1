@@ -1,5 +1,5 @@
 package mapeo;
-// Generated 13/04/2016 01:37:52 PM by Hibernate Tools 4.3.1
+// Generated 14/04/2016 09:44:17 PM by Hibernate Tools 4.3.1
 
 
 
@@ -11,7 +11,7 @@ public class GaleriaPublicacion  implements java.io.Serializable {
 
      private int idGaleria;
      private byte[] urlImagen;
-     private String textoImagen;
+     private String varcharoImagen;
 
     public GaleriaPublicacion() {
     }
@@ -21,10 +21,10 @@ public class GaleriaPublicacion  implements java.io.Serializable {
         this.idGaleria = idGaleria;
         this.urlImagen = urlImagen;
     }
-    public GaleriaPublicacion(int idGaleria, byte[] urlImagen, String textoImagen) {
+    public GaleriaPublicacion(int idGaleria, byte[] urlImagen, String varcharoImagen) {
        this.idGaleria = idGaleria;
        this.urlImagen = urlImagen;
-       this.textoImagen = textoImagen;
+       this.varcharoImagen = varcharoImagen;
     }
    
     public int getIdGaleria() {
@@ -41,12 +41,12 @@ public class GaleriaPublicacion  implements java.io.Serializable {
     public void setUrlImagen(byte[] urlImagen) {
         this.urlImagen = urlImagen;
     }
-    public String getTextoImagen() {
-        return this.textoImagen;
+    public String getVarcharoImagen() {
+        return this.varcharoImagen;
     }
     
-    public void setTextoImagen(String textoImagen) {
-        this.textoImagen = textoImagen;
+    public void setVarcharoImagen(String varcharoImagen) {
+        this.varcharoImagen = varcharoImagen;
     }
 
 

@@ -1,5 +1,5 @@
 package mapeo;
-// Generated 13/04/2016 01:37:52 PM by Hibernate Tools 4.3.1
+// Generated 14/04/2016 09:44:17 PM by Hibernate Tools 4.3.1
 
 
 
@@ -10,6 +10,7 @@ public class DireccionUsuario  implements java.io.Serializable {
 
 
      private int idDireccionUsuario;
+     private DatosUsuario datosUsuario;
      private Estado estado;
      private String calle;
      private String numero;
@@ -21,16 +22,18 @@ public class DireccionUsuario  implements java.io.Serializable {
     }
 
 	
-    public DireccionUsuario(int idDireccionUsuario, Estado estado, String calle, String numero, String colonia, String ciudad) {
+    public DireccionUsuario(int idDireccionUsuario, DatosUsuario datosUsuario, Estado estado, String calle, String numero, String colonia, String ciudad) {
         this.idDireccionUsuario = idDireccionUsuario;
+        this.datosUsuario = datosUsuario;
         this.estado = estado;
         this.calle = calle;
         this.numero = numero;
         this.colonia = colonia;
         this.ciudad = ciudad;
     }
-    public DireccionUsuario(int idDireccionUsuario, Estado estado, String calle, String numero, String interior, String colonia, String ciudad) {
+    public DireccionUsuario(int idDireccionUsuario, DatosUsuario datosUsuario, Estado estado, String calle, String numero, String interior, String colonia, String ciudad) {
        this.idDireccionUsuario = idDireccionUsuario;
+       this.datosUsuario = datosUsuario;
        this.estado = estado;
        this.calle = calle;
        this.numero = numero;
@@ -45,6 +48,13 @@ public class DireccionUsuario  implements java.io.Serializable {
     
     public void setIdDireccionUsuario(int idDireccionUsuario) {
         this.idDireccionUsuario = idDireccionUsuario;
+    }
+    public DatosUsuario getDatosUsuario() {
+        return this.datosUsuario;
+    }
+    
+    public void setDatosUsuario(DatosUsuario datosUsuario) {
+        this.datosUsuario = datosUsuario;
     }
     public Estado getEstado() {
         return this.estado;

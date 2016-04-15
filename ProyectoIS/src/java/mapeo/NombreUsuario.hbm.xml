@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 13/04/2016 01:37:53 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/04/2016 09:44:17 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="mapeo.NombreUsuario" table="nombre_usuario" schema="public" optimistic-lock="version">
         <id name="idNombreUsuario" type="int">
@@ -17,5 +17,11 @@
         <property name="apellidoMaterno" type="string">
             <column name="apellido_materno" not-null="true" />
         </property>
+        <set name="datosUsuarios" table="datos_usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="nombre_usuario" not-null="true" />
+            </key>
+            <one-to-many class="mapeo.DatosUsuario" />
+        </set>
     </class>
 </hibernate-mapping>

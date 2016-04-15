@@ -10,13 +10,12 @@
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="mapeo/Pais.hbm.xml"/>
-    <mapping resource="mapeo/Publicacion.hbm.xml"/>
-    <mapping resource="mapeo/Usuario.hbm.xml"/>
     <mapping resource="mapeo/NombreUsuario.hbm.xml"/>
-    <mapping resource="mapeo/Estado.hbm.xml"/>
-    <mapping resource="mapeo/DatosUsuario.hbm.xml"/>
-    <mapping resource="mapeo/DireccionUsuario.hbm.xml"/>
     <mapping resource="mapeo/GaleriaPublicacion.hbm.xml"/>
+    <mapping resource="mapeo/Publicacion.hbm.xml"/>
+    <mapping resource="mapeo/DatosUsuario.hbm.xml"/>
+    <mapping resource="mapeo/Estado.hbm.xml"/>
+    <mapping resource="mapeo/Usuario.hbm.xml"/>
+    <mapping resource="mapeo/DireccionUsuario.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
