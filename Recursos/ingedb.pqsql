@@ -267,15 +267,6 @@ ALTER TABLE ONLY nombre_usuario
 ALTER TABLE ONLY publicacion
     ADD CONSTRAINT id_publicacion PRIMARY KEY (id_publicacion);
 
-
---
--- Name: unique_contrasenia_usuario; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY usuario
-    ADD CONSTRAINT unique_contrasenia_usuario UNIQUE (contrasenia_usuario);
-
-
 --
 -- Name: unique_email; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
