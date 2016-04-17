@@ -5,7 +5,7 @@ body {
 }
 	
 #header {
-	background-color: black;
+	background-color: #181717;
         position:absolute;
         margin:auto;
 	width:99%;
@@ -22,18 +22,19 @@ ul, ol {
 }
 			
 .nav li a {
-	background-color:#000;
+	background-color:#181717;
 	color:#fff;
 	text-decoration:none;
-	padding:10px 40px;
+	padding:0px 40px;
 	display:block;
 }
 
 #logo {
-    background-color:#000;
-	color:#fff;
+    background: url(rolandoando.png);
+    background-size: cover;
+	color:#181717;
 	text-decoration:none;
-	padding:10px 100px;
+	padding:20px 120px;
 	display:block;
 }
 			
@@ -101,16 +102,13 @@ ul, ol {
   font-size: 17px;
 }
 
-ul#pie {
-    padding:0 18%;
+
+
+.pie > li{
+   float:left;
 }
 
-ul#pie li {
-    display: inline;
-}
-
-ul#pie li a {
-    color: white;
+.pie li a {
     text-decoration: none;
-    padding:0 50px;
-}
+    padding: 20px 64px;
+			}
