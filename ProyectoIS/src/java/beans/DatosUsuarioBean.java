@@ -4,15 +4,16 @@
  * and open the template in the editor.
  */
 package beans;
-import DAO.DatosUsuarioDAO;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+
+import DAO.DatosUsuarioDAO;
 import mapeo.DatosUsuario;
 import mapeo.DireccionUsuario;
-import mapeo.NombreUsuario;
 import mapeo.Usuario;
 
 /**
@@ -141,7 +142,7 @@ public class DatosUsuarioBean implements Serializable {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    
+
     /**
      * @return the edad
      */
@@ -155,14 +156,14 @@ public class DatosUsuarioBean implements Serializable {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
+
     public Set<DireccionUsuario> getDireccionUsuarios() {
         return this.direccionUsuarios;
     }
-    
+
     public void setDireccionUsuarios(Set<DireccionUsuario> direccionUsuarios) {
         this.direccionUsuarios = direccionUsuarios;
     }
-    
-    
+
+
 }
