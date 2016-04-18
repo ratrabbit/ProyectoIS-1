@@ -5,18 +5,20 @@
  */
 package beans;
 
-import DAO.InicioSesionDAO;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+
+import DAO.InicioSesionDAO;
 
 @Named(value = "inicioSesionBean")
 @SessionScoped
 public class InicioSesionBean implements Serializable {
+
     private String nombreUsuario;
     private String contraseniaUser;
     private final HttpServletRequest httpServletRequest;
@@ -24,8 +26,9 @@ public class InicioSesionBean implements Serializable {
     private FacesMessage message;
     private InicioSesionDAO dao;
 
-    public InicioSesionBean() {faceContext = FacesContext.getCurrentInstance();
-        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+    public InicioSesionBean() {
+        faceContext = FacesContext.getCurrentInstance();
+        httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
         dao = new InicioSesionDAO();
     }
 
@@ -47,19 +50,20 @@ public class InicioSesionBean implements Serializable {
         }
         return "bienvenido";
     }
-    
+
     public String getNombreUsuario() {
         return this.nombreUsuario;
     }
-    
+
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
+
     public String getContraseniaUser() {
         return this.contraseniaUser;
     }
-    
+
     public void setContraseniaUser(String contraseniaUsuario) {
         this.contraseniaUser = contraseniaUsuario;
-    }   
+    }
 }

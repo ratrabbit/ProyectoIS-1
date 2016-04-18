@@ -4,18 +4,20 @@
  * and open the template in the editor.
  */
 package beans;
-import DAO.PublicacionesDAO;
-import mapeo.GaleriaPublicacion;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+
 import java.io.Serializable;
 import java.util.List;
+
+import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+
+import DAO.PublicacionesDAO;
+import mapeo.GaleriaPublicacion;
 
 /**
  *
  * @author adolfo
  */
-
 @Named(value = "publicacionBean")
 @SessionScoped
 public class PublicacionesBean implements Serializable {
@@ -24,22 +26,20 @@ public class PublicacionesBean implements Serializable {
     private byte[] urlImagen;
     private String varcharoImagen;
 
-    
     public void getGaleria() {
         PublicacionesDAO publicacionesDAO = new PublicacionesDAO();
-        List <GaleriaPublicacion> galeria = publicacionesDAO.getGaleria();
-        if (galeria != null){
-            for (GaleriaPublicacion product : galeria){
+        List<GaleriaPublicacion> galeria = publicacionesDAO.getGaleria();
+        if (galeria != null) {
+            for (GaleriaPublicacion product : galeria) {
                 setIdGaleria(product.getIdGaleria());
                 setUrlImagen(product.getUrlImagen());
                 setVarcharoImagen(product.getVarcharoImagen());
             }
-            
-        }else{
+
+        } else {
             System.out.println("No existen publicaciones");
         }
 
-        
     }
 
     /**
@@ -85,4 +85,3 @@ public class PublicacionesBean implements Serializable {
     }
 
 }
-
