@@ -17,9 +17,8 @@ import java.io.Serializable;
 @Named(value = "inicioSesionBean")
 @SessionScoped
 public class InicioSesionBean implements Serializable {
-    private int idUsuario;
     private String nombreUsuario;
-    private String contraseniaUsuario;
+    private String contraseniaUser;
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
     private FacesMessage message;
@@ -33,12 +32,13 @@ public class InicioSesionBean implements Serializable {
     public String inicioSesionBean() {
         mapeo.Usuario usuario;
         usuario = dao.getLoginPorNombreUsuario(getNombreUsuario());
+        System.out.println("null");
         if (usuario != null) {
-            if (getContraseniaUsuario().equals(usuario.getContraseniaUsuario())) {
+            if (getContraseniaUser().equals(usuario.getContraseniaUsuario())) {
                 httpServletRequest.getSession().setAttribute("sessionUsuario", nombreUsuario);
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, "El acceso fue correcto", null);
                 faceContext.addMessage(null, message);
-                return "bienvenido";
+                return "bienvenida";
             } else {
                 message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña invalido", null);
                 faceContext.addMessage(null, message);
@@ -48,13 +48,6 @@ public class InicioSesionBean implements Serializable {
         return "bienvenido";
     }
     
-    public int getIdUsuario() {
-        return this.idUsuario;
-    }
-    
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
     public String getNombreUsuario() {
         return this.nombreUsuario;
     }
@@ -62,11 +55,11 @@ public class InicioSesionBean implements Serializable {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-    public String getContraseniaUsuario() {
-        return this.contraseniaUsuario;
+    public String getContraseniaUser() {
+        return this.contraseniaUser;
     }
     
-    public void setContraseniaUsuario(String contraseniaUsuario) {
-        this.contraseniaUsuario = contraseniaUsuario;
+    public void setContraseniaUser(String contraseniaUsuario) {
+        this.contraseniaUser = contraseniaUsuario;
     }   
 }

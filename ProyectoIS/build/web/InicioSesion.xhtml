@@ -41,12 +41,12 @@
         <br/>
         <div class="cajablanca">Iniciar Sesión<br/><br/>
             <h:form class="cajadatos">
-                <h:inputText value="#{inicioSesionBean.nombreUsuario}" ></h:inputText>
+                <h:inputText value="#{registroBean.nombreUsuario}" ></h:inputText>
                 <br/>
-                <h:inputSecret value="#{inicioSesionBean.contraseniaUsuario}"></h:inputSecret>
+                <h:inputSecret value="#{registroBean.contraseniaUsuario}"></h:inputSecret>
                 <br/>
                 <br/>
-                <h:commandButton class="cajadatos2" value="Iniciar" action="#{inicioSesionBean.inicioSesionBean()}"></h:commandButton> 
+                <h:commandButton class="cajadatos2" value="Iniciar" action="#{registroBean.addRegistro()}"></h:commandButton> 
             </h:form>
         </div>
         <div>

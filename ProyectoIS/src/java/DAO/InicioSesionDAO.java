@@ -17,7 +17,7 @@ public class InicioSesionDAO {
     public Usuario getLoginPorNombreUsuario(String nombreUsuario) {
         try {
             Transaction t = sesion.beginTransaction();
-            Query query = sesion.getNamedQuery("BuscaPorNombreUsuario Usuario").setString("nombre_usuario", nombreUsuario);
+            Query query = sesion.getNamedQuery("BuscaPorNombreUsuario").setString("nombre_usuario", nombreUsuario);
             return (Usuario)query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
