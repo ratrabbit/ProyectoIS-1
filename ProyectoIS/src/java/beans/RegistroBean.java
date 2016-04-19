@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beans;
+
 import DAO.DatosUsuarioDAO;
 import DAO.RegistroDAO;
 import mapeo.DatosUsuario;
@@ -11,6 +7,10 @@ import mapeo.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -21,7 +21,9 @@ import java.io.Serializable;
 public class RegistroBean implements Serializable {
 
     private int idUsuario;
+    @NotNull
     private String nombreUsuario;
+    @NotNull
     private String contraseniaUsuario;
     private int idDatosUsuario;
     private int idnombreUsuario;
@@ -30,16 +32,35 @@ public class RegistroBean implements Serializable {
     private byte[] imagenUsuario;
     private String telefono;
     private int edad;
+    private final HttpServletRequest httpServletRequest;
+    private final FacesContext faceContext;
+    private FacesMessage message;
     
     public void addRegistro(){
+        try{
         Usuario registro = new Usuario(getNombreUsuario(),getContraseniaUsuario());
         RegistroDAO registroDAO = new RegistroDAO();
         registroDAO.addRegistro(registro);
+        if(!registro.getNombreUsuario().trim().equals("") &&  !registro.getContraseniaUsuario().trim().equals("")){
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro se realizo de manera exitosa", null);
+            faceContext.addMessage(null, message);
+        }
+        else{
+            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Acceso incorrecto, verifica tus campos", null);
+            faceContext.addMessage(null, message);
+        }
+        //FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        }catch(Exception e){
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso incorrecto, verifica tus campos", null);
+            faceContext.addMessage(null, message);
+        }
     }
     /**
      * Creates a new instance of RegistroBean
      */
     public RegistroBean() {
+        faceContext = FacesContext.getCurrentInstance();
+        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
     }
 
     /**

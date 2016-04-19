@@ -1,29 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        <link rel="stylesheet" href="RegistroEstilo.css"></link>
         <title>.:Agregar registro:.</title>
     </h:head>
     <h:body>
-        <h1>Registro al sistema</h1>
-        Ingresa tu correo y contraseña para registrarte
-        <br/>
-        <br/>
-        <h:form>
+        <div id="header">
+			<ul class="nav">
+                            <li><a id="logo" href=""></a></li>
+				<li><a href="">Inicio</a></li>
+				<li><a href="">Iniciar Sesion</a>
+				</li>
+                                <li><a href="">Registarse</a>
+					<ul>
+						<li><a href="">Algo</a>
+						</li>
+					</ul>
+				</li>
+				<li><a href="">Servicios</a>
+					<ul>
+						<li><a href="">Transporta</a></li>
+                                                <li><a href="">Y mas..</a></li>
 
-            E-mail: <h:inputText value="#{registroBean.nombreUsuario}"></h:inputText>
+					</ul>
+				</li>
+				<li><a href="">Acerca de</a>
+					<ul>
+						<li><a href="">Aviso de Privacidad</a></li>
+						<li><a href="">Terminos</a></li>
+                                                <li><a href="">Y mas..</a></li>
+
+					</ul>
+				</li>
+				<li><a href="">Contacto</a></li>
+			</ul>
+		</div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <center> Registro al sistema</center>
+            <p:separator />
+            <h:form class="cajadatos">
+                <h:panelGrid id="grid" columns="3" cellpadding="10">
+                    <p:outputLabel for="default" value="Nombre de usuario:" />
+                    <p:inputText id="default" value="#{registroBean.nombreUsuario}" required="true"></p:inputText>
+                    <p:message for="default" />
+                    
+                    <p:outputLabel for="pass" value="Contraseña:" />
+                    <h:inputSecret id="pass" value="#{registroBean.contraseniaUsuario}" required="true"></h:inputSecret>
+                    <p:message for="pass" />
+
+                </h:panelGrid>
+                
+            <p:commandButton class="cajadatos2" value="Registrar" action="#{registroBean.addRegistro()}" update="grid"></p:commandButton> 
             <br/>
-            Clave: <h:inputText value="#{registroBean.contraseniaUsuario}"></h:inputText>
+            <br/>         
             <br/>
-            <br/>
-            <h:commandButton value="Guardar" action="#{registroBean.addRegistro()}"></h:commandButton> 
-            <br/>
-            <br/>
+            <h:messages globalOnly="true" />
         </h:form>
-        <br/>
-        
+            <h:link class="cajadatos3" value="Volver a inicio" outcome="index" />
 
+        <br/>
+        <div>
+            <ul class="pie">
+                <li><a><font color="white">Aviso de Privacidad</font></a></li>
+			<li><a><font color="white">Terminos Legales</font></a></li>
+			<li><a><font color="white">¿Quienes somos?</font></a></li>
+			<li><a><font color="white">¿Cómo comprar?</font></a></li>
+			<li><a><font color="white">Preguntas Frecuentes</font></a></li>
+            </ul> 
+        </div>
 
     </h:body>
 </html>
