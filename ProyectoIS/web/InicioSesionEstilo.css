@@ -124,9 +124,10 @@ ul, ol {
 
 .pie > li{
    float:left;
+   padding: 0% 2.7%;
 }
 
 .pie li a {
     text-decoration: none;
-    padding: 20px 64px;
+    padding: 15px 60px;
 			}

@@ -19,6 +19,14 @@ public class DatosUsuario  implements java.io.Serializable {
     public DatosUsuario() {
     }
 
+    public DatosUsuario(int idDatosUsuario, String email, String telefono, int edad, String sexo) {
+       this.idDatosUsuario = idDatosUsuario;
+       this.email = email;
+       this.telefono = telefono;
+       this.edad = edad;
+       this.sexo = sexo;
+   
+    }
 	
     public DatosUsuario(int idDatosUsuario, NombreUsuario nombreUsuario, Usuario usuario, String imagenUsuario, String telefono, int edad) {
         this.idDatosUsuario = idDatosUsuario;
