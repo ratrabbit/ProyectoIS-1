@@ -1,12 +1,14 @@
 package beans;
 
 import DAO.InicioSesionDAO;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+
 import java.io.Serializable;
+
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.RequestScoped;
 
@@ -41,21 +43,23 @@ public class InicioSesionBean implements Serializable {
                 return "InicioSesion";
             }
         }
+        message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña incorrecto", null);
+        faceContext.addMessage(null, message);
         return "InicioSesion";
     }
-    
+
     public String getNombreUsuario() {
         return this.nombreUsuario;
     }
-    
+
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
     public String getContraseniaUser() {
         return this.contraseniaUser;
     }
-    
+
     public void setContraseniaUser(String contraseniaUsuario) {
         this.contraseniaUser = contraseniaUsuario;
-    }   
+    }
 }
