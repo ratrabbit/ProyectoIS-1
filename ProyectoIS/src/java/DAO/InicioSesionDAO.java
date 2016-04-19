@@ -1,29 +1,29 @@
 package DAO;
 
+import java.util.List;
+import mapeo.Usuario;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import mapeo.Usuario;
-import util.NewHibernateUtil;
-
 public class InicioSesionDAO {
 
-    private Session sesion;
+    private Session session;
 
     public InicioSesionDAO() {
-        sesion = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
     public Usuario getLoginPorNombreUsuario(String nombreUsuario) {
-        try {
-            Transaction t = sesion.beginTransaction();
-            Query query = sesion.getNamedQuery("BuscaPorNombreUsuario").setString("nombre_usuario", nombreUsuario);
-            return (Usuario) query.uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+         try {
+              Transaction t = session.beginTransaction();
+              Query query = session.getNamedQuery("BuscaPorNombreUsuario").setString("nombreUsuario", nombreUsuario);
+              return (Usuario) query.uniqueResult();
+          } catch (Exception e) {
+              e.printStackTrace();
+        }   
         return null;
     }
-
+    
+    
 }

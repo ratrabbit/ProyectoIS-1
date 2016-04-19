@@ -4,46 +4,40 @@
  * and open the template in the editor.
  */
 package DAO;
-
+import mapeo.DatosUsuario;
+import mapeo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import mapeo.DatosUsuario;
 import util.NewHibernateUtil;
-
 /**
  *
  * @author francisco
  */
 public class DatosUsuarioDAO {
-
-    public void datosUsuario(DatosUsuario usuario) {
+    public void datosUsuario(DatosUsuario usuario){
         Transaction tx = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        try {
+        try{
             tx = session.beginTransaction();
             session.save(usuario);
             session.getTransaction().commit();
-        } catch (Exception e) {
+        }catch(Exception e){
             e.printStackTrace();
-            if (tx != null) {
+            if(tx != null){
                 tx.rollback();
             }
-        } finally {
+        }finally{
             session.flush();
             session.close();
         }
     }
-
-    public void deleteUsuario(int idUsuario) {
-
+    public void deleteUsuario(int idUsuario){
+        
     }
-
-    public void updateUsuario(DatosUsuario usuario) {
-
+    public void updateUsuario(DatosUsuario usuario){
+        
     }
-
-    public DatosUsuario getDatosUsuarioById() {
+    public DatosUsuario getDatosUsuarioById(){
         return null;
     }
 }

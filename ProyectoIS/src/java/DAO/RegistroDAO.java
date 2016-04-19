@@ -5,10 +5,9 @@
  */
 package DAO;
 
-import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import mapeo.Usuario;
+import org.hibernate.Session;
 import util.NewHibernateUtil;
 
 /**
@@ -16,34 +15,30 @@ import util.NewHibernateUtil;
  * @author francisco
  */
 public class RegistroDAO {
-
-    public void addRegistro(Usuario registro) {
-        Transaction tx = null;
-        Session sesion = NewHibernateUtil.getSessionFactory().openSession();
-        try {
-            tx = sesion.beginTransaction();
-            sesion.save(registro);
-            sesion.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (tx != null) {
-                tx.rollback();
-            }
-        } finally {
-            sesion.flush();
-            sesion.close();
-        }
+    public void addRegistro(Usuario registro){
+      Transaction tx = null;
+      Session sesion = NewHibernateUtil.getSessionFactory().openSession();
+      try{
+          tx = sesion.beginTransaction();
+          sesion.save(registro);
+          sesion.getTransaction().commit();
+      }
+      catch(Exception e){
+          e.printStackTrace();
+          if(tx!=null)
+              tx.rollback();
+      }finally{
+          sesion.flush();
+          sesion.close();
+      }
     }
-
-    public void deleteRegistro(int idRegistro) {
-
+     public void deleteRegistro(int idRegistro){
+        
     }
-
-    public void updateRegistro(Usuario registro) {
-
+    public void updateRegistro(Usuario registro){
+        
     }
-
-    public Usuario getUsuarioById() {
+    public Usuario getUsuarioById(){
         return null;
     }
 }

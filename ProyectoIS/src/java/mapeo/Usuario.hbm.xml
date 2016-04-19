@@ -29,4 +29,8 @@
             <one-to-many class="mapeo.Publicacion" />
         </set>
     </class>
+    <sql-query name="BuscaPorNombreUsuario">
+        <return alias="Usuario" class="mapeo.Usuario"/>
+        <![CDATA[select * from public.usuario where nombre_usuario = :nombreUsuario]]>
+    </sql-query>
 </hibernate-mapping>
