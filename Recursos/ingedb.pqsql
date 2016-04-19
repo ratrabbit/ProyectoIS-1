@@ -58,7 +58,7 @@ CREATE TABLE datos_usuario (
     id_datos_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
     nombre_usuario integer NOT NULL,
     email text,
-    imagen_usuario bytea NOT NULL,
+    imagen_usuario text NOT NULL,
     telefono text NOT NULL,
     edad integer NOT NULL,
     sexo text,
@@ -106,7 +106,7 @@ ALTER TABLE estado OWNER TO postgres;
 
 CREATE TABLE galeria_publicacion (
     id_galeria integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
-    url_imagen bytea NOT NULL,
+    url_imagen text NOT NULL,
     varcharo_imagen text
 );
 
