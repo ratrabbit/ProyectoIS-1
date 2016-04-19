@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/04/2016 09:44:17 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 19/04/2016 12:05:53 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="mapeo.Usuario" table="usuario" schema="public" optimistic-lock="version">
         <id name="idUsuario" type="int">
@@ -14,7 +14,7 @@
             <column name="nombre_usuario" not-null="true" unique="true" />
         </property>
         <property name="contraseniaUsuario" type="string">
-            <column name="contrasenia_usuario" not-null="true" unique="true" />
+            <column name="contrasenia_usuario" not-null="true" />
         </property>
         <set name="datosUsuarios" table="datos_usuario" inverse="true" lazy="true" fetch="select">
             <key>

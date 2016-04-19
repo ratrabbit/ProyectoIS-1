@@ -30,7 +30,7 @@ public class DatosUsuarioBean implements Serializable {
      private Usuario nombreUsuario;
      private String email;
      private int direccion;
-     private byte[] imagenUsuario;
+     private String imagenUsuario;
      private String telefono;
      private int edad;
      private String sexo;
@@ -103,14 +103,14 @@ public class DatosUsuarioBean implements Serializable {
     /**
      * @return the imagenUsuario
      */
-    public byte[] getImagenUsuario() {
+    public String getImagenUsuario() {
         return imagenUsuario;
     }
 
     /**
      * @param imagenUsuario the imagenUsuario to set
      */
-    public void setImagenUsuario(byte[] imagenUsuario) {
+    public void setImagenUsuario(String imagenUsuario) {
         this.imagenUsuario = imagenUsuario;
     }
 

@@ -21,7 +21,7 @@ import java.util.List;
 public class PublicacionesBean implements Serializable {
 
     private int idGaleria;
-    private byte[] urlImagen;
+    private String urlImagen;
     private String varcharoImagen;
 
     
@@ -73,14 +73,14 @@ public class PublicacionesBean implements Serializable {
     /**
      * @return the urlImagen
      */
-    public byte[] getUrlImagen() {
+    public String getUrlImagen() {
         return urlImagen;
     }
 
     /**
      * @param urlImagen the urlImagen to set
      */
-    public void setUrlImagen(byte[] urlImagen) {
+    public void setUrlImagen(String urlImagen) {
         this.urlImagen = urlImagen;
     }
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beans;
 
 import DAO.InicioSesionDAO;
@@ -18,7 +13,7 @@ import javax.enterprise.context.RequestScoped;
 @ManagedBean
 @RequestScoped
 @Named(value = "inicioSesionBean")
-//@SessionScoped
+
 public class InicioSesionBean implements Serializable {
     private String nombreUsuario;
     private String contraseniaUser;
@@ -34,23 +29,19 @@ public class InicioSesionBean implements Serializable {
 
     public String inicioSesionBean() {
         mapeo.Usuario usuario = dao.getLoginPorNombreUsuario(getNombreUsuario());
-        System.out.println(nombreUsuario);
-        System.out.println(contraseniaUser);
         if (usuario != null) {
             if (getContraseniaUser().equals(usuario.getContraseniaUsuario())) {
                 httpServletRequest.getSession().setAttribute("sessionUsuario", nombreUsuario);
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, "El acceso fue correcto", null);
                 faceContext.addMessage(null, message);
-                System.out.println("null");
                 return "bienvenido";
             } else {
                 message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña invalido", null);
                 faceContext.addMessage(null, message);
-                System.out.println("null2");
-                return "Error";
+                return "InicioSesion";
             }
         }
-        return "Error";
+        return "InicioSesion";
     }
     
     public String getNombreUsuario() {
