@@ -25,5 +25,4 @@ public class InicioSesionDAO {
         return null;
     }
     
-    
 }

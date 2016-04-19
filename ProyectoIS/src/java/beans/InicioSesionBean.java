@@ -42,15 +42,15 @@ public class InicioSesionBean implements Serializable {
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, "El acceso fue correcto", null);
                 faceContext.addMessage(null, message);
                 System.out.println("null");
-                return "bienvenida";
+                return "bienvenido";
             } else {
                 message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña invalido", null);
                 faceContext.addMessage(null, message);
                 System.out.println("null2");
-                return "inicioSesion";
+                return "Error";
             }
         }
-        return "bienvenido";
+        return "Error";
     }
     
     public String getNombreUsuario() {
