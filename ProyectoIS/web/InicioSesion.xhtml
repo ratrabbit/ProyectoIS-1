@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link rel="stylesheet" href="InicioSesionEstilo.css"></link>
         <title>Inicio de Sesión</title>
@@ -11,14 +13,10 @@
         <div id="header">
 			<ul class="nav">
                             <li><a id="logo" href=""></a></li>
-				<li><a href="">Inicio</a></li>
-				<li><a href="">Iniciar Sesion</a>
+				<li><a href="index.xhtml">Inicio</a></li>
+				<li><a href="InicioSesion.xhtml">Iniciar Sesion</a>
 				</li>
-                                <li><a href="">Registarse</a>
-					<ul>
-						<li><a href="">Algo</a>
-						</li>
-					</ul>
+                                <li><a href="Registro.xhtml">Registarse</a>
 				</li>
 				<li><a href="">Servicios</a>
 					<ul>
@@ -45,8 +43,14 @@
                 <br/>
                 <h:inputSecret value="#{inicioSesionBean.contraseniaUser}"></h:inputSecret>
                 <br/>
+                <h:commandButton class="cajadatos2" value="Iniciar" action="#{inicioSesionBean.inicioSesionBean()}"></h:commandButton>
                 <br/>
-                <h:commandButton class="cajadatos2" value="Iniciar" action="#{inicioSesionBean.inicioSesionBean()}"></h:commandButton> 
+                <h:outputLink class="link" value="InicioSesion.xhtml">¿Olvidaste tu contraseña?</h:outputLink>
+                <br/>
+
+                <h:selectOneRadio class="recordarme" value="Recordarme">
+                <f:selectItem itemValue="select" itemLabel="Recordarme" />
+                </h:selectOneRadio>
             </h:form>
         </div>
         <div>

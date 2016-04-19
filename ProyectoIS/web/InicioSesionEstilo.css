@@ -102,6 +102,24 @@ ul, ol {
   font-size: 17px;
 }
 
+.link{
+  padding: 10px;
+  color: white;
+  font-family: Helvetica, Geneva, Arial,
+        SunSans-Regular, sans-serif;
+  font-size: 14px;
+}
+
+.recordarme{
+  padding: 0px 30%;
+  color: white;
+  font-family: Helvetica, Geneva, Arial,
+        SunSans-Regular, sans-serif;
+  font-size: 14px;
+  text-decoration: underline;
+  text-align: center;
+}
+
 
 
 .pie > li{
