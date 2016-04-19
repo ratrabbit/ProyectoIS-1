@@ -1,25 +1,141 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>.: Inicio :.</title>
-    </h:head>
-    <h:body>
-        <h1>Página de inicio</h1>
-        ¿Deseas registrarte? ingresa al siguiente link
-        <br/>
-        <h:link outcome="Registro" value="Agregar registro"/>
-        <br/>
-        <br/>
-        ¿Ya estás registrado? inicia sesión
-        <br/>
-        <h:link outcome="InicioSesion" value="Ingresa"/>
-        <br />
-        <br/>
-        ¿Quieres ver las publicaciones?
-        <br/>
-        <h:link outcome="Publicacion" value="Ingresa"/>
-    </h:body>
-</html>
+    
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-wide.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</h:head>
+	<h:body>
 
+		<!-- Wrapper -->
+			<div class="wrapper style1">
+
+				<!-- Header -->
+					<div id="header" class="skel-panels-fixed">
+						<div id="logo">
+							<img src='images/rolandoando.png' width='300px' height='40px' />
+						</div>
+						<nav id="nav">
+							<ul>
+								<li><h:link outcome="index" value="Inicio"/></li>
+								<li><h:link outcome="InicioSesion" value="Inicio Sesion"/></li>
+								<li><h:link outcome="Registro" value="Registrarse"/></li>
+                                                                <li><a href="#">Servicios</a></li>
+                                                                <li><a href="#">Acerca de</a></li>
+                                                                <li><a href="#">Contacto</a></li>
+                                                                
+							</ul>
+						</nav>
+					</div>
+
+				<!-- Banner -->
+					<div id="banner" class="container">
+						<section>
+							<p>Rolando Ando es un sitio en donde puedes tomar el papel de remitente en el caso de querer enviar algún paquete a cualquier parte del país, o simplemente tomar el papel de transportador si quieres ofrecer el servicio de llevar el paquete a donde te sea fácil dirigirte</p>
+							
+                                                        <h:link outcome="Publicacion" class="button medium" value="Ver Publicaciones"/>
+						</section>
+					</div>
+
+				<!-- Extra -->
+					<div id="extra">
+						<div class="container">
+							<div class="row no-collapse-1">
+								<section class="4u"> <a href="#" class="image featured"><img src="images/pic01.jpg" alt=""/></a>
+									<div class="box"/>
+										<p>Si quieres puedes mandar paquetes pequeños, medianos, grandes o extragrandes.</p>
+								</section>
+								<section class="4u"> <a href="#" class="image featured"><img src="images/pic02.jpg" alt=""/></a>
+									<div class="box"/>
+										<p>¿Necesitas mandar un libro, libreta, hojas u otra cosa? Visítanos</p>
+								</section>
+								<section class="4u"> <a href="#" class="image featured"><img src="images/pic04.jpg" alt=""/></a>
+									<div class="box"/>
+										<p>Imagina poder mandar biciletas o artículos más grandes</p>
+								</section>
+							</div>
+							<div class="row no-collapse-1">
+								<section class="4u"> <a href="#" class="image featured"><img src="images/pic03.jpg" alt=""/></a>
+									<div class="box"/>
+										<p>Pensando siempre en la comodidad puedes enviar almohadas u otro objeto cómodo</p>
+								</section>
+								<section class="4u"> <a href="#" class="image featured"><img src="images/pic05.jpg" alt=""/></a>
+									<div class="box"/>
+										<p>¿Quieres sorprender a tu pareja? Puedes hacerlo, solo es cuestión de que realmente quieras.</p>
+								</section>
+								<section class="4u"> <a href="#" class="image featured"><img src="images/pic06.jpg" alt=""/></a>
+									<div class="box"/>
+										<p>Nuestra ideología es poder enviar cualquier cosa posible... como una res.</p>
+								</section>
+							</div>
+						</div>
+					</div>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="container">
+							<div class="row">
+
+								<!-- Content -->
+								<div class="6u">
+									<section>
+										<ul class="style">
+											<li class="fa fa-wrench">
+												<h3>Ayuda</h3>
+												<span>Si necesitas enviar un paquete a un precio considerable, visítanos podemos ayudarte para que encuentres a alguien que quiera hacerlo. </span> </li>
+											<li class="fa fa-leaf">
+												<h3>Ecológico</h3>
+												<span>Con esta modalidad evitarás que otro carro más circule.</span> </li>
+										</ul>
+									</section>
+								</div>
+								<div class="6u">
+									<section>
+										<ul class="style">
+											<li class="fa fa-cogs">
+												<h3>Eficiente</h3>
+												<span>En un solo viaje serás capaz de mandar tus paquetes</span> </li>
+											<li class="fa fa-road">
+												<h3>Seguro</h3>
+												<span>Ten la seguridad que tus paquetes llegrán a su destino sin ninguna anomalía.</span> </li>
+										</ul>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+
+	</div>
+
+
+	<!-- Copyright -->
+		<div id="copyright">
+			<div class="container">
+				<div class="copyright">
+					<p>Design: IKTANSOFT</p>
+					<ul class="icons">
+						<li><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
+						<li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
+						<li><a href="#" class="fa fa-google-plus"><span>Google+</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</h:body>
+</html>
