@@ -35,24 +35,18 @@ public class RegistroBean implements Serializable {
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
     private FacesMessage message;
+    DatosUsuarioBean perfil = new DatosUsuarioBean();
     
     public void addRegistro(){
         try{
         Usuario registro = new Usuario(getNombreUsuario(),getContraseniaUsuario());
         RegistroDAO registroDAO = new RegistroDAO();
         registroDAO.addRegistro(registro);
-        if(!registro.getNombreUsuario().trim().equals("") &&  !registro.getContraseniaUsuario().trim().equals("")){
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro se realizo de manera exitosa", null);
-            faceContext.addMessage(null, message);
-        }
-        else{
-            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Acceso incorrecto, verifica tus campos", null);
-            faceContext.addMessage(null, message);
-        }
+        perfil.datosUsuario(registro);
         //FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         }catch(Exception e){
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso incorrecto, verifica tus campos", null);
-            faceContext.addMessage(null, message);
+            //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso incorrecto, verifica tus campos", null);
+            //faceContext.addMessage(null, message);
         }
     }
     /**
@@ -201,6 +195,22 @@ public class RegistroBean implements Serializable {
      */
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public FacesMessage getMessage() {
+        return message;
+    }
+
+    public void setMessage(FacesMessage message) {
+        this.message = message;
+    }
+
+    public DatosUsuarioBean getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(DatosUsuarioBean perfil) {
+        this.perfil = perfil;
     }
 
 }

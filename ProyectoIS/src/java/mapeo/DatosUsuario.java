@@ -58,7 +58,35 @@ public class DatosUsuario  implements java.io.Serializable {
        this.edad = edad;
        this.sexo = sexo;
     }
-
+    public DatosUsuario(int idDatosUsuario, Estado estado, Usuario usuario, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String imagenUsuario, String telefono, int edad, String sexo) {
+       this.idDatosUsuario = idDatosUsuario;
+       if(estado!=null)
+        this.estado = estado;
+       else{
+        this.estado=new Estado(100, "Ciudad de Mexico");
+       }
+       this.usuario = usuario;
+       this.nombre = nombre;
+       this.apellidoPaterno = apellidoPaterno;
+       this.apellidoMaterno = apellidoMaterno;
+       this.email = email;
+       this.calle = " ";
+       this.numero = " ";
+       this.interior = " ";
+       this.colonia = " ";
+       this.ciudad = " ";
+       
+       if(imagenUsuario!=null)
+        this.imagenUsuario = imagenUsuario;
+       else
+           this.imagenUsuario = " ";
+       if(telefono!=null)
+        this.telefono = telefono;
+       else
+           this.telefono = " ";
+       this.edad = edad;
+       this.sexo = sexo;
+    }
     public DatosUsuario(int idDatosUsuario, String email, String telefono, int edad, String sexo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
