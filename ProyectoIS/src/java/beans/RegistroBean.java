@@ -1,8 +1,6 @@
 package beans;
 
-import DAO.DatosUsuarioDAO;
 import DAO.RegistroDAO;
-import mapeo.DatosUsuario;
 import mapeo.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -12,10 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
-/**
- *
- * @author francisco
- */
+
 @Named(value = "registroBean")
 @SessionScoped
 public class RegistroBean implements Serializable {

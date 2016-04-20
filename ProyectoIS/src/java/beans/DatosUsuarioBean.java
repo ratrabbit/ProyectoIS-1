@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import mapeo.DatosUsuario;
+import mapeo.Estado;
 import mapeo.Usuario;
 
 /**
@@ -26,18 +27,22 @@ public class DatosUsuarioBean implements Serializable {
      */
     private int idDatosUsuario;
      private Usuario nombreUsuario;
+     private String nombre;
+     private String aPaterno;
+     private String aMaterno;
      private String email;
      private int direccion;
      private String imagenUsuario;
      private String telefono;
      private int edad;
      private String sexo;
-
+     private Estado estado;
+     private int id_usuario;
     public DatosUsuarioBean() {
     }
-    public void datosUsuario(){
+    public void datosUsuario(Usuario u){
         DatosUsuario usuario;
-        usuario = new DatosUsuario(getIdDatosUsuario(),getNombreUsuario(), getEmail(),getImagenUsuario(), getTelefono(), getEdad(), getSexo());
+        usuario = new DatosUsuario(getIdDatosUsuario(),getEstado(),u,getNombre(),getaPaterno(),getaMaterno(), getEmail(),getImagenUsuario(), getTelefono(), getEdad(), getSexo());
         DatosUsuarioDAO usuarioDAO = new DatosUsuarioDAO();
         usuarioDAO.datosUsuario(usuario);
     }
@@ -110,7 +115,24 @@ public class DatosUsuarioBean implements Serializable {
     public void setImagenUsuario(String imagenUsuario) {
         this.imagenUsuario = imagenUsuario;
     }
+    
+    
+    public String getaPaterno() {
+        return aPaterno;
+    }
 
+    public void setaPaterno(String aPaterno) {
+        this.aPaterno = aPaterno;
+    }
+
+    public String getaMaterno() {
+        return aMaterno;
+    }
+
+    public void setaMaterno(String aMaterno) {
+        this.aMaterno = aMaterno;
+    }
+    
     /**
      * @return the telefono
      */
@@ -151,6 +173,30 @@ public class DatosUsuarioBean implements Serializable {
      */
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
     
     
