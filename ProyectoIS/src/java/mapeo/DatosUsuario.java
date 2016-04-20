@@ -1,54 +1,69 @@
 package mapeo;
 
-import java.util.HashSet;
-import java.util.Set;
 
 public class DatosUsuario  implements java.io.Serializable {
 
 
      private int idDatosUsuario;
-     private NombreUsuario nombreUsuario;
+     private Estado estado;
      private Usuario usuario;
+     private String nombre;
+     private String apellidoPaterno;
+     private String apellidoMaterno;
      private String email;
+     private String calle;
+     private String numero;
+     private String interior;
+     private String colonia;
+     private String ciudad;
      private String imagenUsuario;
      private String telefono;
      private int edad;
      private String sexo;
-     private Set<DireccionUsuario> direccionUsuarios = new HashSet<DireccionUsuario>(0);
 
     public DatosUsuario() {
     }
 
-    public DatosUsuario(int idDatosUsuario, String email, String telefono, int edad, String sexo) {
-       this.idDatosUsuario = idDatosUsuario;
-       this.email = email;
-       this.telefono = telefono;
-       this.edad = edad;
-       this.sexo = sexo;
-   
-    }
 	
-    public DatosUsuario(int idDatosUsuario, NombreUsuario nombreUsuario, Usuario usuario, String imagenUsuario, String telefono, int edad) {
+    public DatosUsuario(int idDatosUsuario, Estado estado, Usuario usuario, String nombre, String apellidoPaterno, String apellidoMaterno, String calle, String numero, String colonia, String ciudad, String imagenUsuario, String telefono, int edad) {
         this.idDatosUsuario = idDatosUsuario;
-        this.nombreUsuario = nombreUsuario;
+        this.estado = estado;
         this.usuario = usuario;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.calle = calle;
+        this.numero = numero;
+        this.colonia = colonia;
+        this.ciudad = ciudad;
         this.imagenUsuario = imagenUsuario;
         this.telefono = telefono;
         this.edad = edad;
     }
-    public DatosUsuario(int idDatosUsuario, NombreUsuario nombreUsuario, Usuario usuario, String email, String imagenUsuario, String telefono, int edad, String sexo, Set<DireccionUsuario> direccionUsuarios) {
+    public DatosUsuario(int idDatosUsuario, Estado estado, Usuario usuario, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String calle, String numero, String interior, String colonia, String ciudad, String imagenUsuario, String telefono, int edad, String sexo) {
        this.idDatosUsuario = idDatosUsuario;
-       this.nombreUsuario = nombreUsuario;
+       this.estado = estado;
        this.usuario = usuario;
+       this.nombre = nombre;
+       this.apellidoPaterno = apellidoPaterno;
+       this.apellidoMaterno = apellidoMaterno;
        this.email = email;
+       this.calle = calle;
+       this.numero = numero;
+       this.interior = interior;
+       this.colonia = colonia;
+       this.ciudad = ciudad;
        this.imagenUsuario = imagenUsuario;
        this.telefono = telefono;
        this.edad = edad;
        this.sexo = sexo;
-       this.direccionUsuarios = direccionUsuarios;
     }
 
-    public DatosUsuario(int idDatosUsuario, Usuario nombreUsuario, String email, String imagenUsuario, String telefono, int edad, String sexo, Set<DireccionUsuario> direccionUsuarios) {
+    public DatosUsuario(int idDatosUsuario, String email, String telefono, int edad, String sexo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public DatosUsuario(int idDatosUsuario, Usuario nombreUsuario, String email, String imagenUsuario, String telefono, int edad, String sexo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
@@ -59,12 +74,12 @@ public class DatosUsuario  implements java.io.Serializable {
     public void setIdDatosUsuario(int idDatosUsuario) {
         this.idDatosUsuario = idDatosUsuario;
     }
-    public NombreUsuario getNombreUsuario() {
-        return this.nombreUsuario;
+    public Estado getEstado() {
+        return this.estado;
     }
     
-    public void setNombreUsuario(NombreUsuario nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
     public Usuario getUsuario() {
         return this.usuario;
@@ -73,12 +88,68 @@ public class DatosUsuario  implements java.io.Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+    public String getNombre() {
+        return this.nombre;
+    }
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getApellidoPaterno() {
+        return this.apellidoPaterno;
+    }
+    
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+    public String getApellidoMaterno() {
+        return this.apellidoMaterno;
+    }
+    
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
     public String getEmail() {
         return this.email;
     }
     
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getCalle() {
+        return this.calle;
+    }
+    
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+    public String getNumero() {
+        return this.numero;
+    }
+    
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+    public String getInterior() {
+        return this.interior;
+    }
+    
+    public void setInterior(String interior) {
+        this.interior = interior;
+    }
+    public String getColonia() {
+        return this.colonia;
+    }
+    
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
+    }
+    public String getCiudad() {
+        return this.ciudad;
+    }
+    
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
     public String getImagenUsuario() {
         return this.imagenUsuario;
@@ -107,13 +178,6 @@ public class DatosUsuario  implements java.io.Serializable {
     
     public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-    public Set<DireccionUsuario> getDireccionUsuarios() {
-        return this.direccionUsuarios;
-    }
-    
-    public void setDireccionUsuarios(Set<DireccionUsuario> direccionUsuarios) {
-        this.direccionUsuarios = direccionUsuarios;
     }
 
 

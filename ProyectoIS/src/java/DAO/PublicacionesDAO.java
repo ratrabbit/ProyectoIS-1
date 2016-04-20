@@ -8,7 +8,6 @@ package DAO;
 import beans.PublicacionesBean;
 import java.util.List;
 import org.hibernate.Transaction;
-import mapeo.GaleriaPublicacion;
 import org.hibernate.Session;
 import util.NewHibernateUtil;
 

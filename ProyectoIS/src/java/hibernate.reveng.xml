@@ -3,10 +3,7 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="inge" match-schema="public"/>
   <table-filter match-name="datos_usuario"/>
-  <table-filter match-name="galeria_publicacion"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="direccion_usuario"/>
   <table-filter match-name="publicacion"/>
-  <table-filter match-name="nombre_usuario"/>
   <table-filter match-name="estado"/>
+  <table-filter match-name="usuario"/>
 </hibernate-reverse-engineering>

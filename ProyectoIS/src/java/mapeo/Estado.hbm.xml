@@ -6,16 +6,18 @@
     <class name="mapeo.Estado" table="estado" schema="public" optimistic-lock="version">
         <id name="idEstado" type="int">
             <column name="id_estado" />
-            <generator class="assigned" />
+            <generator class="sequence">
+                <param name="sequence">auto_incremento_id</param>
+            </generator>
         </id>
         <property name="estadoEstado" type="string">
             <column name="estado_estado" not-null="true" unique="true" />
         </property>
-        <set name="direccionUsuarios" table="direccion_usuario" inverse="true" lazy="true" fetch="select">
+        <set name="datosUsuarios" table="datos_usuario" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="estado_fk" not-null="true" />
             </key>
-            <one-to-many class="mapeo.DireccionUsuario" />
+            <one-to-many class="mapeo.DatosUsuario" />
         </set>
     </class>
 </hibernate-mapping>

@@ -5,7 +5,6 @@
  */
 package beans;
 import DAO.PublicacionesDAO;
-import mapeo.GaleriaPublicacion;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
