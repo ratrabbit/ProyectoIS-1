@@ -32,4 +32,8 @@
             <column name="precio_actual" not-null="true" />
         </property>
     </class>
+    <sql-query name="BuscaPublicaciones">
+        <return alias="Publicacion" class="mapeo.Publicacion"/>
+        <![CDATA[select * from public.publicacion]]>
+    </sql-query>
 </hibernate-mapping>

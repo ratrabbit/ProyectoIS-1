@@ -5,10 +5,38 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>.: Inicio :.</title>
+        <link rel="stylesheet" href="InicioSesionEstilo.css"></link>
+        <title>Publicaciones</title>
     </h:head>
-    
-        <h:body>
+    <h:body>
+        <div id="header">
+			<ul class="nav">
+                            <li><a id="logo" href=""></a></li>
+				<li><a href="index.xhtml">Inicio</a></li>
+				<li><a href="InicioSesion.xhtml">Iniciar Sesion</a>
+				</li>
+                                <li><a href="Registro.xhtml">Registarse</a>
+				</li>
+				<li><a href="">Servicios</a>
+					<ul>
+						<li><a href="">Transporta</a></li>
+                                                <li><a href="">Y mas..</a></li>
+
+					</ul>
+				</li>
+				<li><a href="">Acerca de</a>
+					<ul>
+						<li><a href="">Aviso de Privacidad</a></li>
+						<li><a href="">Terminos</a></li>
+                                                <li><a href="">Y mas..</a></li>
+
+					</ul>
+				</li>
+				<li><a href="">Contacto</a></li>
+			</ul>
+		</div>
+        <br/>
+        <br></br>
             
 <h:form> 
     <p:dataScroller value="#{publicacionBean.getGaleria()}" var="prod" chunkSize="10">
@@ -17,15 +45,18 @@
         </f:facet>
  
         <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-            <p:graphicImage name="Base64.decodeBase64(#{prod.urlImagen})" /> 
+            <p:graphicImage value="#{prod.imagenes}" width="150" height="150"/> 
  
             <p:outputPanel>
                 <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Id:" />
-                    <h:outputText value="#{prod.idGaleria}" style="font-weight: bold"/>
- 
                     <h:outputText value="Nombre:" />
-                    <h:outputText value="#{prod.varcharoImagen}" style="font-weight: bold"/>
+                    <h:outputText value="#{prod.nombreProducto}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Descripción" />
+                    <h:outputText value="#{prod.descripcion}" style="font-weight: bold"/>
+                    
+                    <h:outputText value="Precio actual transporte: $" />
+                    <h:outputText value="#{prod.precioActual}" style="font-weight: bold"/>
                 </h:panelGrid>
             </p:outputPanel>
         </h:panelGrid>
