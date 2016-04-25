@@ -1,23 +1,120 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <link rel="stylesheet" href="RegistroEstilo.css"></link>
+        <title>.:EditarEliminarPerfil:.</title>
     </h:head>
     <h:body>
-        Borrar Cliente <br/>
-        <h:form>
-            ID: <h:inputText value="#{editarEliminarBean.idDatosUsuario}" /><br/>
-            EMAIL: <h:inputText value="#{editarEliminarBean.email}" /><br/>
-            TELEFONO: <h:inputText value="#{editarEliminarBean.telefono}" /><br/>
-            EDAD: <h:inputText value="#{editarEliminarBean.edad}" /><br/>
-            SEXO: <h:inputText value="#{editarEliminarBean.sexo}" /><br/>
-            <h:commandButton value="Consultar" action="#{editarEliminarBean.returnUsuarioById()}"></h:commandButton> <br/>
-            <h:commandButton value="Borrar" action="#{editarEliminarBean.deleteUsuario()}"></h:commandButton> <br/>
-            <h:commandButton value="Actualizar" action="#{editarEliminarBean.updateUsuario()}"></h:commandButton> <br/>
-            <h:messages infoStyle="color: blue" globalOnly="true" />
+        <div id="header">
+            <ul class="nav">
+                <li><a id="logo" href=""></a></li>
+                <li><a href="index.xhtml">Inicio</a></li>
+                <li><a href="InicioSesion.xhtml">Iniciar Sesion</a>
+                </li>
+                <li><a href="Registro.xhtml">Registarse</a>
+                </li>
+                <li><a href="">Servicios</a>
+                    <ul>
+                        <li><a href="">Transporta</a></li>
+                        <li><a href="">Y mas..</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="">Acerca de</a>
+                    <ul>
+                        <li><a href="">Aviso de Privacidad</a></li>
+                        <li><a href="">Terminos</a></li>
+                        <li><a href="">Y mas..</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="">Contacto</a></li>
+            </ul>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <p:separator />
+        <h:form class="cajadatos">
+            <h:panelGrid id="grid" columns="3" cellpadding="10">
+
+                <p:outputLabel for="nombreUsuario" value="Nombre usuario:" />
+                <p:inputText id="nombreUsuario" value="#{editarEliminarBean.nombreUsuario}" ></p:inputText>
+                <p:message for="nombreUsuario" />
+
+                <p:outputLabel for="nombre" value="Nombre:" />
+                <p:inputText id="nombre" value="#{editarEliminarBean.nombre}" ></p:inputText>
+                <p:message for="nombre" />
+
+                <p:outputLabel for="apellidoPaterno" value="Apellido paterno:" />
+                <p:inputText id="apellidoPaterno" value="#{editarEliminarBean.apellidoPaterno}" ></p:inputText>
+                <p:message for="apellidoPaterno" />
+
+                <p:outputLabel for="apellidoMaterno" value="Apellido materno:" />
+                <p:inputText id="apellidoMaterno" value="#{editarEliminarBean.apellidoMaterno}" ></p:inputText>
+                <p:message for="apellidoMaterno" />
+
+                <p:outputLabel for="mail" value="Correo electronico:" />
+                <p:inputText id="mail" value="#{editarEliminarBean.email}" ></p:inputText>
+                <p:message for="mail" />
+
+                <p:outputLabel for="tel" value="Telefono:" />
+                <p:inputText id="tel" value="#{editarEliminarBean.telefono}" ></p:inputText>
+                <p:message for="tel" />
+
+                <h:outputLabel for="edad" value="Edad:* " />
+                <p:spinner id="edad" value="#{editarEliminarBean.edad}" min="0" max="100"  />
+                <p:message for="edad" />
+
+                <h:outputText value="Contraseña nueva: " />
+                <p:password id="contraseña" value="#{editarEliminarBean.contraseniaUsuario}" feedback="true" />
+                <br/>
+
+                <p:outputLabel for="sexo" value="Sexo: " />
+                <p:selectOneRadio id="sexo" value="#{editarEliminarBean.sexo}" >
+                    <f:selectItem itemLabel="Masculino" itemValue="m" />
+                    <f:selectItem itemLabel="Femenino" itemValue="f" />
+                </p:selectOneRadio>
+
+            </h:panelGrid>
+
+            <p:commandButton class="cajadatos2" value="Consultar" action="#{editarEliminarBean.returnUsuarioById()}" update="grid" ></p:commandButton> 
+            <p:commandButton class="cajadatos2" value="Borrar" action="#{editarEliminarBean.deleteUsuario()}" update="grid" onclick="PF('dlg4').show();"></p:commandButton> 
+            <p:commandButton class="cajadatos2" value="Actualizar" action="#{editarEliminarBean.updateUsuario()}" update="grid" onclick="PF('dlg3').show();"></p:commandButton> 
+
+            <br/>
+            <br/>         
+            <br/>
+            <h:messages globalOnly="true" />
         </h:form>
+
+        <p:dialog header="Aviso Actualización" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+            <h:outputText value="Usuario actualizado correctamente" />
+        </p:dialog>
+
+        <p:dialog header="Aviso Eliminación" widgetVar="dlg4" showEffect="explode" hideEffect="bounce" height="100">
+            <h:outputText value="Usuario eliminado correctamente" />
+        </p:dialog>
+
+
+        <h:link class="cajadatos3" value="Volver a inicio" outcome="index" />
+
+        <br/>
+        <div>
+            <ul class="pie">
+                <li><a><font color="white">Aviso de Privacidad</font></a></li>
+                <li><a><font color="white">Terminos Legales</font></a></li>
+                <li><a><font color="white">¿Quienes somos?</font></a></li>
+                <li><a><font color="white">¿Cómo comprar?</font></a></li>
+                <li><a><font color="white">Preguntas Frecuentes</font></a></li>
+            </ul> 
+        </div>
+
     </h:body>
 </html>
 

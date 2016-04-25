@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beans;
+
 import DAO.DatosUsuarioDAO;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -14,10 +10,6 @@ import mapeo.DatosUsuario;
 import mapeo.Estado;
 import mapeo.Usuario;
 
-/**
- *
- * @author francisco
- */
 @Named(value = "datosUsuarioBean")
 @SessionScoped
 public class DatosUsuarioBean implements Serializable {
@@ -26,26 +18,29 @@ public class DatosUsuarioBean implements Serializable {
      * Creates a new instance of DatosUsuarioBean
      */
     private int idDatosUsuario;
-     private Usuario nombreUsuario;
-     private String nombre;
-     private String aPaterno;
-     private String aMaterno;
-     private String email;
-     private int direccion;
-     private String imagenUsuario;
-     private String telefono;
-     private int edad;
-     private String sexo;
-     private Estado estado;
-     private int id_usuario;
+    private Usuario nombreUsuario;
+    private String nombre;
+    private String aPaterno;
+    private String aMaterno;
+    private String email;
+    private int direccion;
+    private String imagenUsuario;
+    private String telefono;
+    private int edad;
+    private String sexo;
+    private Estado estado;
+    private int id_usuario;
+
     public DatosUsuarioBean() {
     }
-    public void datosUsuario(Usuario u){
+
+    public void datosUsuario(Usuario u) {
         DatosUsuario usuario;
-        usuario = new DatosUsuario(getIdDatosUsuario(),getEstado(),u,getNombre(),getaPaterno(),getaMaterno(), getEmail(),getImagenUsuario(), getTelefono(), getEdad(), getSexo());
+        usuario = new DatosUsuario(getIdDatosUsuario(), getEstado(), u, getNombre(), getaPaterno(), getaMaterno(), getEmail(), getImagenUsuario(), getTelefono(), getEdad(), getSexo());
         DatosUsuarioDAO usuarioDAO = new DatosUsuarioDAO();
         usuarioDAO.datosUsuario(usuario);
     }
+
     /**
      * @return the idDatosUsuario
      */
@@ -115,8 +110,7 @@ public class DatosUsuarioBean implements Serializable {
     public void setImagenUsuario(String imagenUsuario) {
         this.imagenUsuario = imagenUsuario;
     }
-    
-    
+
     public String getaPaterno() {
         return aPaterno;
     }
@@ -132,7 +126,7 @@ public class DatosUsuarioBean implements Serializable {
     public void setaMaterno(String aMaterno) {
         this.aMaterno = aMaterno;
     }
-    
+
     /**
      * @return the telefono
      */
@@ -160,7 +154,7 @@ public class DatosUsuarioBean implements Serializable {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    
+
     /**
      * @return the edad
      */
@@ -198,6 +192,5 @@ public class DatosUsuarioBean implements Serializable {
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }
-    
-    
+
 }

@@ -37,6 +37,9 @@ public class EditarEliminarDAO {
         try {
             trns = session.beginTransaction();
             DatosUsuario oldCliente = (DatosUsuario) session.load(DatosUsuario.class, new Integer(idDatosUsuario));
+            oldCliente.setNombre(newCliente.getNombre());
+            oldCliente.setApellidoPaterno(newCliente.getApellidoPaterno());
+            oldCliente.setApellidoMaterno(newCliente.getApellidoMaterno());
             oldCliente.setEmail(newCliente.getEmail());
             oldCliente.setTelefono(newCliente.getTelefono());
             oldCliente.setEdad(newCliente.getEdad());
@@ -54,14 +57,13 @@ public class EditarEliminarDAO {
             session.close();
         }
     }
-
-    public DatosUsuario getUsuarioByID(int idDatosUsuario) {
+      public DatosUsuario getUsuarioByID(int idDatosUsuario) {
         DatosUsuario datosUsuario = null;
         Transaction trns = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            String queryString = "from DatosUsuario where id_datos_usuario = :idToFind";
+            String queryString = "from DatosUsuario where id_usuario_fk = :idToFind";
             Query query = session.createQuery(queryString);
             query.setInteger("idToFind", idDatosUsuario);
             datosUsuario = (DatosUsuario) query.uniqueResult();
@@ -73,5 +75,4 @@ public class EditarEliminarDAO {
         }
         return datosUsuario;
     }
-
 }

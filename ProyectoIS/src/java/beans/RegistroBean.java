@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
-
 @Named(value = "registroBean")
 @SessionScoped
 public class RegistroBean implements Serializable {
@@ -31,25 +30,26 @@ public class RegistroBean implements Serializable {
     private final FacesContext faceContext;
     private FacesMessage message;
     DatosUsuarioBean perfil = new DatosUsuarioBean();
-    
-    public void addRegistro(){
-        try{
-        Usuario registro = new Usuario(getNombreUsuario(),getContraseniaUsuario());
-        RegistroDAO registroDAO = new RegistroDAO();
-        registroDAO.addRegistro(registro);
-        perfil.datosUsuario(registro);
-        //FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-        }catch(Exception e){
+
+    public void addRegistro() {
+        try {
+            Usuario registro = new Usuario(getNombreUsuario(), getContraseniaUsuario());
+            RegistroDAO registroDAO = new RegistroDAO();
+            registroDAO.addRegistro(registro);
+            perfil.datosUsuario(registro);
+            //FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        } catch (Exception e) {
             //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso incorrecto, verifica tus campos", null);
             //faceContext.addMessage(null, message);
         }
     }
+
     /**
      * Creates a new instance of RegistroBean
      */
     public RegistroBean() {
         faceContext = FacesContext.getCurrentInstance();
-        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+        httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
     }
 
     /**
