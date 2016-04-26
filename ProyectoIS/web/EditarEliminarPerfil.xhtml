@@ -44,6 +44,7 @@
             <h:panelGrid id="grid" columns="3" cellpadding="10">
                 <p:growl id="message" sticky="true"/>
 
+<<<<<<< HEAD
                 <p:outputLabel for="nombreUsuario" style="color: white" value="Nombre usuario:" />
                 <p:inputText id="nombreUsuario" value="#{editarEliminarBean.nombreUsuario}" ></p:inputText>
 
@@ -64,12 +65,41 @@
 
                 <h:outputLabel for="edad" style="color: white" value="Edad:* " />
                 <p:spinner id="edad" value="#{editarEliminarBean.edad}" min="0" max="100"  />
+=======
+                <p:outputLabel for="nombreUsuario" style="color: white" value="Nombre usuario:* " />
+                <p:inputText id="nombreUsuario" value="#{editarEliminarBean.nombreUsuario}" style="color: black" ></p:inputText>
+                <p:message for="nombreUsuario" />
+
+                <p:outputLabel for="nombre" style="color: white" value="Nombre:* " />
+                <p:inputText id="nombre" value="#{editarEliminarBean.nombre}" style="color: black" ></p:inputText>
+                <p:message for="nombre" />
+
+                <p:outputLabel for="apellidoPaterno" style="color: white" value="Apellido paterno:* " />
+                <p:inputText id="apellidoPaterno" value="#{editarEliminarBean.apellidoPaterno}" style="color: black"></p:inputText>
+                <p:message for="apellidoPaterno" />
+
+                <p:outputLabel for="apellidoMaterno" style="color: white" value="Apellido materno:*" />
+                <p:inputText id="apellidoMaterno" value="#{editarEliminarBean.apellidoMaterno}" style="color: black"></p:inputText>
+                <p:message for="apellidoMaterno" />
+
+                <p:outputLabel for="mail" style="color: white" value="Correo electronico:* " />
+                <p:inputText id="mail" value="#{editarEliminarBean.email}" style="color: black"></p:inputText>
+                <p:message for="mail" />
+
+                <p:outputLabel for="tel" style="color: white" value="Telefono:" />
+                <p:inputText id="tel" value="#{editarEliminarBean.telefono}" style="color: black" ></p:inputText>
+                <p:message for="tel" />
+
+                <h:outputLabel for="edad" style="color: white" value="Edad:* " />
+                <p:spinner id="edad" style="color: black" value="#{editarEliminarBean.edad}" min="0" max="100" />
+                <p:message for="edad" />
+>>>>>>> c96d4722f1970c506fec1a0f95b27df21e85902e
 
                 <h:outputText style="color: white" value="Contraseña nueva: " />
-                <p:password id="contraseña" value="#{editarEliminarBean.contraseniaUsuario}" feedback="true" />
+                <p:password id="contraseña" value="#{editarEliminarBean.contraseniaUsuario}" style="color: black" feedback="true" />
                 <br/>
 
-                <p:outputLabel for="sexo" style="color: white" value="Sexo: " />
+                <p:outputLabel for="sexo" style="color: white" value="Sexo:* " />
                 <p:selectOneRadio id="sexo" style="color: white" value="#{editarEliminarBean.sexo}" >
                     <f:selectItem itemLabel="Masculino" itemValue="m" />
                     <f:selectItem itemLabel="Femenino" itemValue="f" />
@@ -77,9 +107,27 @@
 
             </h:panelGrid>
 
+<<<<<<< HEAD
             <p:commandButton class="cajadatos2" value="Consultar" action="#{editarEliminarBean.returnUsuarioById()}" update="message" ></p:commandButton> 
             <p:commandButton class="cajadatos2" value="Borrar" action="#{editarEliminarBean.deleteUsuario()}" update="message" ></p:commandButton> 
             <p:commandButton class="cajadatos2" value="Actualizar" action="#{editarEliminarBean.updateUsuario()}" update="message" ></p:commandButton> 
+=======
+            <p:commandButton class="cajadatos2" value="Consultar" action="#{editarEliminarBean.returnUsuarioById()}" update="grid" ></p:commandButton> 
+            <p:commandButton class="cajadatos2" value="Actualizar" action="#{editarEliminarBean.updateUsuario()}" update="grid" onclick="PF('dlg3').show();"></p:commandButton> 
+>>>>>>> c96d4722f1970c506fec1a0f95b27df21e85902e
+
+            <p:commandButton  class="cajadatos2" value="Eliminar" actionListener="#{editarEliminarBean.deleteUsuario()}" update="grid" onclick="PF('dlg4').show();" >
+                <p:confirm header="Confirmación" message="¿Estás seguro de eliminiar tu perfil?" icon="ui-icon-alert" />
+            </p:commandButton>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+
+            <br/>  <br/>  <br/>
+            <h:messages globalOnly="true" />
+
 
             <br/>
             <br/>         
@@ -104,4 +152,3 @@
 
     </h:body>
 </html>
-
