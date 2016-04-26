@@ -5,11 +5,11 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link rel="stylesheet" href="InicioSesionEstilo.css"></link>
+        <link rel="stylesheet" href="../css/InicioSesionEstilo.css"></link>
         <title>Inicio de Sesión</title>
     </h:head>
     <h:body>
-       
+
         <div id="header">
 			<ul class="nav">
                             <li><a id="logo" href=""></a></li>
@@ -37,20 +37,20 @@
 			</ul>
 		</div>
         <br/>
-        <div class="cajablanca">Iniciar Sesión<br/><br/>
+        <div class="cajablanca">Iniciar Sesión<br/><br/>            
             <h:form class="cajadatos">
-                <h:inputText value="#{inicioSesionBean.nombreUsuario}" ></h:inputText>
+               <p:growl id="message" sticky="true"/>
+                    <p:inputText id ="user" value="#{inicioSesionBean.nombreUsuario}" label="Usuario" required="true" ></p:inputText>                
                 <br/>
-                <h:inputSecret value="#{inicioSesionBean.contraseniaUser}"></h:inputSecret>
+                <h:inputSecret id="pwd" value="#{inicioSesionBean.contraseniaUser}" label="Contraseña" required="true"></h:inputSecret>                
                 <br/>
-                <h:commandButton class="cajadatos2" value="Iniciar" action="#{inicioSesionBean.inicioSesionBean()}"></h:commandButton>
-                <br/>
+                <p:commandButton class="cajadatos2" value="Iniciar" action="#{inicioSesionBean.inicioSesionBean()}" update="message"></p:commandButton>
+                <br/>                
                 <h:outputLink class="link" value="InicioSesion.xhtml">¿Olvidaste tu contraseña?</h:outputLink>
                 <br/>
-
-                <h:selectOneRadio class="recordarme" value="Recordarme">
-                <f:selectItem itemValue="select" itemLabel="Recordarme" />
-                </h:selectOneRadio>
+                <p:selectOneRadio class="recordarme" value="Recordarme" required="false">
+                <f:selectItem itemValue="select" itemLabel="Recordarme" />         
+                </p:selectOneRadio>               
             </h:form>
         </div>
         <div>
@@ -60,8 +60,8 @@
 			<li><a><font color="white">¿Quienes somos?</font></a></li>
 			<li><a><font color="white">¿Cómo comprar?</font></a></li>
 			<li><a><font color="white">Preguntas Frecuentes</font></a></li>
-            </ul> 
+            </ul>
         </div>
-        
+
     </h:body>
 </html>

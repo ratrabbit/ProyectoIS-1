@@ -5,10 +5,8 @@
  */
 package DAO;
 
-import beans.PublicacionesBean;
 import java.util.List;
-import org.hibernate.Transaction;
-import mapeo.GaleriaPublicacion;
+import mapeo.Publicacion;
 import org.hibernate.Session;
 import util.NewHibernateUtil;
 
@@ -16,17 +14,13 @@ import util.NewHibernateUtil;
  *
  * @author adolfo
  */
-
-
-public class PublicacionesDAO{
+public class PublicacionDAO {
+    private List<Publicacion> lista;
     
-    private List<GaleriaPublicacion> lista;      
-
-    
-    public List<GaleriaPublicacion> getGaleria() {
+     public List<Publicacion> getGaleria() {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try{
-            lista =  (List<GaleriaPublicacion>)session.createQuery("from galeria_publicacion").list();
+            lista =  (List<Publicacion>) session.getNamedQuery("BuscaPublicaciones").list();
         }catch(RuntimeException e){
         }finally{
             session.flush();
@@ -34,6 +28,5 @@ public class PublicacionesDAO{
         }
         return lista;
     }
-}
     
-
+}

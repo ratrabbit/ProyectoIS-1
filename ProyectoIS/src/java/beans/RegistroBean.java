@@ -1,8 +1,6 @@
 package beans;
 
-import DAO.DatosUsuarioDAO;
 import DAO.RegistroDAO;
-import mapeo.DatosUsuario;
 import mapeo.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -12,10 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
-/**
- *
- * @author francisco
- */
 @Named(value = "registroBean")
 @SessionScoped
 public class RegistroBean implements Serializable {
@@ -35,32 +29,31 @@ public class RegistroBean implements Serializable {
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
     private FacesMessage message;
-    
-    public void addRegistro(){
-        try{
-        Usuario registro = new Usuario(getNombreUsuario(),getContraseniaUsuario());
-        RegistroDAO registroDAO = new RegistroDAO();
-        registroDAO.addRegistro(registro);
-        if(!registro.getNombreUsuario().trim().equals("") &&  !registro.getContraseniaUsuario().trim().equals("")){
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "El registro se realizo de manera exitosa", null);
-            faceContext.addMessage(null, message);
-        }
-        else{
-            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Acceso incorrecto, verifica tus campos", null);
-            faceContext.addMessage(null, message);
-        }
-        //FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+    DatosUsuarioBean perfil = new DatosUsuarioBean();
+
+    public String addRegistro() {
+        try {
+            Usuario registro = new Usuario(getNombreUsuario(), getContraseniaUsuario());
+            RegistroDAO registroDAO = new RegistroDAO();
+            registroDAO.addRegistro(registro);
+            perfil.datosUsuario(registro);
+            //FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            return "Index?faces-redirect=true";
+        } catch (org.hibernate.exception.ConstraintViolationException e) {
+            return "ErrorRegistroIH?faces-redirect=true";
+            //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso incorrecto, verifica tus campos", null);
+            //faceContext.addMessage(null, message);
         }catch(Exception e){
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso incorrecto, verifica tus campos", null);
-            faceContext.addMessage(null, message);
+            return "{!first}";
         }
     }
+
     /**
      * Creates a new instance of RegistroBean
      */
     public RegistroBean() {
         faceContext = FacesContext.getCurrentInstance();
-        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+        httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
     }
 
     /**
@@ -201,6 +194,22 @@ public class RegistroBean implements Serializable {
      */
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public FacesMessage getMessage() {
+        return message;
+    }
+
+    public void setMessage(FacesMessage message) {
+        this.message = message;
+    }
+
+    public DatosUsuarioBean getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(DatosUsuarioBean perfil) {
+        this.perfil = perfil;
     }
 
 }

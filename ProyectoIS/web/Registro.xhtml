@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link rel="stylesheet" href="RegistroEstilo.css"></link>
+        <link rel="stylesheet" href="../css/RegistroEstilo.css"></link>
         <title>.:Agregar registro:.</title>
     </h:head>
     <h:body>
@@ -43,22 +43,59 @@
             <p:separator />
             <h:form class="cajadatos">
                 <h:panelGrid id="grid" columns="3" cellpadding="10">
-                    <p:outputLabel for="default" value="Nombre de usuario:" />
+                    <p:outputLabel for="default" style="color: white" value="Nombre de usuario:" />
                     <p:inputText id="default" value="#{registroBean.nombreUsuario}" required="true"></p:inputText>
                     <p:message for="default" />
                     
-                    <p:outputLabel for="pass" value="Contraseña:" />
-                    <h:inputSecret id="pass" value="#{registroBean.contraseniaUsuario}" required="true"></h:inputSecret>
-                    <p:message for="pass" />
-
+                    <p:outputLabel for="pwd1" style="color: white" value="Contraseña: " />
+                    <p:password id="pwd1" value="#{registroBean.contraseniaUsuario}" feedback="false" match="pwd2" label="Password 1" required="true"/>
+                    <p:message for="pwd1" />
+                    
+                    <p:outputLabel for="pwd2" style="color: white" value="Confirmar contraseña: " />
+                    <p:password id="pwd2" value="#{registroBean.contraseniaUsuario}" feedback="false" label="Password 2" required="true"/>
+                    <p:message for="pwd2" />
+                    
+                    <p:outputLabel for="nperf" style="color: white" value="Nombre:" />
+                    <p:inputText id="nperf" value="#{registroBean.perfil.nombre}" required="true"></p:inputText>
+                    <p:message for="nperf" />
+                    
+                    <p:outputLabel for="napp" style="color: white" value="Apellido Paterno:" />
+                    <p:inputText id="napp" value="#{registroBean.perfil.aPaterno}" required="true"></p:inputText>
+                    <p:message for="napp" />
+                    
+                    <p:outputLabel for="napm" style="color: white" value="Apellido Materno:" />
+                    <p:inputText id="napm" value="#{registroBean.perfil.aMaterno}" required="true"></p:inputText>
+                    <p:message for="napm" />
+                    
+                    <p:outputLabel for="mail" style="color: white" value="Correo electronico:" />
+                    <p:inputText id="mail" value="#{registroBean.perfil.email}" required="true"></p:inputText>
+                    <p:message for="mail" />
+                    
+                    <p:outputLabel for="tel" style="color: white" value="Telefono:" />
+                    <p:inputText id="tel" value="#{registroBean.perfil.telefono}" required="false"></p:inputText>
+                    <p:message for="tel" />
+                    
+                    <h:outputLabel for="edad" style="color: white" value="Edad:* " />
+                    <p:spinner id="edad" value="#{registroBean.perfil.edad}" min="0" max="100" required="true" />
+                    <p:message for="edad" />
+                    
+                    <p:outputLabel for="sexo" style="color: white" value="Sexo: " />
+                        <p:selectOneRadio style="color: white" id="sexo" value="#{registroBean.perfil.sexo}" required="true">
+                            <f:selectItem itemLabel="Masculino" itemValue="m" />
+                            <f:selectItem itemLabel="Femenino" itemValue="f" />
+                        </p:selectOneRadio>
                 </h:panelGrid>
                 
-            <p:commandButton class="cajadatos2" value="Registrar" action="#{registroBean.addRegistro()}" update="grid"></p:commandButton> 
+            <p:commandButton class="cajadatos2" value="Registrar" action="#{registroBean.addRegistro()}" actionListener="#{messagesView.info}" update="grid" ></p:commandButton> 
+
             <br/>
             <br/>         
             <br/>
             <h:messages globalOnly="true" />
         </h:form>
+            <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+                <h:outputText value="Registro exitoso. Ve a inicio de sesion para comenzar." />
+            </p:dialog>
             <h:link class="cajadatos3" value="Volver a inicio" outcome="index" />
 
         <br/>

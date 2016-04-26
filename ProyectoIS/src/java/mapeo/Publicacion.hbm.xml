@@ -6,15 +6,20 @@
     <class name="mapeo.Publicacion" table="publicacion" schema="public" optimistic-lock="version">
         <id name="idPublicacion" type="int">
             <column name="id_publicacion" />
-            <generator class="assigned" />
+            <generator class="sequence">
+                <param name="sequence">auto_incremento_id</param>
+            </generator>
         </id>
         <many-to-one name="usuario" class="mapeo.Usuario" fetch="select">
             <column name="id_usuario_publicacion" not-null="true" />
         </many-to-one>
+        <property name="nombreProducto" type="string">
+            <column name="nombre_producto" not-null="true" />
+        </property>
         <property name="descripcion" type="string">
             <column name="descripcion" not-null="true" />
         </property>
-        <property name="imagenes" type="int">
+        <property name="imagenes" type="string">
             <column name="imagenes" not-null="true" />
         </property>
         <property name="precioInical" type="int">
@@ -27,4 +32,8 @@
             <column name="precio_actual" not-null="true" />
         </property>
     </class>
+    <sql-query name="BuscaPublicaciones">
+        <return alias="Publicacion" class="mapeo.Publicacion"/>
+        <![CDATA[select * from public.publicacion]]>
+    </sql-query>
 </hibernate-mapping>
