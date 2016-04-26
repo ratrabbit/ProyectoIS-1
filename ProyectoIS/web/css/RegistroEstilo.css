@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 body {
 
-        background-image: url("fondo.jpg");
+        background-image: url("../images/gradiente.jpg");
         background-color: #cccccc;
 }
 	
@@ -79,6 +79,7 @@ ul, ol {
   border-radius: 10px;
   transition: border 0.3s;
   font-size: 17px;
+  color: white;
 }
 
 .cajadatos input[type="password"] {
@@ -88,6 +89,7 @@ ul, ol {
   
   transition: border 0.3s;
   font-size: 17px;
+  color: white;
 }
 .cajadatos input[type="text"]:focus,
 .cajadatos input[type="text"].focus {
