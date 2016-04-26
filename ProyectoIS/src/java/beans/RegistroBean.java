@@ -31,16 +31,20 @@ public class RegistroBean implements Serializable {
     private FacesMessage message;
     DatosUsuarioBean perfil = new DatosUsuarioBean();
 
-    public void addRegistro() {
+    public String addRegistro() {
         try {
             Usuario registro = new Usuario(getNombreUsuario(), getContraseniaUsuario());
             RegistroDAO registroDAO = new RegistroDAO();
             registroDAO.addRegistro(registro);
             perfil.datosUsuario(registro);
             //FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-        } catch (Exception e) {
+            return "Index?faces-redirect=true";
+        } catch (org.hibernate.exception.ConstraintViolationException e) {
+            return "ErrorRegistroIH?faces-redirect=true";
             //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso incorrecto, verifica tus campos", null);
             //faceContext.addMessage(null, message);
+        }catch(Exception e){
+            return "{!first}";
         }
     }
 

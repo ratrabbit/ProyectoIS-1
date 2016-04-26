@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link rel="stylesheet" href="RegistroEstilo.css"></link>
+        <link rel="stylesheet" href="../css/RegistroEstilo.css"></link>
         <title>.:Agregar registro:.</title>
     </h:head>
     <h:body>
@@ -86,7 +86,7 @@
                         </p:selectOneRadio>
                 </h:panelGrid>
                 
-            <p:commandButton class="cajadatos2" value="Registrar" action="#{registroBean.addRegistro()}" update="grid" onclick="PF('dlg3').show();"></p:commandButton> 
+            <p:commandButton class="cajadatos2" value="Registrar" action="#{registroBean.addRegistro()}" actionListener="#{messagesView.info}" update="grid" ></p:commandButton> 
             <br/>
             <br/>         
             <br/>
