@@ -43,40 +43,40 @@
         <h:form class="cajadatos">
             <h:panelGrid id="grid" columns="3" cellpadding="10">
 
-                <p:outputLabel for="nombreUsuario" value="Nombre usuario:" />
+                <p:outputLabel for="nombreUsuario" style="color: white" value="Nombre usuario:" />
                 <p:inputText id="nombreUsuario" value="#{editarEliminarBean.nombreUsuario}" ></p:inputText>
                 <p:message for="nombreUsuario" />
 
-                <p:outputLabel for="nombre" value="Nombre:" />
+                <p:outputLabel for="nombre" style="color: white" value="Nombre:" />
                 <p:inputText id="nombre" value="#{editarEliminarBean.nombre}" ></p:inputText>
                 <p:message for="nombre" />
 
-                <p:outputLabel for="apellidoPaterno" value="Apellido paterno:" />
+                <p:outputLabel for="apellidoPaterno" style="color: white" value="Apellido paterno:" />
                 <p:inputText id="apellidoPaterno" value="#{editarEliminarBean.apellidoPaterno}" ></p:inputText>
                 <p:message for="apellidoPaterno" />
 
-                <p:outputLabel for="apellidoMaterno" value="Apellido materno:" />
+                <p:outputLabel for="apellidoMaterno" style="color: white" value="Apellido materno:" />
                 <p:inputText id="apellidoMaterno" value="#{editarEliminarBean.apellidoMaterno}" ></p:inputText>
                 <p:message for="apellidoMaterno" />
 
-                <p:outputLabel for="mail" value="Correo electronico:" />
+                <p:outputLabel for="mail" style="color: white" value="Correo electronico:" />
                 <p:inputText id="mail" value="#{editarEliminarBean.email}" ></p:inputText>
                 <p:message for="mail" />
 
-                <p:outputLabel for="tel" value="Telefono:" />
+                <p:outputLabel for="tel" style="color: white" value="Telefono:" />
                 <p:inputText id="tel" value="#{editarEliminarBean.telefono}" ></p:inputText>
                 <p:message for="tel" />
 
-                <h:outputLabel for="edad" value="Edad:* " />
+                <h:outputLabel for="edad" style="color: white" value="Edad:* " />
                 <p:spinner id="edad" value="#{editarEliminarBean.edad}" min="0" max="100"  />
                 <p:message for="edad" />
 
-                <h:outputText value="Contraseña nueva: " />
+                <h:outputText style="color: white" value="Contraseña nueva: " />
                 <p:password id="contraseña" value="#{editarEliminarBean.contraseniaUsuario}" feedback="true" />
                 <br/>
 
-                <p:outputLabel for="sexo" value="Sexo: " />
-                <p:selectOneRadio id="sexo" value="#{editarEliminarBean.sexo}" >
+                <p:outputLabel for="sexo" style="color: white" value="Sexo: " />
+                <p:selectOneRadio id="sexo" style="color: white" value="#{editarEliminarBean.sexo}" >
                     <f:selectItem itemLabel="Masculino" itemValue="m" />
                     <f:selectItem itemLabel="Femenino" itemValue="f" />
                 </p:selectOneRadio>

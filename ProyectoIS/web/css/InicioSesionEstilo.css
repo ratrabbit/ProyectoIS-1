@@ -31,7 +31,7 @@ ul, ol {
 }
 
 #logo {
-    background: url(rolandoando.png);
+    background: url(../images/rolandoando.png);
     background-size: cover;
 	color:#181717;
 	text-decoration:none;
