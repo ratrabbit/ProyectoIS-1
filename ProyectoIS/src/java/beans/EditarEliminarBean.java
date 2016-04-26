@@ -31,12 +31,13 @@ public class EditarEliminarBean implements Serializable {
     private String contraseniaUsuario;
 
     private int identificadorUsuario;
-    
+
     private int contraNueva;
-    
+
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
     private FacesMessage message;
+    private String contraVieja;
 
     /**
      * Creates a new instance of EditarEliminarBean
@@ -52,13 +53,13 @@ public class EditarEliminarBean implements Serializable {
         RegistroDAO registroDAO = new RegistroDAO();
         Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
         DatosUsuario cliente = editarEliminarDAO.getUsuarioByID(getIdentificadorUsuario());
-
+        
         if (usu != null) {
 
             //Campos de datos de la tabla Usuario
             setIdUsuario(usu.getIdUsuario());
             setNombreUsuario(usu.getNombreUsuario());
-            setContraseniaUsuario(usu.getContraseniaUsuario());
+            setContraVieja(usu.getContraseniaUsuario());
 
             //obtiene el PK de Usuario para usarlo en el FK  de DATOSUSUARIO
             setIdentificadorUsuario(usu.getIdUsuario());
@@ -84,23 +85,30 @@ public class EditarEliminarBean implements Serializable {
 
         RegistroDAO registroDAO = new RegistroDAO();
         registroDAO.deleteRegistro(getIdentificadorUsuario());
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Usuario " + getNombreUsuario() + " eliminado"));
+
+        //FacesContext.getCurrentInstance().addMessage(null,
+        //      new FacesMessage("Usuario " + getNombreUsuario() + " eliminado"));
+        //return "InicioSesion";
     }
 
     public void updateUsuario() {
-
+       // RegistroDAO registroDAO = new RegistroDAO();
+        
+        //Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
+        //setContraVieja(getContraseniaUsuario());
+        
         DatosUsuario datosUsuario = new DatosUsuario(getIdDatosUsuario(), usuario, getNombre(), getApellidoPaterno(), getApellidoMaterno(), getEmail(), getTelefono(), getEdad(), getSexo());
         EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
         editarEliminarDAO.updateDatosUsuario(getIdDatosUsuario(), datosUsuario);
-
         Usuario u = new Usuario(getNombreUsuario(), getContraseniaUsuario());
         RegistroDAO registroDAO = new RegistroDAO();
-        registroDAO.updateRegistro(getIdUsuario(), u);
-
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Cliente actualizado correctamente"));
+        if(!getContraseniaUsuario().equals("")){
+            registroDAO.updateRegistro(getIdUsuario(), u);
+        }else{
+            u.setContraseniaUsuario(contraVieja);
+            registroDAO.updateRegistro(getIdUsuario(), u);
+        }
+       
     }
 
     /**
@@ -150,6 +158,14 @@ public class EditarEliminarBean implements Serializable {
      */
     public int getEdad() {
         return edad;
+    }
+
+    public String getContraVieja() {
+        return contraVieja;
+    }
+
+    public void setContraVieja(String contraVieja) {
+        this.contraVieja = contraVieja;
     }
 
     /**
