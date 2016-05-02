@@ -40,11 +40,8 @@ public class EditarEliminarBean implements Serializable {
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
     private FacesMessage message;
-<<<<<<< HEAD
     private  InicioSesionDAO dao;
-=======
     private String contraVieja;
->>>>>>> c96d4722f1970c506fec1a0f95b27df21e85902e
 
     /**
      * Creates a new instance of EditarEliminarBean
@@ -55,7 +52,7 @@ public class EditarEliminarBean implements Serializable {
         dao = new InicioSesionDAO();
     }
 
-    //-----------------------------------
+
     public void returnUsuarioById() {
         EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
         RegistroDAO registroDAO = new RegistroDAO();
@@ -93,17 +90,15 @@ public class EditarEliminarBean implements Serializable {
 
         RegistroDAO registroDAO = new RegistroDAO();
         registroDAO.deleteRegistro(getIdentificadorUsuario());
-<<<<<<< HEAD
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Usuario " + getNombreUsuario() + " eliminado"));
         return "usuarioeliminado";
-=======
+
 
         //FacesContext.getCurrentInstance().addMessage(null,
         //      new FacesMessage("Usuario " + getNombreUsuario() + " eliminado"));
         //return "InicioSesion";
->>>>>>> c96d4722f1970c506fec1a0f95b27df21e85902e
     }
 
     public void updateUsuario() {

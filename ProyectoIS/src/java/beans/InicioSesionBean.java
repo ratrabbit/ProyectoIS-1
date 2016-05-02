@@ -38,7 +38,7 @@ public class InicioSesionBean implements Serializable {
                 faceContext.addMessage(null, message);
                 return "bienvenido";
             } else {
-                message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña incorrecto", null);
+                message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña invalido", null);
                 faceContext.addMessage(null, message);
                 return "InicioSesion";
             }

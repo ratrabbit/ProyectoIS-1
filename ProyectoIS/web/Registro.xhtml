@@ -43,44 +43,44 @@
             <p:separator />
             <h:form class="cajadatos">
                 <h:panelGrid id="grid" columns="3" cellpadding="10">
-                    <p:outputLabel for="default" style="color: white" value="Nombre de usuario:" />
-                    <p:inputText id="default" value="#{registroBean.nombreUsuario}" required="true"></p:inputText>
+                    <p:outputLabel for="default" value="Nombre de usuario:" style="color: white"/>
+                    <p:inputText id="default" value="#{registroBean.nombreUsuario}" style="color: black" required="true"></p:inputText>
                     <p:message for="default" />
                     
-                    <p:outputLabel for="pwd1" style="color: white" value="Contraseña: " />
-                    <p:password id="pwd1" value="#{registroBean.contraseniaUsuario}" feedback="false" match="pwd2" label="Password 1" required="true"/>
+                    <p:outputLabel for="pwd1" value="Contraseña: " style="color: white"/>
+                    <p:password id="pwd1" value="#{registroBean.contraseniaUsuario}" style="color: black" feedback="false" match="pwd2" label="Password 1" required="true"/>
                     <p:message for="pwd1" />
                     
-                    <p:outputLabel for="pwd2" style="color: white" value="Confirmar contraseña: " />
-                    <p:password id="pwd2" value="#{registroBean.contraseniaUsuario}" feedback="false" label="Password 2" required="true"/>
+                    <p:outputLabel for="pwd2" value="Confirmar contraseña: " style="color: white"/>
+                    <p:password id="pwd2" value="#{registroBean.contraseniaUsuario}" style="color: black" feedback="false" label="Password 2" required="true"/>
                     <p:message for="pwd2" />
                     
-                    <p:outputLabel for="nperf" style="color: white" value="Nombre:" />
-                    <p:inputText id="nperf" value="#{registroBean.perfil.nombre}" required="true"></p:inputText>
+                    <p:outputLabel for="nperf" value="Nombre:" style="color: white"/>
+                    <p:inputText id="nperf" value="#{registroBean.perfil.nombre}" style="color: black" required="true"></p:inputText>
                     <p:message for="nperf" />
                     
-                    <p:outputLabel for="napp" style="color: white" value="Apellido Paterno:" />
-                    <p:inputText id="napp" value="#{registroBean.perfil.aPaterno}" required="true"></p:inputText>
+                    <p:outputLabel for="napp" value="Apellido Paterno:" style="color: white"/>
+                    <p:inputText id="napp" value="#{registroBean.perfil.aPaterno}" style="color: black" required="true"></p:inputText>
                     <p:message for="napp" />
                     
-                    <p:outputLabel for="napm" style="color: white" value="Apellido Materno:" />
-                    <p:inputText id="napm" value="#{registroBean.perfil.aMaterno}" required="true"></p:inputText>
+                    <p:outputLabel for="napm" value="Apellido Materno:" style="color: white"/>
+                    <p:inputText id="napm" value="#{registroBean.perfil.aMaterno}" style="color: black" required="true"></p:inputText>
                     <p:message for="napm" />
                     
-                    <p:outputLabel for="mail" style="color: white" value="Correo electronico:" />
-                    <p:inputText id="mail" value="#{registroBean.perfil.email}" required="true"></p:inputText>
+                    <p:outputLabel for="mail" value="Correo electronico:" style="color: white" />
+                    <p:inputText id="mail" value="#{registroBean.perfil.email}" style="color: black" required="true"></p:inputText>
                     <p:message for="mail" />
                     
-                    <p:outputLabel for="tel" style="color: white" value="Telefono:" />
-                    <p:inputText id="tel" value="#{registroBean.perfil.telefono}" required="false"></p:inputText>
+                    <p:outputLabel for="tel" value="Telefono:" style="color: white"/>
+                    <p:inputText id="tel" value="#{registroBean.perfil.telefono}" style="color: black" required="false"></p:inputText>
                     <p:message for="tel" />
                     
-                    <h:outputLabel for="edad" style="color: white" value="Edad:* " />
-                    <p:spinner id="edad" value="#{registroBean.perfil.edad}" min="0" max="100" required="true" />
+                    <h:outputLabel for="edad" value="Edad:* " style="color: white"/>
+                    <p:spinner id="edad" value="#{registroBean.perfil.edad}" style="color: black" min="0" max="100" required="true" />
                     <p:message for="edad" />
                     
-                    <p:outputLabel for="sexo" style="color: white" value="Sexo: " />
-                        <p:selectOneRadio style="color: white" id="sexo" value="#{registroBean.perfil.sexo}" required="true">
+                    <p:outputLabel for="sexo" value="Sexo: " style="color: white"/>
+                        <p:selectOneRadio id="sexo" value="#{registroBean.perfil.sexo}" style="color: black" required="true">
                             <f:selectItem itemLabel="Masculino" itemValue="m" />
                             <f:selectItem itemLabel="Femenino" itemValue="f" />
                         </p:selectOneRadio>

@@ -1,6 +1,6 @@
 body {
 
-        background-image: url("fondo.jpg");
+        background-image: url(../images/gradiente.jpg);
         background-color: #cccccc;
 }
 	
@@ -30,7 +30,7 @@ ul, ol {
 }
 
 #logo {
-    background: url(rolandoando.png);
+    background: url(../images/rolandoando.png);
     background-size: cover;
 	color:#181717;
 	text-decoration:none;
