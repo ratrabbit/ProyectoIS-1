@@ -38,7 +38,7 @@ public class RegistroBean implements Serializable {
             registroDAO.addRegistro(registro);
             perfil.datosUsuario(registro);
             //FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-            return "Index?faces-redirect=true";
+            return "usuarioregistrado?faces-redirect=true";
         } catch (org.hibernate.exception.ConstraintViolationException e) {
             return "ErrorRegistroIH?faces-redirect=true";
             //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso incorrecto, verifica tus campos", null);
