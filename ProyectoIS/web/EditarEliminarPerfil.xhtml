@@ -5,8 +5,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link rel="stylesheet" href="../css/RegistroEstilo.css"></link>
-        <title>.:EditarEliminarPerfil:.</title>
+        <link rel="stylesheet" href="../css/EditarEliminarEstilo.css"></link>
+        <title>EditarEliminarPerfil</title>
     </h:head>
     <h:body>
         <div id="header">
@@ -39,41 +39,36 @@
         <br/>
         <br/>
         <br/>
-        <p:separator />
         <h:form class="cajadatos">
             <h:panelGrid id="grid" columns="3" cellpadding="10">
                 <p:growl id="message" sticky="true"/>
 
                 <p:outputLabel for="nombreUsuario" style="color: white" value="Nombre usuario:* " />
-                <p:inputText id="nombreUsuario" value="#{editarEliminarBean.nombreUsuario}" style="color: black" ></p:inputText>
-                <p:message for="nombreUsuario" />
+                <p:inputText id="nombreUsuario" value="#{editarEliminarBean.nombreUsuario}" style="color: black"></p:inputText>
+                <br/>
 
                 <p:outputLabel for="nombre" style="color: white" value="Nombre:* " />
-                <p:inputText id="nombre" value="#{editarEliminarBean.nombre}" style="color: black" ></p:inputText>
-                <p:message for="nombre" />
+                <p:inputText id="nombre" value="#{editarEliminarBean.nombre}" style="color: black"></p:inputText>
+                <br/>
 
                 <p:outputLabel for="apellidoPaterno" style="color: white" value="Apellido paterno:* " />
                 <p:inputText id="apellidoPaterno" value="#{editarEliminarBean.apellidoPaterno}" style="color: black"></p:inputText>
-                <p:message for="apellidoPaterno" />
+                <br/>
 
-                <p:outputLabel for="apellidoMaterno" style="color: white" value="Apellido materno:*" />
+                <p:outputLabel for="apellidoMaterno" style="color: white" value="Apellido materno:* " />
                 <p:inputText id="apellidoMaterno" value="#{editarEliminarBean.apellidoMaterno}" style="color: black"></p:inputText>
-                <p:message for="apellidoMaterno" />
-
+                <br/>
+ 
                 <p:outputLabel for="mail" style="color: white" value="Correo electronico:* " />
                 <p:inputText id="mail" value="#{editarEliminarBean.email}" style="color: black"></p:inputText>
-                <p:message for="mail" />
+                <br/>
 
                 <p:outputLabel for="tel" style="color: white" value="Telefono:" />
-                <p:inputText id="tel" value="#{editarEliminarBean.telefono}" style="color: black" ></p:inputText>
-                <p:message for="tel" />
+                <p:inputText id="tel" value="#{editarEliminarBean.telefono}" style="color: black"></p:inputText>
+                <br/>
 
-                <h:outputLabel for="edad" style="color: white" value="Edad:* " />
-                <p:spinner id="edad" style="color: black" value="#{editarEliminarBean.edad}" min="0" max="100" />
-                <p:message for="edad" />
-
-                <h:outputText style="color: white" value="Contraseña nueva: " />
-                <p:password id="contraseña" value="#{editarEliminarBean.contraseniaUsuario}" style="color: black" feedback="true" />
+                <p:outputLabel for="edad" style="color: white" value="Edad:* " />
+                <p:inputText id="edad" value="#{editarEliminarBean.edad}" style="color: black" maxlength="2"></p:inputText>
                 <br/>
 
                 <p:outputLabel for="sexo" style="color: white" value="Sexo:* " />
@@ -81,34 +76,24 @@
                     <f:selectItem itemLabel="Masculino" itemValue="m" />
                     <f:selectItem itemLabel="Femenino" itemValue="f" />
                 </p:selectOneRadio>
+                <br/>
+
+                <h:outputText style="color: white" value="Contraseña nueva: " />
+                <p:password id="contraseña" value="#{editarEliminarBean.contraseniaUsuario}" style="color: black" feedback="true" />
+
+                <p:commandButton class="cajadatos2" value="Consultar" action="#{editarEliminarBean.returnUsuarioById()}" update="grid" ></p:commandButton> 
+                <p:commandButton class="cajadatos2" value="Editar" action="#{editarEliminarBean.updateUsuario()}" update="grid" ></p:commandButton> 
+                <p:commandButton class="cajadatos2" value="Eliminar" actionListener="#{editarEliminarBean.deleteUsuario()}" update="grid" >
+                    <p:confirm header="Confirmación" message="¿Estás seguro de eliminar tu perfil?" icon="ui-icon-alert" />
+                </p:commandButton>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
 
             </h:panelGrid>
-
-            <p:commandButton class="cajadatos2" value="Consultar" action="#{editarEliminarBean.returnUsuarioById()}" update="message" ></p:commandButton> 
-            <p:commandButton class="cajadatos2" value="Actualizar" action="#{editarEliminarBean.updateUsuario()}" update="message" ></p:commandButton> 
-
-            <p:commandButton  class="cajadatos2" value="Eliminar" actionListener="#{editarEliminarBean.deleteUsuario()}" update="message">
-                <p:confirm header="Confirmación" message="¿Estás seguro de eliminiar tu perfil?" icon="ui-icon-alert" />
-            </p:commandButton>
-
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-            </p:confirmDialog>
-
-            <br/>  <br/>  <br/>
-            <h:messages globalOnly="true" />
-
-
-            <br/>
-            <br/>         
-            <br/>
-            <h:messages globalOnly="true" />
         </h:form>
-
-
-
-        <h:link class="cajadatos3" value="Volver a inicio" outcome="index" />
 
         <br/>
         <div>

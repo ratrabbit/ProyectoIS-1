@@ -1,6 +1,15 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18/04/2016, 03:15:01 PM
+    Author     : francisco
+*/
 body {
 
-        background-image: url(../images/gradiente.jpg);
+        background-image: url("../images/gradiente.jpg");
         background-color: #cccccc;
 }
 	
@@ -70,6 +79,7 @@ ul, ol {
   border-radius: 10px;
   transition: border 0.3s;
   font-size: 17px;
+  color: white;
 }
 
 .cajadatos input[type="password"] {
@@ -79,6 +89,7 @@ ul, ol {
   
   transition: border 0.3s;
   font-size: 17px;
+  color: white;
 }
 .cajadatos input[type="text"]:focus,
 .cajadatos input[type="text"].focus {
