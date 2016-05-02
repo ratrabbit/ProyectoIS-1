@@ -1,7 +1,6 @@
 package beans;
 
 import DAO.EditarEliminarDAO;
-import DAO.InicioSesionDAO;
 import DAO.RegistroDAO;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -11,8 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import mapeo.DatosUsuario;
 import mapeo.Usuario;
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.RequestScoped;
 
 @Named(value = "editarEliminarBean")
 @SessionScoped
@@ -27,38 +24,30 @@ public class EditarEliminarBean implements Serializable {
     private int edad;
     private String sexo;
 
-    //intento  de editar datos también en tabla usuario
     private Usuario usuario;
     private int idUsuario;
     private String nombreUsuario;
     private String contraseniaUsuario;
-
+    private String contraVieja;
     private int identificadorUsuario;
-
     private int contraNueva;
 
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
     private FacesMessage message;
-    private  InicioSesionDAO dao;
-    private String contraVieja;
 
-    /**
-     * Creates a new instance of EditarEliminarBean
-     */
     public EditarEliminarBean() {
         faceContext = FacesContext.getCurrentInstance();
-        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
-        dao = new InicioSesionDAO();
+        httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
     }
 
-
     public void returnUsuarioById() {
+
         EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
         RegistroDAO registroDAO = new RegistroDAO();
         Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
         DatosUsuario cliente = editarEliminarDAO.getUsuarioByID(getIdentificadorUsuario());
-        
+
         if (usu != null) {
 
             //Campos de datos de la tabla Usuario
@@ -84,41 +73,56 @@ public class EditarEliminarBean implements Serializable {
         }
     }
 
-    public String deleteUsuario() {
-        EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
-        editarEliminarDAO.deleteDatosUsuario(getIdDatosUsuario());
-
+    public void deleteUsuario() {
         RegistroDAO registroDAO = new RegistroDAO();
-        registroDAO.deleteRegistro(getIdentificadorUsuario());
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Usuario " + getNombreUsuario() + " eliminado"));
-        return "usuarioeliminado";
+        Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
 
+        if (usu != null) {
+            EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
+            editarEliminarDAO.deleteDatosUsuario(getIdDatosUsuario());
 
-        //FacesContext.getCurrentInstance().addMessage(null,
-        //      new FacesMessage("Usuario " + getNombreUsuario() + " eliminado"));
-        //return "InicioSesion";
+            registroDAO.deleteRegistro(getIdentificadorUsuario());
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Usuario eliminado satisfactoriamente "));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Usuario no encontrado"));
+        }
+
     }
 
     public void updateUsuario() {
-       // RegistroDAO registroDAO = new RegistroDAO();
-        
-        //Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
-        //setContraVieja(getContraseniaUsuario());
-        
         DatosUsuario datosUsuario = new DatosUsuario(getIdDatosUsuario(), usuario, getNombre(), getApellidoPaterno(), getApellidoMaterno(), getEmail(), getTelefono(), getEdad(), getSexo());
         EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
-        editarEliminarDAO.updateDatosUsuario(getIdDatosUsuario(), datosUsuario);
         Usuario u = new Usuario(getNombreUsuario(), getContraseniaUsuario());
         RegistroDAO registroDAO = new RegistroDAO();
-        if(!getContraseniaUsuario().equals("")){
-            registroDAO.updateRegistro(getIdUsuario(), u);
-        }else{
-            u.setContraseniaUsuario(contraVieja);
-            registroDAO.updateRegistro(getIdUsuario(), u);
+
+        Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
+        if (usu == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Ingresa tu nombre de usuario y consulta primero antes de eliminar"));
+        } else if (getNombreUsuario().equals("") || getNombre().equals("") || getApellidoPaterno().equals("") || getApellidoMaterno().equals("") || getEmail().equals("") || getSexo().equals("")) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Debes diligenciar todos los campos obligatorios"));
+
+        } else if (getEdad() < 18) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Debes ser mayor de edad"));
+
+        } else {
+            editarEliminarDAO.updateDatosUsuario(getIdDatosUsuario(), datosUsuario);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Tus datos han actualizados satisfactoriamente "));
+
+            if (!getContraseniaUsuario().equals("")) {
+                registroDAO.updateRegistro(getIdUsuario(), u);
+            } else {
+                u.setContraseniaUsuario(contraVieja);
+                registroDAO.updateRegistro(getIdUsuario(), u);
+            }
+
         }
-       
+
     }
 
     /**
