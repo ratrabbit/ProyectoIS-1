@@ -36,7 +36,7 @@ public class InicioSesionBean implements Serializable {
                 httpServletRequest.getSession().setAttribute("sessionUsuario", nombreUsuario);
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, "El acceso fue correcto", null);
                 faceContext.addMessage(null, message);
-                return "bienvenido";
+                return "inicioCorrecto";
             } else {
                 message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña invalido", null);
                 faceContext.addMessage(null, message);
