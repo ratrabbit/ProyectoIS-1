@@ -6,6 +6,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import mapeo.DatosUsuario;
@@ -13,6 +15,9 @@ import mapeo.Usuario;
 
 @Named(value = "editarEliminarBean")
 @SessionScoped
+@ManagedBean
+@RequestScoped
+
 public class EditarEliminarBean implements Serializable {
 
     private int idDatosUsuario;
@@ -35,17 +40,21 @@ public class EditarEliminarBean implements Serializable {
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
     private FacesMessage message;
-
+    private String sesionUsuario;
     public EditarEliminarBean() {
         faceContext = FacesContext.getCurrentInstance();
         httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
+        if (httpServletRequest.getSession().getAttribute("sessionUsuario") != null) {
+            sesionUsuario = httpServletRequest.getSession().getAttribute("sessionUsuario").toString();
+        }
     }
 
     public void returnUsuarioById() {
 
         EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
         RegistroDAO registroDAO = new RegistroDAO();
-        Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
+        //Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
+        Usuario usu = registroDAO.getRegistroUsuarioByID(getSesionUsuario());
         DatosUsuario cliente = editarEliminarDAO.getUsuarioByID(getIdentificadorUsuario());
 
         if (usu != null) {
@@ -75,7 +84,8 @@ public class EditarEliminarBean implements Serializable {
 
     public void deleteUsuario() {
         RegistroDAO registroDAO = new RegistroDAO();
-        Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
+        //Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
+        Usuario usu = registroDAO.getRegistroUsuarioByID(getSesionUsuario());
 
         if (usu != null) {
             EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
@@ -97,7 +107,8 @@ public class EditarEliminarBean implements Serializable {
         Usuario u = new Usuario(getNombreUsuario(), getContraseniaUsuario());
         RegistroDAO registroDAO = new RegistroDAO();
 
-        Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
+        //Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
+        Usuario usu = registroDAO.getRegistroUsuarioByID(getSesionUsuario());
         if (usu == null) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Ingresa tu nombre de usuario y consulta primero antes de eliminar"));
@@ -327,6 +338,20 @@ public class EditarEliminarBean implements Serializable {
      */
     public void setContraNueva(int contraNueva) {
         this.contraNueva = contraNueva;
+    }
+
+    /**
+     * @return the sesionUsuario
+     */
+    public String getSesionUsuario() {
+        return sesionUsuario;
+    }
+
+    /**
+     * @param sesionUsuario the sesionUsuario to set
+     */
+    public void setSesionUsuario(String sesionUsuario) {
+        this.sesionUsuario = sesionUsuario;
     }
 
 }
