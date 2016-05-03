@@ -43,50 +43,52 @@
             <p:separator />
             <h:form class="cajadatos">
                 <h:panelGrid id="grid" columns="3" cellpadding="10">
+                    <p:growl id="message" sticky="true"/>
                     <p:outputLabel for="default" value="Nombre de usuario:" style="color: white"/>
                     <p:inputText id="default" value="#{registroBean.nombreUsuario}" style="color: black" required="true"></p:inputText>
-                    <p:message for="default" />
+                    <br/>
                     
                     <p:outputLabel for="pwd1" value="Contraseña: " style="color: white"/>
-                    <p:password id="pwd1" value="#{registroBean.contraseniaUsuario}" style="color: black" feedback="false" match="pwd2" label="Password 1" required="true"/>
-                    <p:message for="pwd1" />
+                    <p:password id="pwd1" value="#{registroBean.contraseniaUsuario}" style="color: black" feedback="true" match="pwd2" label="Password 1" required="true"/>
+                    <br/>
                     
                     <p:outputLabel for="pwd2" value="Confirmar contraseña: " style="color: white"/>
-                    <p:password id="pwd2" value="#{registroBean.contraseniaUsuario}" style="color: black" feedback="false" label="Password 2" required="true"/>
-                    <p:message for="pwd2" />
+                    <p:password id="pwd2" value="#{registroBean.contraseniaUsuario}" style="color: black" feedback="true" label="Password 2" required="true"/>
+                    <br/>
                     
                     <p:outputLabel for="nperf" value="Nombre:" style="color: white"/>
                     <p:inputText id="nperf" value="#{registroBean.perfil.nombre}" style="color: black" required="true"></p:inputText>
-                    <p:message for="nperf" />
+                    <br/>
                     
                     <p:outputLabel for="napp" value="Apellido Paterno:" style="color: white"/>
                     <p:inputText id="napp" value="#{registroBean.perfil.aPaterno}" style="color: black" required="true"></p:inputText>
-                    <p:message for="napp" />
+                    <br/>
                     
                     <p:outputLabel for="napm" value="Apellido Materno:" style="color: white"/>
                     <p:inputText id="napm" value="#{registroBean.perfil.aMaterno}" style="color: black" required="true"></p:inputText>
-                    <p:message for="napm" />
+                    <br/>
                     
                     <p:outputLabel for="mail" value="Correo electronico:" style="color: white" />
                     <p:inputText id="mail" value="#{registroBean.perfil.email}" style="color: black" required="true"></p:inputText>
-                    <p:message for="mail" />
+                    <br/>
                     
                     <p:outputLabel for="tel" value="Telefono:" style="color: white"/>
                     <p:inputText id="tel" value="#{registroBean.perfil.telefono}" style="color: black" required="false"></p:inputText>
-                    <p:message for="tel" />
+                    <br/>
                     
                     <h:outputLabel for="edad" value="Edad:* " style="color: white"/>
                     <p:spinner id="edad" value="#{registroBean.perfil.edad}" style="color: black" min="0" max="100" required="true" />
-                    <p:message for="edad" />
+                    <br/>
                     
                     <p:outputLabel for="sexo" value="Sexo: " style="color: white"/>
                         <p:selectOneRadio id="sexo" value="#{registroBean.perfil.sexo}" style="color: black" required="true">
                             <f:selectItem itemLabel="Masculino" itemValue="m" />
                             <f:selectItem itemLabel="Femenino" itemValue="f" />
                         </p:selectOneRadio>
+                    <br/>
                 </h:panelGrid>
                 
-            <p:commandButton class="cajadatos2" value="Registrar" action="#{registroBean.addRegistro()}" actionListener="#{messagesView.info}" update="grid" ></p:commandButton> 
+            <p:commandButton class="cajadatos2" value="Registrar" action="#{registroBean.addRegistro()}" actionListener="#{messagesView.info}" update="message" ></p:commandButton> 
 
             <br/>
             <br/>         
