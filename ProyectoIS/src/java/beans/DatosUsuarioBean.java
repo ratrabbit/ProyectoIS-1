@@ -1,17 +1,16 @@
 package beans;
 
 import DAO.DatosUsuarioDAO;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import mapeo.DatosUsuario;
 import mapeo.Estado;
 import mapeo.Usuario;
 
-@Named(value = "datosUsuarioBean")
-@SessionScoped
+@ManagedBean
+@RequestScoped
+
 public class DatosUsuarioBean implements Serializable {
 
     /**

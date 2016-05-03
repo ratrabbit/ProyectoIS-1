@@ -5,16 +5,12 @@ import DAO.InicioSesionDAO;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.inject.Named;
-
 import java.io.Serializable;
-
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped
-@Named(value = "inicioSesionBean")
 
 public class InicioSesionBean implements Serializable {
     private String nombreUsuario;

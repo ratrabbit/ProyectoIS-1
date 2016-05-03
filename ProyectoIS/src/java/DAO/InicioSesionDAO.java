@@ -1,6 +1,5 @@
 package DAO;
 
-import java.util.List;
 import mapeo.Usuario;
 import org.hibernate.Query;
 import org.hibernate.Session;
