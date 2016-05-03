@@ -39,13 +39,17 @@ public class RegistroBean implements Serializable {
             registroDAO.addRegistro(registro);
             perfil.datosUsuario(registro);
             //FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-            return "usuarioregistrado?faces-redirect=true";
+            return "usuarioregistrado";
         } catch (org.hibernate.exception.ConstraintViolationException e) {
-            return "ErrorRegistroIH?faces-redirect=true";
-            //message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso incorrecto, verifica tus campos", null);
-            //faceContext.addMessage(null, message);
-        }catch(Exception e){
-            return "{!first}";
+            
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro incorrecto, verifica tus campos", null);
+            faceContext.addMessage(null, message);
+            return "Registro";
+        }
+        catch(Exception e){
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Algo salio mal, intentalo de nuevo", null);
+            faceContext.addMessage(null, message);
+            return "index";
         }
     }
 
