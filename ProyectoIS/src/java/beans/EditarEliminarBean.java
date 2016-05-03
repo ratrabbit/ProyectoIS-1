@@ -2,18 +2,17 @@ package beans;
 
 import DAO.EditarEliminarDAO;
 import DAO.RegistroDAO;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import mapeo.DatosUsuario;
 import mapeo.Usuario;
 
-@ManagedBean
-@RequestScoped
-
+@Named(value = "editarEliminarBean")
+@SessionScoped
 public class EditarEliminarBean implements Serializable {
 
     private int idDatosUsuario;
@@ -36,14 +35,10 @@ public class EditarEliminarBean implements Serializable {
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
     private FacesMessage message;
-    private String sesionUsuario;
 
     public EditarEliminarBean() {
         faceContext = FacesContext.getCurrentInstance();
         httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
-        if (httpServletRequest.getSession().getAttribute("sessionUsuario") != null) {
-            sesionUsuario = httpServletRequest.getSession().getAttribute("sessionUsuario").toString();
-        }
     }
 
     public void returnUsuarioById() {
