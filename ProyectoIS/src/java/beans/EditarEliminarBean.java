@@ -82,22 +82,20 @@ public class EditarEliminarBean implements Serializable {
         }
     }
 
-    public void deleteUsuario() {
+    public String deleteUsuario() {
         RegistroDAO registroDAO = new RegistroDAO();
         //Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
         Usuario usu = registroDAO.getRegistroUsuarioByID(getSesionUsuario());
 
-        if (usu != null) {
+
             EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
             editarEliminarDAO.deleteDatosUsuario(getIdDatosUsuario());
 
             registroDAO.deleteRegistro(getIdentificadorUsuario());
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Usuario eliminado satisfactoriamente "));
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Usuario no encontrado"));
-        }
+            return "usuarioeliminado";
+
 
     }
 
