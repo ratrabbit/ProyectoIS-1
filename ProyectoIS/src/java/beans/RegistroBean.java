@@ -33,20 +33,26 @@ public class RegistroBean implements Serializable {
     DatosUsuarioBean perfil = new DatosUsuarioBean();
 
     public String addRegistro() {
+        Usuario registro = null;
         try {
-            Usuario registro = new Usuario(getNombreUsuario(), getContraseniaUsuario());
+            registro = new Usuario(getNombreUsuario(), getContraseniaUsuario());
             RegistroDAO registroDAO = new RegistroDAO();
             registroDAO.addRegistro(registro);
             perfil.datosUsuario(registro);
             //FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
             return "usuarioregistrado";
         } catch (org.hibernate.exception.ConstraintViolationException e) {
-            
+            RegistroDAO registroDAO = new RegistroDAO();
+            registroDAO.deleteRegistro(registro);
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro incorrecto, verifica tus campos", null);
             faceContext.addMessage(null, message);
             return "Registro";
         }
         catch(Exception e){
+            if(registro!=null){
+                RegistroDAO registroDAO = new RegistroDAO();
+                registroDAO.deleteRegistro(registro);
+            }
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Algo salio mal, intentalo de nuevo", null);
             faceContext.addMessage(null, message);
             return "index";

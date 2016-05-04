@@ -44,6 +44,24 @@ public class RegistroDAO {
             session.close();
         }
     }
+    
+    public void deleteRegistro(Usuario u) {
+        Transaction trns = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            trns = session.beginTransaction();
+            session.delete(u);
+            session.getTransaction().commit();
+        } catch (RuntimeException e) {
+            if (trns != null) {
+                trns.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+    }
 
     public void updateRegistro(int idUsuario, Usuario newUsuario) {
         Transaction trns = null;
