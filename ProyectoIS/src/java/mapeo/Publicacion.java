@@ -31,7 +31,14 @@ public class Publicacion  implements java.io.Serializable {
        this.precioFinal = precioFinal;
        this.precioActual = precioActual;
     }
-   
+    public Publicacion(int idPublicacion, Usuario usuario, String nombreProducto, String descripcion, String imagenes, int precioInical) {
+       this.idPublicacion = idPublicacion;
+       this.usuario = usuario;
+       this.nombreProducto = nombreProducto;
+       this.descripcion = descripcion;
+       this.imagenes = imagenes;
+       this.precioInical = precioInical;
+    }
     public int getIdPublicacion() {
         return this.idPublicacion;
     }
