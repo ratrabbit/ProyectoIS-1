@@ -1,36 +1,34 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="mapeo.Usuario" table="usuario" schema="public" optimistic-lock="version">
-        <id name="idUsuario" type="int">
-            <column name="id_usuario" />
-            <generator class="sequence">
-                <param name="sequence">auto_incremento_id</param>
-            </generator>
-        </id>
-        <property name="nombreUsuario" type="string">
-            <column name="nombre_usuario" not-null="true" unique="true" />
-        </property>
-        <property name="contraseniaUsuario" type="string">
-            <column name="contrasenia_usuario" not-null="true" />
-        </property>
-        <set name="datosUsuarios" table="datos_usuario" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_usuario_fk" not-null="true" />
-            </key>
-            <one-to-many class="mapeo.DatosUsuario" />
-        </set>
-        <set name="publicacions" table="publicacion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_usuario_publicacion" not-null="true" />
-            </key>
-            <one-to-many class="mapeo.Publicacion" />
-        </set>
-    </class>
-    <sql-query name="BuscaPorNombreUsuario">
+  <class name="mapeo.Usuario" optimistic-lock="version" schema="public" table="usuario">
+    <id name="idUsuario" type="int">
+      <column name="id_usuario"/>
+      <generator class="sequence">
+        <param name="sequence">auto_incremento_id</param>
+      </generator>
+    </id>
+    <property name="nombreUsuario" type="string">
+      <column name="nombre_usuario" not-null="true" unique="true"/>
+    </property>
+    <property name="contraseniaUsuario" type="string">
+      <column name="contrasenia_usuario" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="datosUsuarios" table="datos_usuario">
+      <key>
+        <column name="id_usuario_fk" not-null="true"/>
+      </key>
+      <one-to-many class="mapeo.DatosUsuario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="publicacions" table="publicacion">
+      <key>
+        <column name="id_usuario_publicacion" not-null="true"/>
+      </key>
+      <one-to-many class="mapeo.Publicacion"/>
+    </set>
+  </class>
+  <sql-query name="BuscaPorNombreUsuario">
         <return alias="Usuario" class="mapeo.Usuario"/>
-        <![CDATA[select * from public.usuario where nombre_usuario = :nombreUsuario]]>
+        select * from public.usuario where nombre_usuario = :nombreUsuario
     </sql-query>
 </hibernate-mapping>

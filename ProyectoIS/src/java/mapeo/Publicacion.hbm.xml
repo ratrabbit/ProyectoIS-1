@@ -1,39 +1,37 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="mapeo.Publicacion" table="publicacion" schema="public" optimistic-lock="version">
-        <id name="idPublicacion" type="int">
-            <column name="id_publicacion" />
-            <generator class="sequence">
-                <param name="sequence">auto_incremento_id</param>
-            </generator>
-        </id>
-        <many-to-one name="usuario" class="mapeo.Usuario" fetch="select">
-            <column name="id_usuario_publicacion" not-null="true" />
-        </many-to-one>
-        <property name="nombreProducto" type="string">
-            <column name="nombre_producto" not-null="true" />
-        </property>
-        <property name="descripcion" type="string">
-            <column name="descripcion" not-null="true" />
-        </property>
-        <property name="imagenes" type="string">
-            <column name="imagenes" not-null="true" />
-        </property>
-        <property name="precioInical" type="int">
-            <column name="precio_inical" not-null="true" />
-        </property>
-        <property name="precioFinal" type="int">
-            <column name="precio_final" not-null="true" />
-        </property>
-        <property name="precioActual" type="int">
-            <column name="precio_actual" not-null="true" />
-        </property>
-    </class>
-    <sql-query name="BuscaPublicaciones">
+  <class name="mapeo.Publicacion" optimistic-lock="version" schema="public" table="publicacion">
+    <id name="idPublicacion" type="int">
+      <column name="id_publicacion"/>
+      <generator class="sequence">
+        <param name="sequence">auto_incremento_id</param>
+      </generator>
+    </id>
+    <many-to-one class="mapeo.Usuario" fetch="select" name="usuario">
+      <column name="id_usuario_publicacion" not-null="true"/>
+    </many-to-one>
+    <property name="nombreProducto" type="string">
+      <column name="nombre_producto" not-null="true"/>
+    </property>
+    <property name="descripcion" type="string">
+      <column name="descripcion" not-null="true"/>
+    </property>
+    <property name="imagenes" type="string">
+      <column name="imagenes" not-null="true"/>
+    </property>
+    <property name="precioInical" type="int">
+      <column name="precio_inical" not-null="true"/>
+    </property>
+    <property name="precioFinal" type="int">
+      <column name="precio_final" not-null="true"/>
+    </property>
+    <property name="precioActual" type="int">
+      <column name="precio_actual" not-null="true"/>
+    </property>
+  </class>
+  <sql-query name="BuscaPublicaciones">
         <return alias="Publicacion" class="mapeo.Publicacion"/>
-        <![CDATA[select * from public.publicacion]]>
+        select * from public.publicacion
     </sql-query>
 </hibernate-mapping>

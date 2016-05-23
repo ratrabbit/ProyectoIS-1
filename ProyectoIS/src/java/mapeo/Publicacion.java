@@ -95,6 +95,10 @@ public class Publicacion  implements java.io.Serializable {
     public void setPrecioActual(int precioActual) {
         this.precioActual = precioActual;
     }
+    @Override
+    public String toString(){
+        return nombreProducto +" "+usuario.getNombreUsuario();
+    }
 
 
 

@@ -21,6 +21,8 @@ public class PublicacionDAO {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try{
             lista =  (List<Publicacion>) session.getNamedQuery("BuscaPublicaciones").list();
+            System.out.println(lista);
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         }catch(RuntimeException e){
         }finally{
             session.flush();

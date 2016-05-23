@@ -1,59 +1,57 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="mapeo.DatosUsuario" table="datos_usuario" schema="public" optimistic-lock="version">
-        <id name="idDatosUsuario" type="int">
-            <column name="id_datos_usuario" />
-            <generator class="sequence">
-                <param name="sequence">auto_incremento_id</param>
-            </generator>
-        </id>
-        <many-to-one name="estado" class="mapeo.Estado" fetch="select">
-            <column name="estado_fk" not-null="true" />
-        </many-to-one>
-        <many-to-one name="usuario" class="mapeo.Usuario" fetch="select">
-            <column name="id_usuario_fk" not-null="true" />
-        </many-to-one>
-        <property name="nombre" type="string">
-            <column name="nombre" not-null="true" />
-        </property>
-        <property name="apellidoPaterno" type="string">
-            <column name="apellido_paterno" not-null="true" />
-        </property>
-        <property name="apellidoMaterno" type="string">
-            <column name="apellido_materno" not-null="true" />
-        </property>
-        <property name="email" type="string">
-            <column name="email" unique="true" />
-        </property>
-        <property name="calle" type="string">
-            <column name="calle" not-null="true" />
-        </property>
-        <property name="numero" type="string">
-            <column name="numero" not-null="true" />
-        </property>
-        <property name="interior" type="string">
-            <column name="interior" />
-        </property>
-        <property name="colonia" type="string">
-            <column name="colonia" not-null="true" />
-        </property>
-        <property name="ciudad" type="string">
-            <column name="ciudad" not-null="true" />
-        </property>
-        <property name="imagenUsuario" type="string">
-            <column name="imagen_usuario" not-null="true" />
-        </property>
-        <property name="telefono" type="string">
-            <column name="telefono" not-null="true" />
-        </property>
-        <property name="edad" type="int">
-            <column name="edad" not-null="true" />
-        </property>
-        <property name="sexo" type="string">
-            <column name="sexo" />
-        </property>
-    </class>
+  <class name="mapeo.DatosUsuario" optimistic-lock="version" schema="public" table="datos_usuario">
+    <id name="idDatosUsuario" type="int">
+      <column name="id_datos_usuario"/>
+      <generator class="sequence">
+        <param name="sequence">auto_incremento_id</param>
+      </generator>
+    </id>
+    <many-to-one class="mapeo.Estado" fetch="select" name="estado">
+      <column name="estado_fk" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="mapeo.Usuario" fetch="select" name="usuario">
+      <column name="id_usuario_fk" not-null="true"/>
+    </many-to-one>
+    <property name="nombre" type="string">
+      <column name="nombre" not-null="true"/>
+    </property>
+    <property name="apellidoPaterno" type="string">
+      <column name="apellido_paterno" not-null="true"/>
+    </property>
+    <property name="apellidoMaterno" type="string">
+      <column name="apellido_materno" not-null="true"/>
+    </property>
+    <property name="email" type="string">
+      <column name="email" unique="true"/>
+    </property>
+    <property name="calle" type="string">
+      <column name="calle" not-null="true"/>
+    </property>
+    <property name="numero" type="string">
+      <column name="numero" not-null="true"/>
+    </property>
+    <property name="interior" type="string">
+      <column name="interior"/>
+    </property>
+    <property name="colonia" type="string">
+      <column name="colonia" not-null="true"/>
+    </property>
+    <property name="ciudad" type="string">
+      <column name="ciudad" not-null="true"/>
+    </property>
+    <property name="imagenUsuario" type="string">
+      <column name="imagen_usuario" not-null="true"/>
+    </property>
+    <property name="telefono" type="string">
+      <column name="telefono" not-null="true"/>
+    </property>
+    <property name="edad" type="int">
+      <column name="edad" not-null="true"/>
+    </property>
+    <property name="sexo" type="string">
+      <column name="sexo"/>
+    </property>
+  </class>
 </hibernate-mapping>

@@ -13,13 +13,9 @@
 			<ul class="nav">
                             <li><a id="logo" href=""></a></li>
 				<li><a href="index.xhtml">Inicio</a></li>
-<<<<<<< HEAD
-				<li><a href="inicioCorrecto.xhtml">Mi cuenta</a>
-				</li>
-                                <li><a href="Registro.xhtml">Registarse</a>
-=======
+
 				<li><a href="inicioCorrecto.xhtml">Mi Cuenta</a>
->>>>>>> e40c31b706978997c33117c6ab64b014d6f3e644
+
 				</li>
 				<li><a href="">Servicios</a>
 					<ul>
@@ -52,15 +48,27 @@
                 <p:graphicImage value="#{prod.imagenes}" width="150" height="150"/> 
 
                 <p:outputPanel>
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="Nombre:" />
+                    <h:panelGrid columns="2" cellpadding="5" >
+                        <p:growl id="message" sticky="true"/>
+                        <h:outputText value="Usuario:" />
+                        
+                        <h:link outcome="verUsuario" value="#{prod.usuario.nombreUsuario}"  >
+                            <f:param name="id" value="#{prod.usuario.nombreUsuario}" />
+                        </h:link>  
+                        
+                        <h:outputText value="Objeto:" />
                         <h:outputText value="#{prod.nombreProducto}" style="font-weight: bold"/>
 
                         <h:outputText value="Descripción" />
                         <h:outputText value="#{prod.descripcion}" style="font-weight: bold"/>
 
-                        <h:outputText value="Precio actual transporte: $" />
-                        <h:outputText value="#{prod.precioActual}" style="font-weight: bold"/>
+                        <h:outputText value="Precio transporte: $" />
+                        <h:outputText value="#{prod.precioInical}" style="font-weight: bold"/>
+                        <p:rating value="#{calificaBean.calificaion}" >
+                            <p:ajax event="rate" listener="#{calificaBean.onrate}" update="message" />
+                            <p:ajax event="cancel" listener="#{calificaBean.oncancel}" update="message" />
+                            <input type="hidden" name="selectedObj" value="#{prod.usuario.nombreUsuario}" />
+                        </p:rating>
                     </h:panelGrid>
                 </p:outputPanel>
             </h:panelGrid>

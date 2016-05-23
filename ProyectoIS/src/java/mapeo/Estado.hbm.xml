@@ -1,23 +1,21 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="mapeo.Estado" table="estado" schema="public" optimistic-lock="version">
-        <id name="idEstado" type="int">
-            <column name="id_estado" />
-            <generator class="sequence">
-                <param name="sequence">auto_incremento_id</param>
-            </generator>
-        </id>
-        <property name="estadoEstado" type="string">
-            <column name="estado_estado" not-null="true" unique="true" />
-        </property>
-        <set name="datosUsuarios" table="datos_usuario" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="estado_fk" not-null="true" />
-            </key>
-            <one-to-many class="mapeo.DatosUsuario" />
-        </set>
-    </class>
+  <class name="mapeo.Estado" optimistic-lock="version" schema="public" table="estado">
+    <id name="idEstado" type="int">
+      <column name="id_estado"/>
+      <generator class="sequence">
+        <param name="sequence">auto_incremento_id</param>
+      </generator>
+    </id>
+    <property name="estadoEstado" type="string">
+      <column name="estado_estado" not-null="true" unique="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="datosUsuarios" table="datos_usuario">
+      <key>
+        <column name="estado_fk" not-null="true"/>
+      </key>
+      <one-to-many class="mapeo.DatosUsuario"/>
+    </set>
+  </class>
 </hibernate-mapping>
