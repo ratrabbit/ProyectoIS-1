@@ -123,6 +123,16 @@ CREATE TABLE usuario (
 
 ALTER TABLE usuario OWNER TO postgres;
 
+
+CREATE TABLE calificacion (
+    id_calif integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    id_usuario_calificado integer NOT NULL,
+    id_usuario_califica integer NOT NULL,
+    calificaion integer NOT NULL
+);
+
+ALTER TABLE calificacion OWNER TO postgres;
+
 --
 -- Name: auto_incremento_id; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -254,6 +264,16 @@ ALTER TABLE ONLY datos_usuario
 ALTER TABLE ONLY publicacion
     ADD CONSTRAINT id_usuario_publicacion_fk FOREIGN KEY (id_usuario_publicacion) REFERENCES usuario(id_usuario);
 
+
+ALTER TABLE ONLY calificacion
+    ADD CONSTRAINT id_usuario_califica_fk FOREIGN KEY (id_usuario_califica) REFERENCES usuario(id_usuario);
+
+ALTER TABLE ONLY calificacion
+    ADD CONSTRAINT id_usuario_calificado_fk FOREIGN KEY (id_usuario_calificado) REFERENCES usuario(id_usuario);
+
+
+ALTER TABLE ONLY calificacion
+    ADD CONSTRAINT calificacion_pk PRIMARY KEY (id_usuario_calificado,id_usuario_califica);
 
 --
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
