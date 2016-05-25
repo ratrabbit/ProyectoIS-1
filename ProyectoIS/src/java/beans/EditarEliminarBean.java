@@ -54,7 +54,7 @@ public class EditarEliminarBean implements Serializable {
 
         EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
         RegistroDAO registroDAO = new RegistroDAO();
-        //Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
+
         Usuario usu = registroDAO.getRegistroUsuarioByID(getSesionUsuario());
         DatosUsuario cliente = editarEliminarDAO.getUsuarioByID(getIdentificadorUsuario());
 
@@ -105,7 +105,6 @@ public class EditarEliminarBean implements Serializable {
         Usuario u = new Usuario(getNombreUsuario(), getContraseniaUsuario());
         RegistroDAO registroDAO = new RegistroDAO();
 
-        //Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
         Usuario usu = registroDAO.getRegistroUsuarioByID(getSesionUsuario());
         if (usu == null) {
             FacesContext.getCurrentInstance().addMessage(null,
