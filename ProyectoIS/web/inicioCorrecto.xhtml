@@ -11,32 +11,42 @@
     <h:body>
 
         <div id="header">
-			<ul class="nav">
-                            <li><a id="logo" href=""></a></li>
-				<li><a href="index.xhtml">Inicio</a></li>
-				<li><a href="inicioCorrecto.xhtml">Mi Cuenta</a>
-				</li>
-				<li><a href="">Servicios</a>
-					<ul>
-						<li><a href="">Transporta</a></li>
-                                                <li><a href="">Y mas..</a></li>
+            <ul class="nav">
+                <li><a id="logo" href=""></a></li>
+                <li><a href="index.xhtml">Inicio</a></li>
+                <li><a href="inicioCorrecto.xhtml">Mi Cuenta</a>
+                </li>
+                <li><a href="">Servicios</a>
+                    <ul>
+                        <li><a href="">Transporta</a></li>
+                        <li><a href="">Y mas..</a></li>
 
-					</ul>
-				</li>
-				<li><a href="">Acerca de</a>
-					<ul>
-						<li><a href="">Aviso de Privacidad</a></li>
-						<li><a href="">Terminos</a></li>
-                                                <li><a href="">Y mas..</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Acerca de</a>
+                    <ul>
+                        <li><a href="">Aviso de Privacidad</a></li>
+                        <li><a href="">Terminos</a></li>
+                        <li><a href="">Y mas..</a></li>
 
-					</ul>
-				</li>
-				<li><a href="">Contacto</a></li>
-			</ul>
-		</div>
+                    </ul>
+                </li>
+                <li><a href="">Contacto</a></li>
+            </ul>
+        </div>
         <br/>
         <div class="cajadatos3"><br/>Bienvenido<br/>            
             <h:form class="cajadatos">
+
+                <p:outputLabel for="nombreUsuario" style="color: black" value="Bienvenido: " />
+                <p:outputLabel id="nombreUsuario" value="#{rolBean.nombreUsuario}" style="color: black"></p:outputLabel>
+                <br/>
+                <br/>
+
+                <p:outputLabel for="rol" style="color: black" value="Rol: " />
+                <p:outputLabel id="rol" value="#{obtieneRolBean.rol}" style="color: black"></p:outputLabel>
+
+
                 <h:link outcome="Publicacion" class="cajadatos2" value="Ver Publicaciones"/>
                 <br/>
                 <br/>
@@ -52,10 +62,10 @@
         <div>
             <ul class="pie">
                 <li><a><font color="white">Aviso de Privacidad</font></a></li>
-			<li><a><font color="white">Terminos Legales</font></a></li>
-			<li><a><font color="white">¿Quienes somos?</font></a></li>
-			<li><a><font color="white">¿Cómo comprar?</font></a></li>
-			<li><a><font color="white">Preguntas Frecuentes</font></a></li>
+                <li><a><font color="white">Terminos Legales</font></a></li>
+                <li><a><font color="white">¿Quienes somos?</font></a></li>
+                <li><a><font color="white">¿Cómo comprar?</font></a></li>
+                <li><a><font color="white">Preguntas Frecuentes</font></a></li>
             </ul>
         </div>
 

@@ -50,7 +50,7 @@ public class PublicarBean implements Serializable {
     private FacesMessage message;
     private String sesionUsuario;
     
-    private final String destination= "/home/usuario/Git/ProyectoIS-1/ProyectoIS/web/publicaciones/";
+    private final String destination= "/home/jonathan/Documentos/Ingeniería de Software/ProyectoIS-1/ProyectoIS/web/publicaciones/";
     
     
     /**

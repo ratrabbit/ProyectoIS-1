@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 @ManagedBean
 @RequestScoped
 
-
 public class CerrarSesion {
-    
+
     private String usuario; // Representa el nombre de usuario.
     private final HttpServletRequest httpServletRequest; // Obtiene información de todas las peticiones de usuario.
     private final FacesContext faceContext; // Obtiene información de la aplicación
@@ -40,12 +39,26 @@ public class CerrarSesion {
     public String cerrarSession() {
         imprime();
         httpServletRequest.getSession().removeAttribute("sessionUsuario");
+        httpServletRequest.getSession().removeAttribute("rolEscogido");
         message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Session cerrada correctamente", null);
         faceContext.addMessage(null, message);
         return "index";
     }
-    
-    private void imprime(){
+
+    public String retorna() {
+        ObtieneRolBean rol = new ObtieneRolBean();
+        String rolEscogido = rol.getRol();
+        if (rolEscogido != null) {
+            if (rolEscogido.equals("Remitente")) {
+                return "InicioRemitente";
+            } else if (rolEscogido.equals("Transportador")) {
+                return "InicioTransportador";
+            }
+        }
+        return "Rol";
+    }
+
+    private void imprime() {
         System.out.println(getNombreUsuario());
     }
 
@@ -68,4 +81,3 @@ public class CerrarSesion {
     }
 
 }
-

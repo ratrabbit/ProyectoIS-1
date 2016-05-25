@@ -41,6 +41,7 @@ public class EditarEliminarBean implements Serializable {
     private final FacesContext faceContext;
     private FacesMessage message;
     private String sesionUsuario;
+
     public EditarEliminarBean() {
         faceContext = FacesContext.getCurrentInstance();
         httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
@@ -87,19 +88,18 @@ public class EditarEliminarBean implements Serializable {
         //Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());
         Usuario usu = registroDAO.getRegistroUsuarioByID(getSesionUsuario());
 
+        EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
+        editarEliminarDAO.deleteDatosUsuario(getIdDatosUsuario());
 
-            EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
-            editarEliminarDAO.deleteDatosUsuario(getIdDatosUsuario());
+        registroDAO.deleteRegistro(getIdentificadorUsuario());
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Usuario eliminado satisfactoriamente "));
 
-            registroDAO.deleteRegistro(getIdentificadorUsuario());
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Usuario eliminado satisfactoriamente "));
-            return "usuarioeliminado";
-
+        return "index";
 
     }
 
-    public void updateUsuario() {
+    public String updateUsuario() {
         DatosUsuario datosUsuario = new DatosUsuario(getIdDatosUsuario(), usuario, getNombre(), getApellidoPaterno(), getApellidoMaterno(), getEmail(), getTelefono(), getEdad(), getSexo());
         EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
         Usuario u = new Usuario(getNombreUsuario(), getContraseniaUsuario());
@@ -110,18 +110,29 @@ public class EditarEliminarBean implements Serializable {
         if (usu == null) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Ingresa tu nombre de usuario y consulta primero antes de eliminar"));
+            return "EditarEliminarPerfil";
         } else if (getNombreUsuario().equals("") || getNombre().equals("") || getApellidoPaterno().equals("") || getApellidoMaterno().equals("") || getEmail().equals("") || getSexo().equals("")) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Debes diligenciar todos los campos obligatorios"));
-
+            return "EditarEliminarPerfil";
         } else if (getEdad() < 18) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Debes ser mayor de edad"));
+            return "EditarEliminarPerfil";
 
         } else {
             editarEliminarDAO.updateDatosUsuario(getIdDatosUsuario(), datosUsuario);
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Tus datos han actualizados satisfactoriamente "));
+
+            ObtieneRolBean rol = new ObtieneRolBean();
+            String rolEscogido = rol.getRol();
+            if (rolEscogido != null) {
+                if (rolEscogido.equals("Remitente")) {
+                    return "InicioRemitente";
+
+                } else if (rolEscogido.equals("Transportador")) {
+                    return "InicioTransportador";
+                }
+            }
 
             if (!getContraseniaUsuario().equals("")) {
                 registroDAO.updateRegistro(getIdUsuario(), u);
@@ -129,9 +140,8 @@ public class EditarEliminarBean implements Serializable {
                 u.setContraseniaUsuario(contraVieja);
                 registroDAO.updateRegistro(getIdUsuario(), u);
             }
-
         }
-
+        return "InicioTransportador";
     }
 
     /**

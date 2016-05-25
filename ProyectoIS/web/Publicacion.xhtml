@@ -10,99 +10,82 @@
     </h:head>
     <h:body>
         <div id="header">
-			<ul class="nav">
-                            <li><a id="logo" href=""></a></li>
-				<li><a href="index.xhtml">Inicio</a></li>
-<<<<<<< HEAD
+            <ul class="nav">
+                <li><a id="logo" href=""></a></li>
+                <li><a href="Rol.xhtml">Cambia de rol</a></li>
+                <li><a href="EditarEliminarPerfil.xhtml">Editar o elimina tu perfil</a></li>
+                <li><a href="">Servicios</a>
+                    <ul>
+                        <li><a href="">Transporta</a></li>
+                        <li><a href="">Y mas..</a></li>
 
-				<li><a href="inicioCorrecto.xhtml">Mi Cuenta</a>
+                    </ul>
+                </li>
+                <li><a href="">Acerca de</a>
+                    <ul>
+                        <li><a href="">Aviso de Privacidad</a></li>
+                        <li><a href="">Terminos</a></li>
+                        <li><a href="">Y mas..</a></li>
 
-=======
-				<li><a href="inicioCorrecto.xhtml">Mi cuenta</a>
-				</li>
-                                <li><a href="Registro.xhtml">Registarse</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="CerrarSesion.xhtml">Cerrar sesión</a></li>
+            </ul>
+        </div>
+        <br/>
+        <br></br>
 
-				<li><a href="inicioCorrecto.xhtml">Mi Cuenta</a>
->>>>>>> 687ae351d372570f5d41332747cda6743fa1af7b
-				</li>
-				<li><a href="">Servicios</a>
-					<ul>
-						<li><a href="">Transporta</a></li>
-                                                <li><a href="">Y mas..</a></li>
+        <h:form> 
+            <p:dataScroller value="#{publicacionBean.getGaleria()}" var="prod" chunkSize="10">
+                <f:facet name="header">
+                    Scroll Down to Load More Publications
+                </f:facet>
 
-					</ul>
-				</li>
-				<li><a href="">Acerca de</a>
-					<ul>
-						<li><a href="">Aviso de Privacidad</a></li>
-						<li><a href="">Terminos</a></li>
-                                                <li><a href="">Y mas..</a></li>
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                    <p:graphicImage value="#{prod.imagenes}" width="150" height="150"/> 
 
-					</ul>
-				</li>
-				<li><a href="">Contacto</a></li>
-                            </ul>
-                    </div>
-            <br/>
-            <br></br>
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5" >
+                            <p:growl id="message" sticky="true"/>
+                            <h:outputText value="Usuario:" />
 
-    <h:form> 
-        <p:dataScroller value="#{publicacionBean.getGaleria()}" var="prod" chunkSize="10">
-            <f:facet name="header">
-                Scroll Down to Load More Publications
-            </f:facet>
+                            <h:link outcome="verUsuario" value="#{prod.usuario.nombreUsuario}"  >
+                                <f:param name="id" value="#{prod.usuario.nombreUsuario}" />
+                            </h:link>  
 
-            <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                <p:graphicImage value="#{prod.imagenes}" width="150" height="150"/> 
+                            <h:outputText value="Objeto:" />
+                            <h:outputText value="#{prod.nombreProducto}" style="font-weight: bold"/>
 
-                <p:outputPanel>
-                    <h:panelGrid columns="2" cellpadding="5" >
-                        <p:growl id="message" sticky="true"/>
-                        <h:outputText value="Usuario:" />
-                        
-                        <h:link outcome="verUsuario" value="#{prod.usuario.nombreUsuario}"  >
-                            <f:param name="id" value="#{prod.usuario.nombreUsuario}" />
-                        </h:link>  
-                        
-                        <h:outputText value="Objeto:" />
-                        <h:outputText value="#{prod.nombreProducto}" style="font-weight: bold"/>
+                            <h:outputText value="Descripción" />
+                            <h:outputText value="#{prod.descripcion}" style="font-weight: bold"/>
 
-                        <h:outputText value="Descripción" />
-                        <h:outputText value="#{prod.descripcion}" style="font-weight: bold"/>
+                            <h:outputText value="Precio transporte: $" />
+                            <h:outputText value="#{prod.precioInical}" style="font-weight: bold"/>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <h:outputText value="Precio transporte: $" />
-                        <h:outputText value="#{prod.precioInical}" style="font-weight: bold"/>
-                        <p:rating value="#{calificaBean.calificaion}" >
-                            <p:ajax event="rate" listener="#{calificaBean.onrate}" update="message" />
-                            <p:ajax event="cancel" listener="#{calificaBean.oncancel}" update="message" />
-                            <input type="hidden" name="selectedObj" value="#{prod.usuario.nombreUsuario}" />
-                        </p:rating>
-=======
-                        <h:outputText value="Precio actual transporte: $" />
-=======
-                        <h:outputText value="Precio del transporte: $" />
->>>>>>> c2ad3456d89c1de876135565141a83d3cc1bd342
-                        <h:outputText value="#{prod.precioInical}" style="font-weight: bold"/>
->>>>>>> 687ae351d372570f5d41332747cda6743fa1af7b
-                    </h:panelGrid>
-                </p:outputPanel>
-            </h:panelGrid>
-        </p:dataScroller>
-    </h:form>          
-        
+                            <p:rating value="#{calificaBean.calificaion}" >
+                                <p:ajax event="rate" listener="#{calificaBean.onrate}" update="message" />
+                                <p:ajax event="cancel" listener="#{calificaBean.oncancel}" update="message" />
+                                <input type="hidden" name="selectedObj" value="#{prod.usuario.nombreUsuario}" />
+                            </p:rating>
+
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:dataScroller>
+        </h:form>          
+
         <div>
             <ul class="pie">
                 <li><a><font color="white">Aviso de Privacidad</font></a></li>
-			<li><a><font color="white">Terminos Legales</font></a></li>
-			<li><a><font color="white">¿Quienes somos?</font></a></li>
-			<li><a><font color="white">¿Cómo comprar?</font></a></li>
-			<li><a><font color="white">Preguntas Frecuentes</font></a></li>
+                <li><a><font color="white">Terminos Legales</font></a></li>
+                <li><a><font color="white">¿Quienes somos?</font></a></li>
+                <li><a><font color="white">¿Cómo comprar?</font></a></li>
+                <li><a><font color="white">Preguntas Frecuentes</font></a></li>
             </ul>
         </div>
-            
+
     </h:body>
 
-    
+
 </html>

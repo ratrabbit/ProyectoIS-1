@@ -5,24 +5,18 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link rel="stylesheet" href="../css/publicarcss.css"></link>
-        <link rel="stylesheet" href="css/skel.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/style-wide.css" />
-        <title>Publicar</title>
+        <link rel="stylesheet" href="../css/InicioSesionEstilo.css"></link>
+        <title>Bienvenido</title>
     </h:head>
     <h:body>
-
         <div id="header">
             <ul class="nav">
                 <li><a id="logo" href=""></a></li>
                 <li><a href="Rol.xhtml">Cambia de rol</a></li>
-                <li><a href="EditarEliminarPerfil.xhtml">Editar o elimina tu perfil</a></li>
                 <li><a href="">Servicios</a>
                     <ul>
                         <li><a href="">Transporta</a></li>
                         <li><a href="">Y mas..</a></li>
-
                     </ul>
                 </li>
                 <li><a href="">Acerca de</a>
@@ -30,7 +24,6 @@
                         <li><a href="">Aviso de Privacidad</a></li>
                         <li><a href="">Terminos</a></li>
                         <li><a href="">Y mas..</a></li>
-
                     </ul>
                 </li>
                 <li><a href="">Contacto</a></li>
@@ -38,34 +31,17 @@
             </ul>
         </div>
         <br/>
-        <br/>
-        <br></br>
-        <br></br>
-
-        <p:panel header="Pulicar" class="cajadatos">
-            <h:form enctype="multipart/form-data">
-                <p:panelGrid columns="2">
-                    <h:outputText value="sube una imagen:" />  
-                    <p:fileUpload fileUploadListener="#{publicarBean.upload}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                                  sizeLimit="100000" value="Select Images" />                                           
-                </p:panelGrid>
+        <div class="cajadatos3">
+            <h:form class="cajadatos">
+                <p:outputLabel for="nombreUsuario" style="color: black" value="Usuario: " />
+                <p:outputLabel id="nombreUsuario" value="#{rolBean.nombreUsuario}" style="color: black"></p:outputLabel><br/>
+                <p:outputLabel id="rol" value="Rol: Transportador" style="color: black"></p:outputLabel><br/>
+                <h:link outcome="Publicacion" class="cajadatos2" value="Mira las publicaciones o califica"/><br/>
+                <h:link class="cajadatos2" value="¿Deseas actualizar tu perfil?" outcome="EditarEliminarPerfil"/>                
             </h:form>
-            <h:form  class="cajadatos">
-
-                Nombre producto: <h:inputText value="#{publicarBean.nombreProducto}"></h:inputText> <br/>
-                Descripcion: <h:inputText value="#{publicarBean.descripcion}"></h:inputText> <br/>
-                Precio: <h:inputText value="#{publicarBean.precioInical}"></h:inputText> <br/>
-                <br/>
-                <h:commandButton value="Guardar" action="#{publicarBean.addPublicacion()}"></h:commandButton> 
-
-                <br/>
-                <br/>
-
-            </h:form>
-        </p:panel>
-        <br/>
+        </div>
         <div>
-            <ul id="pie">
+            <ul class="pie">
                 <li><a><font color="white">Aviso de Privacidad</font></a></li>
                 <li><a><font color="white">Terminos Legales</font></a></li>
                 <li><a><font color="white">¿Quienes somos?</font></a></li>
@@ -73,9 +49,5 @@
                 <li><a><font color="white">Preguntas Frecuentes</font></a></li>
             </ul>
         </div>
-
-
-
     </h:body>
 </html>
-

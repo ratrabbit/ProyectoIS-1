@@ -9,17 +9,14 @@
         <title>EditarEliminarPerfil</title>
     </h:head>
     <h:body>
-        <div id="header">
+       <div id="header">
             <ul class="nav">
                 <li><a id="logo" href=""></a></li>
-                <li><a href="index.xhtml">Inicio</a></li>
-                <li><a href="inicioCorrecto.xhtml">Mi Cuenta</a>
-                </li>
+                <li><a href="Rol.xhtml">Cambia de rol</a></li>
                 <li><a href="">Servicios</a>
                     <ul>
                         <li><a href="">Transporta</a></li>
                         <li><a href="">Y mas..</a></li>
-
                     </ul>
                 </li>
                 <li><a href="">Acerca de</a>
@@ -27,10 +24,10 @@
                         <li><a href="">Aviso de Privacidad</a></li>
                         <li><a href="">Terminos</a></li>
                         <li><a href="">Y mas..</a></li>
-
                     </ul>
                 </li>
                 <li><a href="">Contacto</a></li>
+                <li><a href="CerrarSesion.xhtml">Cerrar sesión</a></li>
             </ul>
         </div>
         <br/>
@@ -80,7 +77,7 @@
                 <p:password id="contraseña" value="#{editarEliminarBean.contraseniaUsuario}" style="color: black" feedback="true" />
 
                 <p:commandButton class="cajadatos2" value="Obtener Datos" action="#{editarEliminarBean.returnUsuarioById()}" update="grid" ></p:commandButton>
-                <p:commandButton class="cajadatos2" value="Editar" action="#{editarEliminarBean.updateUsuario()}" update="grid" ></p:commandButton> 
+                <p:commandButton class="cajadatos2" value="Guardar" action="#{editarEliminarBean.updateUsuario()}" update="grid" ></p:commandButton> 
                 <p:commandButton class="cajadatos2" value="Eliminar" actionListener="#{editarEliminarBean.deleteUsuario()}" update="grid" >
                     <p:confirm header="Confirmación" message="¿Estás seguro de eliminar tu perfil?" icon="ui-icon-alert" />
                 </p:commandButton>
