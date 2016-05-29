@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="../css/InicioSesionEstilo.css"></link>
+        <title>Publicaciones</title>
+    </h:head>
+    <h:body>
+        <div id="header">
+			<ul class="nav">
+                            <li><a id="logo" href=""></a></li>
+				<li><a href="index.xhtml">Inicio</a></li>
+				<li><a href="InicioSesion.xhtml">Iniciar Sesion</a>
+				</li>
+                                <li><a href="Registro.xhtml">Registarse</a>
+				</li>
+				<li><a href="">Servicios</a>
+					<ul>
+						<li><a href="">Transporta</a></li>
+                                                <li><a href="">Y mas..</a></li>
+
+					</ul>
+				</li>
+				<li><a href="">Acerca de</a>
+					<ul>
+						<li><a href="">Aviso de Privacidad</a></li>
+						<li><a href="">Terminos</a></li>
+                                                <li><a href="">Y mas..</a></li>
+
+					</ul>
+				</li>
+				<li><a href="">Contacto</a></li>
+			</ul>
+		</div>
+        <br/>
+        <br></br>
+            
+<h:form> 
+    <p:dataScroller value="#{publicacionBean.getGaleria()}" var="prod" chunkSize="10">
+        <f:facet name="header">
+            Scroll Down to Load More Publications
+        </f:facet>
+ 
+        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+            <p:graphicImage value="#{prod.imagenes}" width="150" height="150"/> 
+ 
+            <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Nombre:" />
+                    <h:outputText value="#{prod.nombreProducto}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Descripción" />
+                    <h:outputText value="#{prod.descripcion}" style="font-weight: bold"/>
+                    
+                    <h:outputText value="Precio actual transporte: $" />
+                    <h:outputText value="#{prod.precioInical}" style="font-weight: bold"/>
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+    </p:dataScroller>
+</h:form>          
+            
+    </h:body>
+
+    
+</html>
