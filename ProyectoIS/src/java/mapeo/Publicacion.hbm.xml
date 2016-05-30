@@ -29,6 +29,12 @@
     <property name="precioActual" type="int">
       <column name="precio_actual" not-null="true"/>
     </property>
+    <set name="compras" table="compra" inverse="true" lazy="true" fetch="select">
+        <key>
+            <column name="id_publicacion_compra" not-null="true" />
+        </key>
+        <one-to-many class="mapeo.Compra" />
+    </set>
   </class>
   <sql-query name="BuscaPublicaciones">
         <return alias="Publicacion" class="mapeo.Publicacion"/>

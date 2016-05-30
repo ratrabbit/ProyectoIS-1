@@ -1,5 +1,6 @@
 package mapeo;
 
+
 public class DatosUsuario implements java.io.Serializable {
 
     private int idDatosUsuario;

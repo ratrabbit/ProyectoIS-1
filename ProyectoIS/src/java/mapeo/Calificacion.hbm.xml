@@ -1,28 +1,28 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20/05/2016 10:36:13 AM by Hibernate Tools 4.3.1 -->
+
 <hibernate-mapping>
-    <class name="mapeo.Calificacion" table="calificacion" schema="public" optimistic-lock="version">
-        <composite-id name="id" class="mapeo.CalificacionId">
-            <key-property name="idUsuarioCalificado" type="int">
-                <column name="id_usuario_calificado" />
-            </key-property>
-            <key-property name="idUsuarioCalifica" type="int">
-                <column name="id_usuario_califica" />
-            </key-property>
-        </composite-id>
-        <many-to-one name="usuarioByIdUsuarioCalificado" class="mapeo.Usuario" update="false" insert="false" fetch="select">
-            <column name="id_usuario_calificado" not-null="true" />
-        </many-to-one>
-        <many-to-one name="usuarioByIdUsuarioCalifica" class="mapeo.Usuario" update="false" insert="false" fetch="select">
-            <column name="id_usuario_califica" not-null="true" />
-        </many-to-one>
-        <property name="idCalif" type="int">
-            <column name="id_calif" not-null="true" />
-        </property>
-        <property name="calificaion" type="int">
-            <column name="calificaion" not-null="true" />
-        </property>
-    </class>
+  <class name="mapeo.Calificacion" optimistic-lock="version" schema="public" table="calificacion">
+    <composite-id class="mapeo.CalificacionId" name="id">
+      <key-property name="idUsuarioCalificado" type="int">
+        <column name="id_usuario_calificado"/>
+      </key-property>
+      <key-property name="idUsuarioCalifica" type="int">
+        <column name="id_usuario_califica"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="mapeo.Usuario" fetch="select" insert="false" name="usuarioByIdUsuarioCalificado" update="false">
+      <column name="id_usuario_calificado" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="mapeo.Usuario" fetch="select" insert="false" name="usuarioByIdUsuarioCalifica" update="false">
+      <column name="id_usuario_califica" not-null="true"/>
+    </many-to-one>
+    <property name="idCalif" type="int">
+      <column name="id_calif" not-null="true"/>
+    </property>
+    <property name="calificaion" type="int">
+      <column name="calificaion" not-null="true"/>
+    </property>
+  </class>
 </hibernate-mapping>

@@ -1,9 +1,8 @@
 package mapeo;
 
-import mapeo.Compra;
+
 import java.util.HashSet;
 import java.util.Set;
-
 
 public class Publicacion  implements java.io.Serializable {
 
@@ -32,6 +31,15 @@ public class Publicacion  implements java.io.Serializable {
         this.precioFinal = precioFinal;
         this.precioActual = precioActual;
     }
+    
+    public Publicacion(Usuario usuario, String nombreProducto, String descripcion, String imagenes, int precioInical) {
+        this.usuario = usuario;
+        this.nombreProducto = nombreProducto;
+        this.descripcion = descripcion;
+        this.imagenes = imagenes;
+        this.precioInical = precioInical;
+    }
+    
     public Publicacion(int idPublicacion, Usuario usuario, String nombreProducto, String descripcion, String imagenes, int precioInical, int precioFinal, int precioActual, Set<Compra> compras) {
        this.idPublicacion = idPublicacion;
        this.usuario = usuario;
@@ -42,10 +50,6 @@ public class Publicacion  implements java.io.Serializable {
        this.precioFinal = precioFinal;
        this.precioActual = precioActual;
        this.compras = compras;
-    }
-
-    public Publicacion(Usuario usu, String nombreProducto, String descripcion, String imagenes, int precioInical) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
     public int getIdPublicacion() {
@@ -112,7 +116,11 @@ public class Publicacion  implements java.io.Serializable {
         this.compras = compras;
     }
 
+    @Override
+    public String toString() {
+        return nombreProducto + " " + usuario.getNombreUsuario();
 
+    }
 
 
 }
