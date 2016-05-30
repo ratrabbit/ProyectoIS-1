@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/05/2016 11:36:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mapeo1.Compra" table="compra" schema="public" optimistic-lock="version">
+        <id name="idCompra" type="int">
+            <column name="id_compra" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="publicacion" class="mapeo1.Publicacion" fetch="select">
+            <column name="id_publicacion_compra" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="mapeo1.Usuario" fetch="select">
+            <column name="id_usuario_compra" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
