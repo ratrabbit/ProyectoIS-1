@@ -62,7 +62,6 @@ CREATE TABLE compra (
 
 
 ALTER TABLE compra OWNER TO postgres;
-
 --
 -- Name: datos_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
@@ -84,12 +83,13 @@ CREATE TABLE datos_usuario (
     edad integer NOT NULL,
     sexo text,
     id_usuario_fk integer NOT NULL,
-    CONSTRAINT email_correcto CHECK ((email ~ '^[\w!#$%&''*+/=?`{|}~^-]+(\.[\w!#$%&''*+/=?`{|}~^-]+)*@[\w-]+(\.[\w-]+)*$'::text)),
+    CONSTRAINT email_correcto CHECK (((email)::text ~ '^[\w!#$%&''*+/=?`{|}~^-]+(\.[\w!#$%&''*+/=?`{|}~^-]+)*@[\w-]+(\.[\w-]+)*$'::text)),
     CONSTRAINT sexo_correcto CHECK (((sexo)::bpchar = ANY (ARRAY['f'::character(1), 'm'::character(1)])))
 );
 
 
 ALTER TABLE datos_usuario OWNER TO postgres;
+
 
 --
 -- Name: estado; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -102,6 +102,7 @@ CREATE TABLE estado (
 
 
 ALTER TABLE estado OWNER TO postgres;
+
 
 --
 -- Name: publicacion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -134,19 +135,22 @@ CREATE TABLE usuario (
 
 ALTER TABLE usuario OWNER TO postgres;
 
+
+CREATE TABLE calificacion (
+    id_calif integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    id_usuario_calificado integer NOT NULL,
+    id_usuario_califica integer NOT NULL,
+    calificaion integer NOT NULL
+);
+
+ALTER TABLE calificacion OWNER TO postgres;
+
 --
 -- Name: auto_incremento_id; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('auto_incremento_id', 1, true);
+SELECT pg_catalog.setval('auto_incremento_id', 7, true);
 
-
---
--- Data for Name: compra; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY compra (id_compra, id_usuario_compra, id_publicacion_compra) FROM stdin;
-\.
 
 
 --
@@ -154,7 +158,21 @@ COPY compra (id_compra, id_usuario_compra, id_publicacion_compra) FROM stdin;
 --
 
 COPY datos_usuario (id_datos_usuario, nombre, apellido_paterno, apellido_materno, email, calle, numero, interior, colonia, ciudad, estado_fk, imagen_usuario, telefono, edad, sexo, id_usuario_fk) FROM stdin;
-\.
+\.    nombre text NOT NULL,
+    apellido_paterno text NOT NULL,
+    apellido_materno text NOT NULL,
+    email text,
+    calle text NOT NULL,
+    numero text NOT NULL,
+    interior text,
+    colonia text NOT NULL,
+    ciudad text NOT NULL,
+    estado_fk integer NOT NULL,
+    imagen_usuario text NOT NULL,
+    telefono text NOT NULL,
+    edad integer NOT NULL,
+    sexo text,
+    id_usuario_fk integer NOT NULL,
 
 
 --
@@ -169,7 +187,7 @@ COPY estado (id_estado, estado_estado) FROM stdin;
 -- Data for Name: publicacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY publicacion (id_publicacion, nombre_producto, descripcion, imagenes, precio_inical, precio_final, precio_actual, id_usuario_publicacion) FROM stdin;
+COPY publicacion (id_publicacion, descripcion, imagenes, precio_inical, precio_final, precio_actual, id_usuario_publicacion) FROM stdin;
 \.
 
 
@@ -187,7 +205,6 @@ COPY usuario (id_usuario, nombre_usuario, contrasenia_usuario) FROM stdin;
 
 ALTER TABLE ONLY estado
     ADD CONSTRAINT estado_pk PRIMARY KEY (id_estado);
-
 
 --
 -- Name: id_compra_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
@@ -211,7 +228,6 @@ ALTER TABLE ONLY datos_usuario
 
 ALTER TABLE ONLY publicacion
     ADD CONSTRAINT id_publicacion PRIMARY KEY (id_publicacion);
-
 
 --
 -- Name: unique_email; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
@@ -252,7 +268,6 @@ ALTER TABLE ONLY usuario
 ALTER TABLE ONLY datos_usuario
     ADD CONSTRAINT estado_fk FOREIGN KEY (estado_fk) REFERENCES estado(id_estado);
 
-
 --
 -- Name: id_publicacion_compra; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
@@ -266,8 +281,7 @@ ALTER TABLE ONLY compra
 --
 
 ALTER TABLE ONLY compra
-    ADD CONSTRAINT id_usuario_compra_fk FOREIGN KEY (id_usuario_compra) REFERENCES usuario(id_usuario);
-
+    ADD CONSTRAINT id_usuario_compra_fk FOREIGN KEY (id_usuario_compra) REFERENCES usuario(id_usuario);     
 
 --
 -- Name: id_usuario_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
@@ -284,6 +298,16 @@ ALTER TABLE ONLY datos_usuario
 ALTER TABLE ONLY publicacion
     ADD CONSTRAINT id_usuario_publicacion_fk FOREIGN KEY (id_usuario_publicacion) REFERENCES usuario(id_usuario);
 
+
+ALTER TABLE ONLY calificacion
+    ADD CONSTRAINT id_usuario_califica_fk FOREIGN KEY (id_usuario_califica) REFERENCES usuario(id_usuario);
+
+ALTER TABLE ONLY calificacion
+    ADD CONSTRAINT id_usuario_calificado_fk FOREIGN KEY (id_usuario_calificado) REFERENCES usuario(id_usuario);
+
+
+ALTER TABLE ONLY calificacion
+    ADD CONSTRAINT calificacion_pk PRIMARY KEY (id_usuario_calificado,id_usuario_califica);
 
 --
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
