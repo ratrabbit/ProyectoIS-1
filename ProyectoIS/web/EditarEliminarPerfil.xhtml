@@ -76,7 +76,7 @@
                 <h:outputText style="color: white" value="Contraseña nueva: " />
                 <p:password id="contraseña" value="#{editarEliminarBean.contraseniaUsuario}" style="color: black" feedback="true" />
 
-                <p:commandButton class="cajadatos2" value="Obtener Datos" action="#{editarEliminarBean.returnUsuarioById()}" update="grid" ></p:commandButton>
+                <!--<p:commandButton class="cajadatos2" value="Obtener Datos" action="#{editarEliminarBean.returnUsuarioById()}" update="grid" ></p:commandButton>-->
                 <p:commandButton class="cajadatos2" value="Guardar" action="#{editarEliminarBean.updateUsuario()}" update="grid" ></p:commandButton> 
                 <p:commandButton class="cajadatos2" value="Eliminar" actionListener="#{editarEliminarBean.deleteUsuario()}" update="grid" >
                     <p:confirm header="Confirmación" message="¿Estás seguro de eliminar tu perfil?" icon="ui-icon-alert" />

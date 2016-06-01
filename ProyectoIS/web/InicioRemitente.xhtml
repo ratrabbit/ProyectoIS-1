@@ -37,7 +37,7 @@
                 <p:outputLabel id="nombreUsuario" value="#{rolBean.nombreUsuario}" style="color: black"></p:outputLabel><br/>
                 <p:outputLabel id="rol" value="Rol: Remitente" style="color: black"></p:outputLabel><br/>
                 <h:link outcome="Publicacion" class="cajadatos2" value="Califica o mira las publicaciones"/><br/>
-                <h:link class="cajadatos2" value="¿Deseas actualizar tu perfil?" outcome="EditarEliminarPerfil"/><br/>
+                <h:link class="cajadatos2" value="¿Deseas actualizar tu perfil?" outcome="EditarEliminarPerfil"  onclick="#{editarEliminarBean.returnUsuarioById()}"/><br/>
                 <h:link class="cajadatos2" value="¿Deseas publicar?" outcome="Publicar"/>  
             </h:form>
         </div>
