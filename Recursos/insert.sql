@@ -1,10 +1,10 @@
-﻿INSERT INTO usuario VALUES (1,'Pepee','jaja');
+﻿insert into estado values (100,'Ciudad de México');
+
+INSERT INTO usuario VALUES (1,'Pepee','jaja');
 
 insert into datos_usuario values (1, 'Jose', 'Jose', 'Jose', 'pepe@gmail.com', 'periferico', '52', 'H78','perdida','Cuauhtemoc', 100, '21', '45454545', 19, 'm',1);
 
 insert into estado (estado_estado) values ('Aguascalientes') , ('Baja California'), ('Baja California Sur'), ('Campeche'), ('Ciudad de México'), ('Chiapas'), ('Chihuahua'), ('Coahuila'), ('Colima'), ('Durango'), ('Estado de México'), ('Guanajuato'), ('Guerrero'), ('Hidalgo'), ('Jalisco'), ('Michoacán'), ('Morelos'), ('Nayarit'), ('Nuevo León'), ('Oaxaca'), ('Puebla'), ('Querétaro'), ('Quintana Roo'), ('San Luis Potosí'), ('Sinaloa'), ('Sonora'), ('Tabasco'), ('Tamaulipas'), ('Tlaxcala'), ('Veracruz'), ('Yucatán'), ('Zacatecas');
-
-insert into estado values (100,'Ciudad de México');
 
 insert into publicacion (nombre_producto,descripcion,imagenes,precio_inical,precio_final,precio_actual,id_usuario_publicacion) values ('Bicicleta', 'Bicicleta grande, de velocidades', 'publicaciones/bici.jpg',1400, 600,800,1);
 

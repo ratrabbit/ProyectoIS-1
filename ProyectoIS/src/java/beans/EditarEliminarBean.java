@@ -51,7 +51,6 @@ public class EditarEliminarBean implements Serializable {
     }
 
     public void returnUsuarioById() {
-
         EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
         RegistroDAO registroDAO = new RegistroDAO();
 
@@ -82,7 +81,17 @@ public class EditarEliminarBean implements Serializable {
                     new FacesMessage("Cliente NO encontrado "));
         }
     }
-
+    public String dirigeConfirmacionElimina(){
+        return "ConfirmarEliminar";
+    }
+    
+    public String regresaInicio(){
+        return "index";
+    }
+    
+    public String cancelaEliminar(){
+        return "EditarEliminarPerfil";
+    }
     public String deleteUsuario() {
         RegistroDAO registroDAO = new RegistroDAO();
         //Usuario usu = registroDAO.getRegistroUsuarioByID(getNombreUsuario());

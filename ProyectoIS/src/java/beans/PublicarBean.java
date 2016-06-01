@@ -50,7 +50,7 @@ public class PublicarBean implements Serializable {
     private FacesMessage message;
     private String sesionUsuario;
     
-    private final String destination= "/home/usuario/Git/ProyectoIS-1/ProyectoIS/web/publicaciones/";
+    private final String destination= "/home/serrato/Documentos/IS/github/ProyectoIS-1/ProyectoIS/web/publicaciones/";
     
     
     /**
@@ -97,13 +97,15 @@ public class PublicarBean implements Serializable {
       }
     }   
     
-    public void addPublicacion() {
+    public String addPublicacion() {
         RegistroDAO registroDAO = new RegistroDAO();
         Usuario usu = registroDAO.getRegistroUsuarioByID(getSesionUsuario());
 
         Publicacion publicacion = new Publicacion(usu, getNombreProducto(), getDescripcion(), getImagenes(), getPrecioInical());
         PublicarDAO publicarDAO = new PublicarDAO();
         publicarDAO.addPublicacion(publicacion);
+        
+        return "Publicacion";
     }
     
     

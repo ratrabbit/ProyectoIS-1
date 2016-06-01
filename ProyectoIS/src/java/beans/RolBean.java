@@ -32,7 +32,8 @@ public class RolBean implements Serializable {
     }
 
     public String rolEscogido() {
-        httpServletRequest.getSession().removeAttribute("rolEscogido");
+        try{
+        //httpServletRequest.getSession().removeAttribute("rolEscogido");
         if (rolEscogido != null) {
             if (rolEscogido.equals("Remitente")) {
                 httpServletRequest.getSession().setAttribute("rolEscogido", rolEscogido);
@@ -43,6 +44,9 @@ public class RolBean implements Serializable {
             }
         }
         return "Rol";
+        } catch (Exception e){
+               return "Rol";
+        }
     }
 
     /**
