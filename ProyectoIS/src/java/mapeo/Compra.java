@@ -21,6 +21,11 @@ public class Compra  implements java.io.Serializable {
        this.publicacion = publicacion;
        this.usuario = usuario;
     }
+    
+    public Compra(Publicacion publicacion, Usuario usuario) {
+       this.publicacion = publicacion;
+       this.usuario = usuario;
+    }
    
     public int getIdCompra() {
         return this.idCompra;
