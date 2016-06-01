@@ -51,12 +51,41 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE usuario (
+    id_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
+    nombre_usuario text NOT NULL,
+    contrasenia_usuario text NOT NULL
+);
+
+
+ALTER TABLE usuario OWNER TO postgres;
+
+--
+-- Name: unique_nombre_usuario; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY usuario
+    ADD CONSTRAINT unique_nombre_usuario UNIQUE (nombre_usuario);
+
+
+--
+-- Name: usuario_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY usuario
+    ADD CONSTRAINT usuario_pk PRIMARY KEY (id_usuario);
+
+
+--
 -- Name: compra; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE compra (
     id_compra integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
-    id_usuario_compra integer NOT NULL,
+    id_usuario_compra integer REFERENCES usuario ON DELETE CASCADE,
     id_publicacion_compra integer NOT NULL
 );
 
@@ -121,19 +150,6 @@ CREATE TABLE publicacion (
 
 
 ALTER TABLE publicacion OWNER TO postgres;
-
---
--- Name: usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE usuario (
-    id_usuario integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
-    nombre_usuario text NOT NULL,
-    contrasenia_usuario text NOT NULL
-);
-
-
-ALTER TABLE usuario OWNER TO postgres;
 
 
 CREATE TABLE calificacion (
@@ -243,22 +259,6 @@ ALTER TABLE ONLY datos_usuario
 
 ALTER TABLE ONLY estado
     ADD CONSTRAINT unique_estado UNIQUE (estado_estado);
-
-
---
--- Name: unique_nombre_usuario; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY usuario
-    ADD CONSTRAINT unique_nombre_usuario UNIQUE (nombre_usuario);
-
-
---
--- Name: usuario_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY usuario
-    ADD CONSTRAINT usuario_pk PRIMARY KEY (id_usuario);
 
 
 --
