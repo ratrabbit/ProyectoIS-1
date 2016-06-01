@@ -1,17 +1,66 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../css/publicarcss.css"></link>
+        <link rel="stylesheet" href="css/skel.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-wide.css" />
+        <title>Compra exitosa</title>
     </h:head>
     <h:body>
-                       <h:outputText value="Le mandaremos un mensaje a " />
+
+        <div id="header">
+            <ul class="nav">
+                <li><a id="logo" href=""></a></li>
+                <li><a href="Rol.xhtml">Cambia de rol</a></li>
+                <li><a href="Publicacion.xhtml">Ver publicaciones</a></li>
+                <li><a href="EditarEliminarPerfil.xhtml">Editar o elimina tu perfil</a></li>
+                <li><a href="">Servicios</a>
+                    <ul>
+                        <li><a href="">Transporta</a></li>
+                        <li><a href="">Y mas..</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="">Acerca de</a>
+                    <ul>
+                        <li><a href="">Aviso de Privacidad</a></li>
+                        <li><a href="">Terminos</a></li>
+                        <li><a href="">Y mas..</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="CerrarSesion.xhtml">Cerrar sesión</a></li>
+            </ul>
+        </div>
+        <br/>
+        <br/>
+        <br></br>
+        <br></br>
+
+         <h:outputText value="El usuario: " />
                         <h:outputText value="#{compraBean.obtenNombreInfo()}" style="font-weight: bold"/>
 
-                        <h:outputText value=" para notificarle que deseas transportar su articulo " />
+                        <h:outputText value=" esta feliz de que será transportado su articulo " />
                         <h:outputText value="#{compraBean.obtenNombrePub()}" style="font-weight: bold"/>
-                        
+        <br/>
+        <div>
+            <ul id="pie">
+                <li><a><font color="white">Aviso de Privacidad</font></a></li>
+                <li><a><font color="white">Terminos Legales</font></a></li>
+                <li><a><font color="white">¿Quienes somos?</font></a></li>
+                <li><a><font color="white">¿Cómo comprar?</font></a></li>
+                <li><a><font color="white">Preguntas Frecuentes</font></a></li>
+            </ul>
+        </div>
+
+
+
     </h:body>
 </html>
 
