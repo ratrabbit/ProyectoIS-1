@@ -1,13 +1,39 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../css/InicioSesionEstilo.css"></link>
+         <title>Confirmacion</title>
     </h:head>
     <h:body>
-         <h:form>
+        <div id="header">
+            <ul class="nav">
+                <li><a id="logo" href=""></a></li>
+                <li><a href="Rol.xhtml">Cambia de rol</a></li>
+                <li><a href="">Servicios</a>
+                    <ul>
+                        <li><a href="">Transporta</a></li>
+                        <li><a href="">Y mas..</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Acerca de</a>
+                    <ul>
+                        <li><a href="">Aviso de Privacidad</a></li>
+                        <li><a href="">Terminos</a></li>
+                        <li><a href="">Y mas..</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="CerrarSesion.xhtml">Cerrar sesión</a></li>
+            </ul>
+        </div>
+        <br/>
+        <div class="cajadatos3">
+             <h:form>
 
              <p:outputLabel value="¿Estás seguro que deseas eliminar tu perfil?"></p:outputLabel>
             <br/>
@@ -16,6 +42,15 @@
             <h:commandButton value="Cancelar" action="#{editarEliminarBean.cancelaEliminar()}"></h:commandButton> 
 
         </h:form>
+        </div>
+        <div>
+            <ul class="pie">
+                <li><a><font color="white">Aviso de Privacidad</font></a></li>
+                <li><a><font color="white">Terminos Legales</font></a></li>
+                <li><a><font color="white">¿Quienes somos?</font></a></li>
+                <li><a><font color="white">¿Cómo comprar?</font></a></li>
+                <li><a><font color="white">Preguntas Frecuentes</font></a></li>
+            </ul>
+        </div>
     </h:body>
 </html>
-
