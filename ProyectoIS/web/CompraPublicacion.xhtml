@@ -68,12 +68,6 @@
                                 <f:param name="id" value="#{prod.nombreProducto}" />
                                 <f:param name="id2" value="#{prod.usuario.nombreUsuario}" />
                             </h:link>  
-
-                            <p:rating value="#{calificaBean.calificaion}" >
-                                <p:ajax event="rate" listener="#{calificaBean.onrate}" update="message" />
-                                <p:ajax event="cancel" listener="#{calificaBean.oncancel}" update="message" />
-                                <input type="hidden" name="selectedObj" value="#{prod.usuario.nombreUsuario}" />
-                            </p:rating>
                             
 
                         </h:panelGrid>

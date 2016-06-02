@@ -42,13 +42,25 @@
         <br/>
         <br></br>
         <br></br>
-
+        <h:form>
          <h:outputText value="El usuario: " />
                         <h:outputText value="#{compraBean.obtenNombreInfo()}" style="font-weight: bold"/>
 
                         <h:outputText value=" esta feliz de que será transportado su articulo " />
                         <h:outputText value="#{compraBean.obtenNombrePub()}" style="font-weight: bold"/>
         <br/>
+        <input type="hidden" name="selectedObj" value="#{compraBean.obtenNombreInfo()}" />
+        <input type="hidden" name="selectedObj1" value="#{compraBean.idCompra}" />
+     
+        <h:outputText value="Por favor califica a " />
+        <h:outputText value="#{compraBean.obtenNombreInfo()}" style="font-weight: bold"/>
+        <p:growl id="message" sticky="true"/>
+            <p:rating value="#{calificaBean.calificaion}" >
+                                <p:ajax event="rate" listener="#{calificaBean.onrate}" update="message" />
+                                <p:ajax event="cancel" listener="#{calificaBean.oncancel}" update="message" />
+                                <input type="hidden" name="selectedObj" value="#{compraBean.obtenNombreInfo()}" />
+                            </p:rating>
+        </h:form>
         <div>
             <ul id="pie">
                 <li><a><font color="white">Aviso de Privacidad</font></a></li>

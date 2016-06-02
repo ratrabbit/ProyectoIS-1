@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2/06/2016 12:32:34 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
   <class name="mapeo.Calificacion" optimistic-lock="version" schema="public" table="calificacion">
     <composite-id class="mapeo.CalificacionId" name="id">
@@ -11,7 +10,13 @@
       <key-property name="idUsuarioCalifica" type="int">
         <column name="id_usuario_califica"/>
       </key-property>
+      <key-property name="idCompra" type="int">
+        <column name="id_compra"/>
+      </key-property>
     </composite-id>
+    <many-to-one class="mapeo.Compra" fetch="select" insert="false" name="compra" update="false">
+      <column name="id_compra" not-null="true"/>
+    </many-to-one>
     <many-to-one class="mapeo.Usuario" fetch="select" insert="false" name="usuarioByIdUsuarioCalificado" update="false">
       <column name="id_usuario_calificado" not-null="true"/>
     </many-to-one>

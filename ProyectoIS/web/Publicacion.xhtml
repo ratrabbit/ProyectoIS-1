@@ -39,7 +39,7 @@
         <h:form> 
             <p:dataScroller value="#{publicacionBean.getGaleria()}" var="prod" chunkSize="10">
                 <f:facet name="header">
-                    Scroll Down to Load More Publications
+                    Baja para ver mas publicaciones
                 </f:facet>
 
                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
@@ -62,12 +62,6 @@
 
                             <h:outputText value="Precio transporte: $" />
                             <h:outputText value="#{prod.precioInical}" style="font-weight: bold"/>
-
-                            <p:rating value="#{calificaBean.calificaion}" >
-                                <p:ajax event="rate" listener="#{calificaBean.onrate}" update="message" />
-                                <p:ajax event="cancel" listener="#{calificaBean.oncancel}" update="message" />
-                                <input type="hidden" name="selectedObj" value="#{prod.usuario.nombreUsuario}" />
-                            </p:rating>
 
                         </h:panelGrid>
                     </p:outputPanel>

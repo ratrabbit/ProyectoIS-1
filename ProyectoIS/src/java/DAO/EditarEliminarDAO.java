@@ -1,6 +1,7 @@
 package DAO;
 
 import mapeo.DatosUsuario;
+import mapeo.Usuario;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -57,6 +58,28 @@ public class EditarEliminarDAO {
             session.close();
         }
     }
+    
+    public void updateContraUsuario(int idUsuario, String pass) {
+        Transaction trns = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            trns = session.beginTransaction();
+            Usuario oldUsuario = (Usuario) session.load(Usuario.class, new Integer(idUsuario));
+            oldUsuario.setContraseniaUsuario(pass);
+            session.update(oldUsuario);
+            trns.commit();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            if (trns != null) {
+                trns.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+    }
+    
       public DatosUsuario getUsuarioByID(int idDatosUsuario) {
         DatosUsuario datosUsuario = null;
         Transaction trns = null;

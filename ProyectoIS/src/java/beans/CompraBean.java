@@ -34,6 +34,7 @@ public class CompraBean {
     private String nombrePub;
     private String usuar;
     private String sesionUsuario;
+    private Compra compra;
     private FacesMessage message;
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
@@ -52,9 +53,9 @@ public class CompraBean {
             
             CompraDAO ld = new CompraDAO();
             idCompra = ld.maxIndice("compra", "id_compra");
-            Compra co = new Compra(idCompra,getPublicacion(),usu);
+            compra = new Compra(idCompra,getPublicacion(),usu);
             CompraDAO compraDAO = new CompraDAO();
-            compraDAO.addCompra(co);
+            compraDAO.addCompra(compra);
             
             
     }
@@ -76,6 +77,14 @@ public class CompraBean {
     }
     public Usuario getUsuario() {
         return this.usuario;
+    }
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
     
     public void setUsuario(Usuario usuario) {

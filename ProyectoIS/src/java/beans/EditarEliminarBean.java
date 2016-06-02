@@ -14,7 +14,7 @@ import mapeo.DatosUsuario;
 import mapeo.Usuario;
 
 @Named(value = "editarEliminarBean")
-@SessionScoped
+//@SessionScoped
 @ManagedBean
 @RequestScoped
 
@@ -46,16 +46,17 @@ public class EditarEliminarBean implements Serializable {
         faceContext = FacesContext.getCurrentInstance();
         httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
         if (httpServletRequest.getSession().getAttribute("sessionUsuario") != null) {
-            sesionUsuario = httpServletRequest.getSession().getAttribute("sessionUsuario").toString();
+            nombreUsuario = httpServletRequest.getSession().getAttribute("sessionUsuario").toString();
+            returnUsuarioById();
         }
     }
 
     public void returnUsuarioById() {
         EditarEliminarDAO editarEliminarDAO = new EditarEliminarDAO();
         RegistroDAO registroDAO = new RegistroDAO();
-
-        Usuario usu = registroDAO.getRegistroUsuarioByID(getSesionUsuario());
-        DatosUsuario cliente = editarEliminarDAO.getUsuarioByID(getIdentificadorUsuario());
+        Usuario usu = new Usuario();
+        usu = registroDAO.getRegistroUsuarioByID(getSesionUsuario());
+        DatosUsuario cliente;
 
         if (usu != null) {
 
@@ -66,7 +67,7 @@ public class EditarEliminarBean implements Serializable {
 
             //obtiene el PK de Usuario para usarlo en el FK  de DATOSUSUARIO
             setIdentificadorUsuario(usu.getIdUsuario());
-
+            cliente = editarEliminarDAO.getUsuarioByID(usu.getIdUsuario());
             //Campos de datos de la tabla DatosUsuario
             setIdDatosUsuario(cliente.getIdDatosUsuario());
             setNombre(cliente.getNombre());
@@ -130,14 +131,22 @@ public class EditarEliminarBean implements Serializable {
 
         } else {
             editarEliminarDAO.updateDatosUsuario(getIdDatosUsuario(), datosUsuario);
-
+            if(getContraseniaUsuario()!=null)
+                if(!getContraseniaUsuario().equals(""))
+                    editarEliminarDAO.updateContraUsuario(usu.getIdUsuario(), contraseniaUsuario);
             ObtieneRolBean rol = new ObtieneRolBean();
             String rolEscogido = rol.getRol();
             if (rolEscogido != null) {
                 if (rolEscogido.equals("Remitente")) {
+                    FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Datos editados correctamente"));
+            
                     return "InicioRemitente";
 
                 } else if (rolEscogido.equals("Transportador")) {
+                    FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Datos editados correctamente"));
+            
                     return "InicioTransportador";
                 }
             }
@@ -360,7 +369,7 @@ public class EditarEliminarBean implements Serializable {
      * @return the sesionUsuario
      */
     public String getSesionUsuario() {
-        return sesionUsuario;
+        return nombreUsuario;
     }
 
     /**

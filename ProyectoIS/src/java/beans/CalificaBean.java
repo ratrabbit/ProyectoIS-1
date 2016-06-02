@@ -7,18 +7,8 @@ package beans;
 
 import DAO.CalificaDAO;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import DAO.PublicacionDAO;
-import DAO.PublicarDAO;
-import DAO.RegistroDAO;
-import java.io.Serializable;
-import java.util.List; 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext; 
-import org.primefaces.event.RateEvent;
- 
+import org.primefaces.event.RateEvent; 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -26,6 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import mapeo.Calificacion;
 import mapeo.CalificacionId;
+import mapeo.Compra;
 import mapeo.Usuario;
 
 /**
@@ -45,6 +36,8 @@ public class CalificaBean implements Serializable {
     private Usuario usuarioByIdUsuarioCalifica;
     private int idCalif;
     private int calificaion;
+    private int idCompra;
+    private Compra compra;
     private FacesMessage message;
     private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
@@ -69,20 +62,8 @@ public class CalificaBean implements Serializable {
     
     public void califica(){
         try{
-            /*
-            if(usuarioByIdUsuarioCalificado!= null && usuarioByIdUsuarioCalifica != null)
-                id = new CalificacionId(usuarioByIdUsuarioCalificado.getIdUsuario(),usuarioByIdUsuarioCalifica.getIdUsuario());
-            
-            else{
-                if(usuarioByIdUsuarioCalificado==null)
-                    System.out.println("JAJAJAJAJAJAJAJA");
-                if(usuarioByIdUsuarioCalifica==null)
-                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
-                
-                }
-                */
-            id = new CalificacionId(usuarioByIdUsuarioCalificado.getIdUsuario(),usuarioByIdUsuarioCalifica.getIdUsuario());
-            Calificacion c = new Calificacion(getId(),getUsuarioByIdUsuarioCalificado(),getUsuarioByIdUsuarioCalifica(),getIdCalif(),getCalificaion());
+            id = new CalificacionId(usuarioByIdUsuarioCalificado.getIdUsuario(),usuarioByIdUsuarioCalifica.getIdUsuario(),compra.getIdCompra());
+            Calificacion c = new Calificacion(getId(),compra,getUsuarioByIdUsuarioCalificado(),getUsuarioByIdUsuarioCalifica(),getIdCalif(),getCalificaion());
             CalificaDAO calificaDAO = new CalificaDAO();
             calificaDAO.addCalificacion(c);
         } catch (org.hibernate.exception.ConstraintViolationException e) {     
@@ -100,9 +81,12 @@ public class CalificaBean implements Serializable {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Calificacion", "Asignaste:" + ((Integer) rateEvent.getRating())+"");
         FacesContext.getCurrentInstance().addMessage(null, message);
         nombreCalif = faceContext.getExternalContext().getRequestParameterMap().get("selectedObj");
+        idCompra = Integer.parseInt(faceContext.getExternalContext().getRequestParameterMap().get("selectedObj1"));
         System.out.println("este es el nombre del calificado "+nombreCalif);
+        //System.out.println("este es el id de la compra "+idCompra);
         CalificaDAO c = new CalificaDAO();
         usuarioByIdUsuarioCalificado = c.getUsuarioByNombre(nombreCalif);
+        compra = c.getCompraById(idCompra);
         califica();
     }
      

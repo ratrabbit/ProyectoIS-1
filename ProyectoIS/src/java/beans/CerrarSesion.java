@@ -40,6 +40,7 @@ public class CerrarSesion {
         imprime();
         httpServletRequest.getSession().removeAttribute("sessionUsuario");
         httpServletRequest.getSession().removeAttribute("rolEscogido");
+        httpServletRequest.getSession().invalidate();
         message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Session cerrada correctamente", null);
         faceContext.addMessage(null, message);
         return "index";

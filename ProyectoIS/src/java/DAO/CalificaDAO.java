@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Transaction;
 import mapeo.Calificacion;
 import mapeo.CalificacionId;
+import mapeo.Compra;
 import mapeo.Usuario;
 import org.hibernate.Session;
 import util.NewHibernateUtil;
@@ -52,6 +53,26 @@ public class CalificaDAO {
             session.close();
         }
         return usuario;
+    }
+    
+    public Compra getCompraById(int id){
+        Compra c = new Compra();
+        Transaction trns = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            trns = session.beginTransaction();
+            String queryString = "from Compra where id_compra = :idToFind";
+            Query query = session.createQuery(queryString);
+            //query.setString("idToFind", Integer.toString(id));
+            query.setInteger("idToFind", id);
+            c = (Compra) query.uniqueResult();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return c;
     }
     
     public double getCalificacionTotal(Usuario a){

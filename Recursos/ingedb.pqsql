@@ -91,6 +91,15 @@ CREATE TABLE compra (
 
 
 ALTER TABLE compra OWNER TO postgres;
+
+--
+-- Name: id_compra_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY compra
+    ADD CONSTRAINT id_compra_pk PRIMARY KEY (id_compra);
+
+
 --
 -- Name: datos_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
@@ -156,6 +165,7 @@ CREATE TABLE calificacion (
     id_calif integer DEFAULT nextval('auto_incremento_id'::regclass) NOT NULL,
     id_usuario_calificado integer REFERENCES usuario ON DELETE CASCADE,
     id_usuario_califica integer REFERENCES usuario ON DELETE CASCADE,
+    id_compra integer REFERENCES compra,
     calificaion integer NOT NULL
 );
 
@@ -175,13 +185,6 @@ SELECT pg_catalog.setval('auto_incremento_id', 7, true);
 
 ALTER TABLE ONLY estado
     ADD CONSTRAINT estado_pk PRIMARY KEY (id_estado);
-
---
--- Name: id_compra_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY compra
-    ADD CONSTRAINT id_compra_pk PRIMARY KEY (id_compra);
 
 
 --
@@ -261,7 +264,11 @@ ALTER TABLE ONLY calificacion
 
 
 ALTER TABLE ONLY calificacion
-    ADD CONSTRAINT calificacion_pk PRIMARY KEY (id_usuario_calificado,id_usuario_califica);
+    ADD CONSTRAINT id_compra_fk FOREIGN KEY (id_compra) REFERENCES compra(id_compra);
+
+
+ALTER TABLE ONLY calificacion
+    ADD CONSTRAINT calificacion_pk PRIMARY KEY (id_usuario_calificado,id_usuario_califica,id_compra);
 
 --
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
@@ -276,4 +283,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-

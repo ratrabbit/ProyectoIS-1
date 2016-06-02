@@ -6,7 +6,9 @@
     <class name="mapeo.Compra" table="compra" schema="public" optimistic-lock="version">
         <id name="idCompra" type="int">
             <column name="id_compra" />
-            <generator class="assigned" />
+            <generator class="sequence">
+        <param name="sequence">auto_incremento_id</param>
+      </generator>
         </id>
         <many-to-one name="publicacion" class="mapeo.Publicacion" fetch="select">
             <column name="id_publicacion_compra" not-null="true" />

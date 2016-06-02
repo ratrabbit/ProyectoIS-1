@@ -39,7 +39,7 @@
                 <p:growl id="message" sticky="true"/>
 
                 <p:outputLabel for="nombreUsuario" style="color: white" value="Nombre usuario:* " />
-                <p:outputLabel id="nombreUsuario" value="#{editarEliminarBean.nombreUsuario}"  style="color: black"></p:outputLabel>
+                <p:outputLabel id="nombreUsuario" value="#{editarEliminarBean.sesionUsuario}"  style="color: black"></p:outputLabel>
                 <br/>
 
                 <p:outputLabel for="nombre" style="color: white" value="Nombre:* " />
@@ -72,8 +72,20 @@
                     <f:selectItem itemLabel="Femenino" itemValue="f" />
                 </p:selectOneRadio>
                 <br/>
-                <h:outputText style="color: white" value="Contraseña nueva: " />
-                <p:password id="contraseña" value="#{editarEliminarBean.contraseniaUsuario}" style="color: black" feedback="true" />
+                
+                <p:outputLabel for="contraVieja" style="color: white" value="Contraseña actual: " />
+                <h:inputSecret id="contraVieja" value="#{editarEliminarBean.contraVieja}" style="color: black" redisplay = "true" disabled="true"></h:inputSecret>
+                
+                
+                <p:outputLabel for="pwd1" value="Contraseña: " style="color: white"/>
+                    <p:password id="pwd1" value="#{editarEliminarBean.contraseniaUsuario}" style="color: black" feedback="true" match="pwd2" label="Password 1"/>
+                    <br/>
+                    
+                    <p:outputLabel for="pwd2" value="Confirmar contraseña: " style="color: white"/>
+                    <p:password id="pwd2" value="#{editarEliminarBean.contraseniaUsuario}" style="color: black" feedback="true" label="Password 2"/>
+                    <br/>
+                    
+                
                 <p:commandButton class="cajadatos2" value="Guardar" action="#{editarEliminarBean.updateUsuario()}" update="grid" ></p:commandButton> 
                 <p:commandButton class="cajadatos2" value="Eliminar" action="#{editarEliminarBean.dirigeConfirmacionElimina()}" update="grid" ></p:commandButton>
             </h:panelGrid>
