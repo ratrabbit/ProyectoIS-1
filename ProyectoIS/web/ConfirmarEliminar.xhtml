@@ -36,7 +36,7 @@
              <p:outputLabel value="¿Estás seguro que deseas eliminar tu perfil?"></p:outputLabel>
             <br/>
             <br/>
-            <p:commandButton value="Aceptar" action="#{editarEliminarBean.deleteUsuario()}" onclick="alert('Usuario eliminado correctamente');"></p:commandButton> 
+            <p:commandButton id="boton" value="Aceptar" action="#{editarEliminarBean.deleteUsuario()}" onclick="alert('Usuario eliminado correctamente'); window.location.href = 'index.xhtml';"></p:commandButton> 
             <p:commandButton value="Cancelar" action="#{editarEliminarBean.cancelaEliminar()}" update='message'></p:commandButton> 
 
         </h:form>
@@ -50,5 +50,9 @@
                 <li><a><font color="white">Preguntas Frecuentes</font></a></li>
             </ul>
         </div>
+        <script type="text/javascript">
+            $('#boton').onclick(function(){alert("Usuario eliminado correctamente");
+            window.location.href = "index.xhtml";});
+        </script>
     </h:body>
 </html>
