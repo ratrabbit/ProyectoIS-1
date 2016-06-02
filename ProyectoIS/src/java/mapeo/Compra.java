@@ -49,7 +49,10 @@ public class Compra  implements java.io.Serializable {
         this.usuario = usuario;
     }
 
-
+     @Override
+     public String toString(){
+    return publicacion.getNombreProducto()+" "+usuario.toString();
+}
 
 
 }

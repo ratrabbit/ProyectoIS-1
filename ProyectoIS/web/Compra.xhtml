@@ -47,11 +47,11 @@
                         <h:outputText value="#{compraBean.obtenNombreInfo()}" style="font-weight: bold"/>
 
                         <h:outputText value=" esta feliz de que será transportado su articulo " />
-                        <h:outputText value="#{compraBean.obtenNombrePub()}" style="font-weight: bold"/>
+                        <h:outputText id="valor" value="#{compraBean.obtenNombrePub()}" style="font-weight: bold"/>
         <br/>
         <input type="hidden" name="selectedObj" value="#{compraBean.obtenNombreInfo()}" />
         <input type="hidden" name="selectedObj1" value="#{compraBean.idCompra}" />
-     
+        <input type="hidden" name="selectedObj2" value="#{compraBean.idCompra}" />
         <h:outputText value="Por favor califica a " />
         <h:outputText value="#{compraBean.obtenNombreInfo()}" style="font-weight: bold"/>
         <p:growl id="message" sticky="true"/>

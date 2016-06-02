@@ -86,7 +86,9 @@ public class CalificaBean implements Serializable {
         //System.out.println("este es el id de la compra "+idCompra);
         CalificaDAO c = new CalificaDAO();
         usuarioByIdUsuarioCalificado = c.getUsuarioByNombre(nombreCalif);
+        System.out.println(idCompra);
         compra = c.getCompraById(idCompra);
+        
         califica();
     }
      
